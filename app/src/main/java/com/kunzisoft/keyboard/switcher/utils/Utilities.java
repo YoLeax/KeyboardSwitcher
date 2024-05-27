@@ -55,6 +55,6 @@ public class Utilities {
         if (delay != null)
         	chooserIntent.putExtra(KeyboardManagerActivity.DELAY_SHOW_KEY, delay);
         return PendingIntent.getActivity(
-                context, 0, chooserIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                context, 0, chooserIntent, PendingIntent.FLAG_IMMUTABLE|PendingIntent.FLAG_UPDATE_CURRENT);
     }
 }
