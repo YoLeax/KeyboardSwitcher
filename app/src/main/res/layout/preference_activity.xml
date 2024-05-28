@@ -28,7 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_text_test"
-            android:inputType="text"
+            android:layout_margin="12dp"
+            android:inputType="textMultiLine"
             android:importantForAutofill="no" />
     </LinearLayout>
 
