@@ -1,8 +1,10 @@
 package com.kunzisoft.keyboard.switcher;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,16 +36,19 @@ public class KeyboardManagerActivity extends AppCompatActivity {
         rootView = findViewById(R.id.root_view);
         progressView = findViewById(R.id.progress);
 		super.onCreate(savedInstanceState);
-		imeManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_INPUT_METHODS)) {
+            imeManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        } else {
+            Toast.makeText(this, getString(R.string.error_unavailable_keyboard_feature), Toast.LENGTH_SHORT).show();
+            finish();
+        }
 
-		openPickerRunnable = new Runnable() {
-            @Override
-            public void run() {
-                if (imeManager != null) {
-                    imeManager.showInputMethodPicker();
-                    mState = DialogState.PICKING;
-                    progressView.setVisibility(View.GONE);
-                }
+        findViewById(R.id.cancel_button).setOnClickListener(view -> finish());
+
+		openPickerRunnable = () -> {
+            if (imeManager != null) {
+                imeManager.showInputMethodPicker();
+                mState = DialogState.PICKING;
             }
         };
 

@@ -3,6 +3,8 @@
 
     <string name="hint_text_test">zone de test</string>
 
+    <string name="launching_selection">Lancement de la boîte de dialogue de sélection de clavier</string>
+
     <string name="notification_keyboard_title">Changer le clavier</string>
     <string name="notification_keyboard_content_text">Appuyer pour sélectionner le clavier par défaut.</string>
 
@@ -53,5 +55,7 @@
     <string name="html_text_contribution">Afin de &lt;strong&gt;garder notre liberté&lt;/strong&gt;, &lt;strong&gt;corriger des bogues&lt;/strong&gt;, &lt;strong&gt;ajouter des fonctonnalités&lt;/strong&gt; et &lt;strong&gt;pour être toujours actif&lt;/strong&gt;, nous comptons sur votre &lt;strong&gt;contribution.&lt;/strong&gt;</string>
 
     <string name="shortcut_short_label_show_keyboard_switcher">Afficher le commutateur de clavier</string>
+
+    <string name="cancel">Annuler</string>
 
 </resources>

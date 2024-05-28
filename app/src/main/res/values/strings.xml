@@ -8,6 +8,8 @@
 
     <string name="hint_text_test">test area</string>
 
+    <string name="launching_selection">Launching keyboard selection dialog</string>
+
     <string name="notification_keyboard_title">Switch the keyboard</string>
     <string name="notification_keyboard_content_text">Tap to select the default keyboard.</string>
 
@@ -67,5 +69,7 @@
     <string name="html_text_contribution">In order to &lt;strong&gt;keep our freedom&lt;/strong&gt;, &lt;strong&gt;fix bugs&lt;/strong&gt;, &lt;strong&gt;add features&lt;/strong&gt; and &lt;strong&gt;to be always active&lt;/strong&gt;, we count on your &lt;strong&gt;contribution.&lt;/strong&gt;</string>
 
     <string name="shortcut_short_label_show_keyboard_switcher">Show the keyboard switcher</string>
+
+    <string name="cancel">Cancel</string>
 
 </resources>

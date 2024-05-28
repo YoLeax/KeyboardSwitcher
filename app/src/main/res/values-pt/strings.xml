@@ -3,6 +3,8 @@
 
     <string name="hint_text_test">área de teste</string>
 
+    <string name="launching_selection">Iniciar o diálogo de seleção do teclado</string>
+
     <string name="notification_keyboard_title">Selecionar teclado</string>
     <string name="notification_keyboard_content_text">Toque para selecionar o teclado.</string>
 
@@ -53,5 +55,7 @@
     <string name="html_text_contribution">In order to &lt;strong&gt;keep our freedom&lt;/strong&gt;, &lt;strong&gt;fix bugs&lt;/strong&gt;, &lt;strong&gt;add features&lt;/strong&gt; and &lt;strong&gt;to be always active&lt;/strong&gt;, we count on your &lt;strong&gt;contribution.&lt;/strong&gt;</string>
 
     <string name="shortcut_short_label_show_keyboard_switcher">Mostrar o interruptor de teclado</string>
+
+    <string name="cancel">Cancelar</string>
 
 </resources>
