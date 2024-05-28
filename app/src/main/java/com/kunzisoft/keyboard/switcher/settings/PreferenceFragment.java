@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
 import androidx.preference.SeekBarPreference;
 import androidx.preference.SwitchPreference;
+import androidx.preference.TwoStatePreference;
 
 import com.kunzisoft.androidclearchroma.ChromaPreferenceFragmentCompat;
 import com.kunzisoft.keyboard.switcher.KeyboardSwitcherService;
@@ -33,8 +34,8 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
     */
     private final static int REQUEST_CODE = 6517;
 
-    private SwitchPreference preferenceNotification;
-    private SwitchPreference preferenceFloatingButton;
+    private TwoStatePreference preferenceNotification;
+    private TwoStatePreference preferenceFloatingButton;
 
     private boolean tryToOpenExternalDialog;
 
