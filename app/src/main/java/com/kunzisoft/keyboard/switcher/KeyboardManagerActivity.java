@@ -38,24 +38,27 @@ public class KeyboardManagerActivity extends AppCompatActivity {
         progressView = findViewById(R.id.progress);
 
         findViewById(R.id.cancel_button).setOnClickListener(view -> finish());
+        findViewById(R.id.relaunch_button).setOnClickListener(view -> launchKeyboard());
 
         if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_INPUT_METHODS)) {
             imeManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         }
 
-        openPickerRunnable = () -> {
-            if (imeManager != null) {
-                imeManager.showInputMethodPicker();
-                mState = DialogState.PICKING;
-            } else {
-                Toast.makeText(this, getString(R.string.error_unavailable_keyboard_feature), Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        };
+        openPickerRunnable = this::launchKeyboard;
 
-		if (getIntent() != null) {
+        if (getIntent() != null) {
 			delay = getIntent().getLongExtra(DELAY_SHOW_KEY, delay);
 		}
+    }
+
+    private void launchKeyboard() {
+        if (imeManager != null) {
+            imeManager.showInputMethodPicker();
+            mState = DialogState.PICKING;
+        } else {
+            Toast.makeText(this, getString(R.string.error_unavailable_keyboard_feature), Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 
     @Override

@@ -70,6 +70,7 @@
 
     <string name="shortcut_short_label_show_keyboard_switcher">Show the keyboard switcher</string>
 
+    <string name="relaunch">Relaunch</string>
     <string name="cancel">Cancel</string>
 
 </resources>
