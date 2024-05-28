@@ -60,6 +60,18 @@
                 android:value="@string/explanation_service_special_use"/>
         </service>
 
+        <service
+            android:name=".KeyboardSwitcherQSTileService"
+            android:exported="true"
+            android:label="@string/notification_keyboard_title"
+            android:icon="@drawable/ic_notification_white_24dp"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+            <meta-data android:name="android.service.quicksettings.TOGGLEABLE_TILE" android:value="false" />
+        </service>
+
         <receiver
             android:name=".KeyboardWidgetProvider"
             android:exported="true">
