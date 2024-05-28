@@ -19,7 +19,7 @@ public class KeyboardSwitcherQSTileService extends TileService {
     public void onClick() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                startActivityAndCollapse(Utilities.getPendingIntent(this));
+                startActivityAndCollapse(Utilities.getPendingIntent(this, 1100L));
             } else {
                 Intent intent = new Intent(this, KeyboardManagerActivity.class);
                 intent.addFlags(FLAG_ACTIVITY_NEW_TASK);

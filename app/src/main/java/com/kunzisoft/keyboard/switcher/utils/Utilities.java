@@ -49,6 +49,7 @@ public class Utilities {
         Intent chooserIntent = new Intent(context, KeyboardManagerActivity.class);
         chooserIntent.setAction(Intent.ACTION_MAIN);
         chooserIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        chooserIntent.addFlags(FLAG_ACTIVITY_NEW_TASK);
         if (delay != null)
         	chooserIntent.putExtra(KeyboardManagerActivity.DELAY_SHOW_KEY, delay);
         return PendingIntent.getActivity(

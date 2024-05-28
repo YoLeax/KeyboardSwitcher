@@ -17,9 +17,9 @@ public class KeyboardManagerActivity extends AppCompatActivity {
 	public static final String DELAY_SHOW_KEY = "DELAY_SHOW_KEY";
 
 	private long delay = 400L;
-	private Runnable openPickerRunnable;
 
 	private InputMethodManager imeManager;
+    private Runnable openPickerRunnable;
     private View rootView;
     private View progressView;
 
@@ -27,28 +27,29 @@ public class KeyboardManagerActivity extends AppCompatActivity {
         NONE, PICKING, CHOSEN
     }
 
-    private DialogState mState;
+    private DialogState mState = DialogState.NONE;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-		mState = DialogState.NONE;
+        super.onCreate(savedInstanceState);
+
         setContentView(R.layout.empty);
         rootView = findViewById(R.id.root_view);
         progressView = findViewById(R.id.progress);
-		super.onCreate(savedInstanceState);
-        if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_INPUT_METHODS)) {
-            imeManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        } else {
-            Toast.makeText(this, getString(R.string.error_unavailable_keyboard_feature), Toast.LENGTH_SHORT).show();
-            finish();
-        }
 
         findViewById(R.id.cancel_button).setOnClickListener(view -> finish());
 
-		openPickerRunnable = () -> {
+        if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_INPUT_METHODS)) {
+            imeManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        }
+
+        openPickerRunnable = () -> {
             if (imeManager != null) {
                 imeManager.showInputMethodPicker();
                 mState = DialogState.PICKING;
+            } else {
+                Toast.makeText(this, getString(R.string.error_unavailable_keyboard_feature), Toast.LENGTH_SHORT).show();
+                finish();
             }
         };
 
