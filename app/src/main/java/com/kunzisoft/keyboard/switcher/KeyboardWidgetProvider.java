@@ -15,7 +15,10 @@ public class KeyboardWidgetProvider extends AppWidgetProvider {
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
                     R.layout.icon_widget);
 
-            remoteViews.setOnClickPendingIntent(R.id.icon_widget_view, Utilities.getPendingIntent(context));
+            remoteViews.setOnClickPendingIntent(
+                    R.id.icon_widget_view,
+                    Utilities.getPendingIntent(context)
+            );
             appWidgetManager.updateAppWidget(widgetId, remoteViews);
         }
     }

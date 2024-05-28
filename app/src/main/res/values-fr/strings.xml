@@ -56,7 +56,7 @@
 
     <string name="shortcut_short_label_show_keyboard_switcher">Afficher le commutateur de clavier</string>
 
-    <string name="relaunch">Relancer</string>
+    <string name="open">Ouvrir</string>
     <string name="cancel">Annuler</string>
 
 </resources>

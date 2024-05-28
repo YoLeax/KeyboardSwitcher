@@ -56,7 +56,7 @@
 
     <string name="shortcut_short_label_show_keyboard_switcher">Mostrar o interruptor de teclado</string>
 
-    <string name="relaunch">Relançar</string>
+    <string name="open">Aberto</string>
     <string name="cancel">Cancelar</string>
 
 </resources>

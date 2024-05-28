@@ -1,5 +1,6 @@
 package com.kunzisoft.keyboard.switcher;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +22,6 @@ public class KeyboardManagerActivity extends AppCompatActivity {
 	private InputMethodManager imeManager;
     private Runnable openPickerRunnable;
     private View rootView;
-    private View progressView;
 
     enum DialogState {
         NONE, PICKING, CHOSEN
@@ -35,7 +35,6 @@ public class KeyboardManagerActivity extends AppCompatActivity {
 
         setContentView(R.layout.empty);
         rootView = findViewById(R.id.root_view);
-        progressView = findViewById(R.id.progress);
 
         findViewById(R.id.cancel_button).setOnClickListener(view -> finish());
         findViewById(R.id.relaunch_button).setOnClickListener(view -> launchKeyboard());
@@ -49,6 +48,12 @@ public class KeyboardManagerActivity extends AppCompatActivity {
         if (getIntent() != null) {
 			delay = getIntent().getLongExtra(DELAY_SHOW_KEY, delay);
 		}
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        delay = intent.getLongExtra(DELAY_SHOW_KEY, delay);
     }
 
     private void launchKeyboard() {
@@ -75,9 +80,7 @@ public class KeyboardManagerActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        rootView.removeCallbacks(openPickerRunnable);
         rootView.postDelayed(openPickerRunnable, delay);
-        progressView.setVisibility(View.VISIBLE);
     }
 
     @Override
