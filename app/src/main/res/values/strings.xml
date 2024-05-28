@@ -22,6 +22,7 @@
     <string name="settings_ime_change_title">Change the default keyboard</string>
 
     <string name="error_unavailable_keyboard_feature">Your system is not able to open the keyboard selection dialog.</string>
+    <string name="error_notification_permission">The application does not have permission to display the notification.</string>
 
     <string name="startup">Startup</string>
 

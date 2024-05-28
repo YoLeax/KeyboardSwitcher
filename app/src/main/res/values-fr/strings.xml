@@ -15,6 +15,7 @@
     <string name="settings_ime_change_title">Changer le clavier par défaut</string>
 
     <string name="error_unavailable_keyboard_feature">Votre système ne peut pas ouvrir la boîte de dialogue de sélection du clavier.</string>
+    <string name="error_notification_permission">L\'application n\'a pas la permission d\'afficher la notification.</string>
 
     <string name="startup">Démarrage</string>
 

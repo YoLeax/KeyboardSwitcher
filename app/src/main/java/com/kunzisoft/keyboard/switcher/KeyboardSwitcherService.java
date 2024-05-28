@@ -1,5 +1,7 @@
 package com.kunzisoft.keyboard.switcher;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+
 import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -33,8 +35,6 @@ import androidx.core.content.ContextCompat;
 import com.google.gson.Gson;
 import com.kunzisoft.keyboard.switcher.utils.Utilities;
 
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
-
 public class KeyboardSwitcherService extends Service implements OnTouchListener, OnClickListener {
 
     public static final String CHANNEL_ID_KEYBOARD = "com.kunzisoft.keyboard.notification.channel";
@@ -42,9 +42,9 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
 
     public static final int NOTIFICATION_ID = 45;
 
-    public static String NOTIFICATION_START= "NOTIFICATION_START";
-    public static String NOTIFICATION_STOP= "NOTIFICATION_STOP";
-    public static String FLOATING_BUTTON_START= "FLOATING_BUTTON_START";
+    public static String NOTIFICATION_START = "NOTIFICATION_START";
+    public static String NOTIFICATION_STOP = "NOTIFICATION_STOP";
+    public static String FLOATING_BUTTON_START = "FLOATING_BUTTON_START";
     public static String FLOATING_BUTTON_STOP = "FLOATING_BUTTON_STOP";
 
     private SharedPreferences preferences;
@@ -106,7 +106,7 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
 
     @Override
     public IBinder onBind(Intent intent) {
-	    return null;
+        return null;
     }
 
     @Override
@@ -141,6 +141,7 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
         NotificationManagerCompat.from(this).cancel(NOTIFICATION_ID);
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -148,42 +149,52 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
             boolean notificationPrefActive = preferences.getBoolean(getString(R.string.settings_notification_key), false);
             boolean floatingButtonPrefActive = preferences.getBoolean(getString(R.string.settings_floating_button_key), false);
 
-            if (intent.getAction() == null) {
-                if (floatingButtonPrefActive)
-                    intent.setAction(FLOATING_BUTTON_START);
-                else if (notificationPrefActive)
-                    intent.setAction(NOTIFICATION_START);
+            String action = intent.getAction();
+            if (action == null)
+                action = "";
+
+            if (floatingButtonPrefActive)
+                action = addAction(action, FLOATING_BUTTON_START);
+            else
+                action = addAction(action, FLOATING_BUTTON_STOP);
+            if (notificationPrefActive)
+                action = addAction(action, NOTIFICATION_START);
+            else
+                action = addAction(action, NOTIFICATION_STOP);
+
+            if (action.contains(NOTIFICATION_START)
+                    && notificationPrefActive) {
+                if (NotificationManagerCompat.from(this).areNotificationsEnabled()) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        startForeground(NOTIFICATION_ID, notificationBuilder().build());
+                    }
+                    NotificationManagerCompat.from(this)
+                            .notify(NOTIFICATION_ID, notificationBuilder().build());
+                }
             }
 
-            if (intent.getAction() != null) {
+            if (action.contains(NOTIFICATION_STOP)) {
+                removeNotification();
+            }
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    startForeground(NOTIFICATION_ID, notificationBuilder().build());
-                }
+            if (action.contains(FLOATING_BUTTON_START)
+                && floatingButtonPrefActive) {
+                createRemoteView();
+            }
 
-                if (intent.getAction().equals(NOTIFICATION_START)
-                    && notificationPrefActive) {
-                    NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, notificationBuilder().build());
-                }
-
-                if (intent.getAction().equals(NOTIFICATION_STOP)) {
-                    removeNotification();
-                }
-
-                if (intent.getAction().equals(FLOATING_BUTTON_START)
-                    && floatingButtonPrefActive) {
-                    createRemoteView();
-                } else {
-                    eraseRemoteView();
-                }
-
-                if (intent.getAction().equals(FLOATING_BUTTON_STOP)) {
-                    eraseRemoteView();
-                }
+            if (action.contains(FLOATING_BUTTON_STOP)) {
+                eraseRemoteView();
             }
         }
 
         return super.onStartCommand(intent, flags, startId);
+    }
+
+    private String addAction(String action, String add) {
+        if(!action.contains(add)) {
+            return action+add;
+        }
+        return action;
     }
 
     private void createRemoteView() {
