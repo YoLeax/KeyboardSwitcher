@@ -118,12 +118,17 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
      * ************ *
      */
 
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
+    boolean notificationsPermissionAllowed() {
+        return ContextCompat.checkSelfPermission(
+                requireActivity(),
+                Manifest.permission.POST_NOTIFICATIONS
+        ) == PackageManager.PERMISSION_GRANTED;
+    }
+
     void checkNotificationPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(
-                    requireActivity(),
-                    Manifest.permission.POST_NOTIFICATIONS
-            ) == PackageManager.PERMISSION_GRANTED) {
+            if (notificationsPermissionAllowed()) {
                 startNotificationService();
             } else if (ActivityCompat.shouldShowRequestPermissionRationale(
                     requireActivity(), Manifest.permission.POST_NOTIFICATIONS
@@ -139,6 +144,7 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
     }
 
     private void startNotificationService() {
+        preferenceNotification.setChecked(true);
         Intent intent = new Intent(requireActivity(), KeyboardSwitcherService.class);
         intent.setAction(NOTIFICATION_START);
         requireActivity().startService(intent);
@@ -199,7 +205,15 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
 	public void onResume() {
 		super.onResume();
 
-		// To unchecked the preference floating button if not allowed by the system
+        // To unchecked the preference notification button if not allowed
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (!notificationsPermissionAllowed()) {
+                if (preferenceNotification != null)
+                    preferenceNotification.setChecked(false);
+            }
+        }
+
+        // To unchecked the preference floating button if not allowed by the system
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			if (!Settings.canDrawOverlays(getActivity())) {
 				if (preferenceFloatingButton != null)

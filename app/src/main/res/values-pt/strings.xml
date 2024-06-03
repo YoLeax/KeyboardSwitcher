@@ -34,7 +34,7 @@
 
     <string name="floating_button_warning">Esta função pode ser instável em versões mais recentes do Android (Lollipop e posterior).</string>
     <string name="floating_button_battery_warning">Se o botão desaparecer, tente alterar o comportamento de otimização da bateria.</string>
-    <string name="floating_button_notification_warning">Uma notificação é essencial para manter o app visível na sua versão do Android (O e posteriores).</string>
+    <string name="floating_button_notification_warning">É necessária uma notificação para que o botão permaneça visível na sua versão do Android (O e posterior), mas esta notificação pode ser ocultada nas definições.</string>
     <string name="floating_button_above_screen">Você deve permitir que o app se sobreponha a outros apps.</string>
 
     <string name="settings_floating_button_lock_title">Travar posição</string>
