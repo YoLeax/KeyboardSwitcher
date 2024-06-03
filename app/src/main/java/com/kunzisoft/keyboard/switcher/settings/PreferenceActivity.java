@@ -150,15 +150,6 @@ public class PreferenceActivity extends AppCompatActivity implements WarningFloa
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-
-        // To avoid flickering and open time
-        if (preferenceFragment != null && !preferenceFragment.isTryingToOpenExternalDialog())
-            finish();
-    }
-
-    @Override
     public void onBackPressed() {
         if (aboutFragmentActive) {
             switchToPreferenceScreen();

@@ -20,7 +20,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.ColorInt;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.preference.SeekBarPreference;
@@ -43,17 +42,14 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
     private TwoStatePreference preferenceNotification;
     private TwoStatePreference preferenceFloatingButton;
 
-    private boolean tryToOpenExternalDialog;
-
-    private ActivityResultLauncher<String> requestNotificationPermissionLauncher =
+    ActivityResultLauncher<String> requestNotificationPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
-                    activateNotification();
+                    startNotificationService();
                 } else {
                     explainNotificationPermission();
                 }
             });
-
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -76,25 +72,7 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
             if (preferenceNotification.isChecked()) {
                 Activity activity = getActivity();
                 if (activity != null) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                        if (ContextCompat.checkSelfPermission(
-                                activity,
-                                Manifest.permission.POST_NOTIFICATIONS
-                        ) == PackageManager.PERMISSION_GRANTED) {
-                            activateNotification();
-                        } else if (ActivityCompat.shouldShowRequestPermissionRationale(
-                                activity, Manifest.permission.POST_NOTIFICATIONS
-                        )) {
-                            explainNotificationPermission();
-                        } else {
-                            // You can directly ask for the permission.
-                            // The registered ActivityResultCallback gets the result of this request.
-                            requestNotificationPermissionLauncher.launch(
-                                    Manifest.permission.POST_NOTIFICATIONS
-
-                            );
-                        }
-                    }
+                    checkNotificationPermission();
                 }
             } else {
                 stopKeyboardSwitcherService();
@@ -134,22 +112,85 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
                 });
     }
 
-    private void activateNotification() {
+    /*
+     * ************ *
+     * NOTIFICATION
+     * ************ *
+     */
+
+    void checkNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(
+                    requireActivity(),
+                    Manifest.permission.POST_NOTIFICATIONS
+            ) == PackageManager.PERMISSION_GRANTED) {
+                startNotificationService();
+            } else if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    requireActivity(), Manifest.permission.POST_NOTIFICATIONS
+            )) {
+                explainNotificationPermission();
+                showNotificationSettings();
+            } else {
+                // You can directly ask for the permission.
+                // The registered ActivityResultCallback gets the result of this request.
+                requestNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+            }
+        }
+    }
+
+    private void startNotificationService() {
         Intent intent = new Intent(requireActivity(), KeyboardSwitcherService.class);
         intent.setAction(NOTIFICATION_START);
         requireActivity().startService(intent);
     }
 
-    private void explainNotificationPermission() {
-        preferenceNotification.setChecked(false);
+    private void showNotificationSettings() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startActivity(new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     .putExtra(Settings.EXTRA_APP_PACKAGE, requireContext().getPackageName()));
         }
+    }
+
+    private void explainNotificationPermission() {
+        preferenceNotification.setChecked(false);
         Toast.makeText(
                 requireContext(),
                 R.string.error_notification_permission,
+                Toast.LENGTH_SHORT
+        ).show();
+    }
+
+    /*
+     * ******* *
+     * OVERLAY
+     * ******* *
+     */
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private boolean overlayPermissionAllowed() {
+        return Settings.canDrawOverlays(getActivity());
+    }
+
+    /** @noinspection deprecation*/
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void openOverlaySetting() {
+        preferenceFloatingButton.setChecked(false);
+        try {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                    Uri.parse("package:" + requireActivity().getPackageName()));
+            /* request permission via start activity for result */
+            startActivityForResult(intent, REQUEST_CODE);
+        } catch (ActivityNotFoundException e) {
+            explainOverlayPermission();
+        }
+    }
+
+    private void explainOverlayPermission() {
+        preferenceFloatingButton.setChecked(false);
+        Toast.makeText(
+                requireContext(),
+                R.string.error_overlay_permission,
                 Toast.LENGTH_SHORT
         ).show();
     }
@@ -158,7 +199,6 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
 	public void onResume() {
 		super.onResume();
 
-		tryToOpenExternalDialog = false;
 		// To unchecked the preference floating button if not allowed by the system
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			if (!Settings.canDrawOverlays(getActivity())) {
@@ -177,30 +217,6 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
         restartFloatingButtonAndCheckedButton();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private boolean drawOverlayPermissionAllowed() {
-    	if (getActivity() != null) {
-			/* check if we already  have permission to draw over other apps */
-			if (Settings.canDrawOverlays(getActivity())) {
-				return true;
-			} else {
-				try {
-					/* if not construct intent to request permission */
-					tryToOpenExternalDialog = true;
-					Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-							Uri.parse("package:" + getActivity().getPackageName()));
-					/* request permission via start activity for result */
-					startActivityForResult(intent, REQUEST_CODE);
-				} catch (ActivityNotFoundException e) {
-					if (getContext() != null)
-						new AlertDialog.Builder(getContext())
-								.setMessage(R.string.error_overlay_permission_request)
-								.setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {}).create().show();
-				}
-			}
-		}
-        return false;
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -217,15 +233,9 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
         }
     }
 
-	/**
-	 * Method used to not destroy the main activity when an external dialog is requested
-	 * @return 'true' if an external dialog is requested
-	 */
-	public boolean isTryingToOpenExternalDialog() {
-    	return tryToOpenExternalDialog;
-	}
-
 	private void startFloatingButton() {
+        if (preferenceFloatingButton != null)
+            preferenceFloatingButton.setChecked(true);
 		if (getActivity() != null) {
 			Intent intent = new Intent(getActivity(), KeyboardSwitcherService.class);
 			intent.setAction(FLOATING_BUTTON_START);
@@ -258,17 +268,14 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
     void startFloatingButtonAndCheckButton() {
 		stopKeyboardSwitcherService();
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-			if (drawOverlayPermissionAllowed()) {
+			if (overlayPermissionAllowed()) {
 				startFloatingButton();
 			} else {
-				if (preferenceFloatingButton != null)
-					preferenceFloatingButton.setChecked(false);
+                openOverlaySetting();
 			}
 		} else {
 			startFloatingButton();
 		}
-        if (preferenceFloatingButton != null)
-            preferenceFloatingButton.setChecked(true);
     }
 
     void stopFloatingButtonAndUncheckedButton() {
@@ -279,9 +286,8 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
 
     private void restartFloatingButtonAndCheckedButton() {
         // Restart service
-        if (getActivity() != null) {
+        if (getActivity() != null)
             getActivity().stopService(new Intent(getActivity(), KeyboardSwitcherService.class));
-        }
 		startFloatingButtonAndCheckButton();
     }
 }

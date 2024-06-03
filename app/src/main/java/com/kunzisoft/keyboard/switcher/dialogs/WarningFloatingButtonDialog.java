@@ -46,6 +46,7 @@ public class WarningFloatingButtonDialog extends DialogFragment {
 
         SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
         stringBuilder.append(getString(R.string.floating_button_warning));
+        stringBuilder.append("\n\n").append(getString(R.string.floating_button_battery_warning));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             stringBuilder.append("\n\n").append(getString(R.string.floating_button_notification_warning));
         }
@@ -53,19 +54,12 @@ public class WarningFloatingButtonDialog extends DialogFragment {
                 && !Settings.canDrawOverlays(getActivity())) {
             stringBuilder.append("\n\n").append(getString(R.string.floating_button_above_screen));
         }
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                onClickListener.onFloatingButtonDialogPositiveButtonClick();
-            }
-        });
+        builder.setPositiveButton(android.R.string.ok, (dialog, which) ->
+                onClickListener.onFloatingButtonDialogPositiveButtonClick());
         builder.setMessage(stringBuilder);
-        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                onClickListener.onFloatingButtonDialogNegativeButtonClick();
-                dismiss();
-            }
+        builder.setNegativeButton(android.R.string.cancel, (dialog, which) -> {
+            onClickListener.onFloatingButtonDialogNegativeButtonClick();
+            dismiss();
         });
         // Create the AlertDialog object and return it
         return builder.create();

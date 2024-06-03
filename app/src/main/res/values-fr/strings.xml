@@ -15,7 +15,8 @@
     <string name="settings_ime_change_title">Changer le clavier par défaut</string>
 
     <string name="error_unavailable_keyboard_feature">Votre système ne peut pas ouvrir la boîte de dialogue de sélection du clavier.</string>
-    <string name="error_notification_permission">L\'application n\'a pas la permission d\'afficher la notification.</string>
+    <string name="error_notification_permission">L\'appli n\'a pas la permission d\'afficher la notification.</string>
+    <string name="error_overlay_permission">L\'appli n\'a pas la permission d\'afficher le bouton surélevé.</string>
 
     <string name="startup">Démarrage</string>
 
@@ -31,9 +32,8 @@
     <string name="settings_floating_button_title">Activer le bouton flottant</string>
     <string name="settings_floating_button_description">Active un bouton flottant pour choisir un clavier</string>
 
-    <string name="error_overlay_permission_request">Votre système ne peut pas ouvrir la boîte de dialogue de demande d\'autorisation de superposition.</string>
-
     <string name="floating_button_warning">Cette fonctionnalité peut être instable dans les dernières versions d’Android (Lollipop et les suivantes).</string>
+    <string name="floating_button_battery_warning">Si le bouton disparait, essayez de changer le comportement de l\'optimisation de la batterie.</string>
     <string name="floating_button_notification_warning">L\'affichage d\'une notification supplémentaire est essentiel pour que le bouton reste visible dans votre version d\'Android (O et suivantes).</string>
     <string name="floating_button_above_screen">Vous devez accepter les autorisations pour autoriser le bouton flottant a être dessiné au dessus des autres applications.</string>
 
