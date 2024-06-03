@@ -242,6 +242,7 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
         if (requestCode == REQUEST_CODE) {
             /* if so check once again if we have permission */
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                // BUG : https://stackoverflow.com/questions/46173460/why-does-settings-candrawoverlays-method-in-android-8-returns-false-when-use
                 if (Settings.canDrawOverlays(getActivity())) {
                     startFloatingButtonAndCheckButton();
                 }
@@ -252,7 +253,7 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
 	private void startFloatingButton() {
         if (preferenceFloatingButton != null)
             preferenceFloatingButton.setChecked(true);
-		if (getActivity() != null) {
+        if (getActivity() != null) {
 			Intent intent = new Intent(getActivity(), KeyboardSwitcherService.class);
 			intent.setAction(FLOATING_BUTTON_START);
 			getActivity().startService(intent);

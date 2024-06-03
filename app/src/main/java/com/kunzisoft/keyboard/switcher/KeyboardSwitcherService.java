@@ -134,7 +134,7 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
                 .setPriority(NotificationCompat.PRIORITY_LOW)
                 .setVisibility(NotificationCompat.VISIBILITY_SECRET)
                 .setContentText(this.getString(R.string.notification_keyboard_content_text))
-                .setContentIntent(Utilities.getPendingIntent(this, 500L)); // Trick 500ms delay to show the dialog
+                .setContentIntent(Utilities.getPendingIntent(this, 800L)); // Trick 500ms delay to show the dialog
     }
 
     private void removeNotification() {
