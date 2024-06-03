@@ -1,0 +1,5 @@
+ * Ajout de tuile pour la sélection
+ * Correction des états du service
+ * Mise à jour vers Android 14
+ * Correction des textes explicatifs
+ * Correction des permissions

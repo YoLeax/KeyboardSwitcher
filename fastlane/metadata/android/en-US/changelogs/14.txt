@@ -1,0 +1,5 @@
+ * Tiles added for selection
+ * Fix service status
+ * Update to Android 14
+ * Fix explanatory texts
+ * Fix permissions
