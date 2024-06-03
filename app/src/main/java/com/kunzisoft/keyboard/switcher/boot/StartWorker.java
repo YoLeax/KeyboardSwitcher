@@ -1,11 +1,15 @@
 package com.kunzisoft.keyboard.switcher.boot;
 
+import static com.kunzisoft.keyboard.switcher.KeyboardSwitcherService.FLOATING_BUTTON_START;
+import static com.kunzisoft.keyboard.switcher.KeyboardSwitcherService.NOTIFICATION_START;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -15,13 +19,12 @@ import androidx.work.WorkerParameters;
 import com.kunzisoft.keyboard.switcher.KeyboardSwitcherService;
 import com.kunzisoft.keyboard.switcher.R;
 
-import static com.kunzisoft.keyboard.switcher.KeyboardSwitcherService.FLOATING_BUTTON_START;
-import static com.kunzisoft.keyboard.switcher.KeyboardSwitcherService.NOTIFICATION_START;
-
 /**
  * Utility class to show keyboard button at startup
  */
 public class StartWorker extends Worker {
+
+    private final String TAG = StartWorker.class.getName();
 
     private final Context mContext;
 
@@ -50,7 +53,7 @@ public class StartWorker extends Worker {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG, "Unable to start service", e);
             return Result.retry();
         }
         return Result.success();

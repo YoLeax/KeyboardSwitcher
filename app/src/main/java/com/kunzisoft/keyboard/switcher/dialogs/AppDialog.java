@@ -1,14 +1,14 @@
 package com.kunzisoft.keyboard.switcher.dialogs;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.DialogFragment;
-import androidx.appcompat.app.AlertDialog;
-import androidx.preference.PreferenceManager;
 import android.text.SpannableStringBuilder;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.DialogFragment;
+import androidx.preference.PreferenceManager;
 
 import com.kunzisoft.keyboard.switcher.R;
 
@@ -29,11 +29,7 @@ public class AppDialog extends DialogFragment {
 
         SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
         stringBuilder.append(getString(R.string.app_warning));
-        builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
+        builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {});
         builder.setMessage(stringBuilder);
         // Create the AlertDialog object and return it
         return builder.create();
