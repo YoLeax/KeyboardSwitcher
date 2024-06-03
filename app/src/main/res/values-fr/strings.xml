@@ -32,8 +32,8 @@
     <string name="settings_floating_button_title">Activer le bouton flottant</string>
     <string name="settings_floating_button_description">Active un bouton flottant pour choisir un clavier</string>
 
-    <string name="floating_button_warning">Cette fonctionnalité peut être instable dans les dernières versions d’Android (Lollipop et les suivantes).</string>
-    <string name="floating_button_battery_warning">Si le bouton disparait, essayez de changer le comportement de l\'optimisation de la batterie.</string>
+    <string name="floating_button_warning">Cette fonctionnalité peut être instable.</string>
+    <string name="floating_button_battery_warning">Si le bouton disparaît, essayez de garder cet écran de réglage ouvert en arrière-plan ou de modifier le comportement d\'optimisation de la batterie.</string>
     <string name="floating_button_notification_warning">Une notification est indispensable pour que le bouton reste visible dans votre version d\'Android (O et suivantes) mais cette notification peut-être cachée dans les paramètres.</string>
     <string name="floating_button_above_screen">Vous devez accepter les autorisations pour autoriser le bouton flottant a être dessiné au dessus des autres applications.</string>
 

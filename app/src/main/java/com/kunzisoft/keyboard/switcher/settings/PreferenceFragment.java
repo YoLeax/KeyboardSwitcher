@@ -140,6 +140,8 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
                 // The registered ActivityResultCallback gets the result of this request.
                 requestNotificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
             }
+        } else {
+            startNotificationService();
         }
     }
 
@@ -214,7 +216,7 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
         }
 
         // To unchecked the preference floating button if not allowed by the system
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			if (!Settings.canDrawOverlays(getActivity())) {
 				if (preferenceFloatingButton != null)
 					preferenceFloatingButton.setChecked(false);

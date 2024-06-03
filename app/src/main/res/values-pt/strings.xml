@@ -32,8 +32,8 @@
     <string name="settings_floating_button_title">Ativar botão flutuante</string>
     <string name="settings_floating_button_description">Ativar um botão flutuante para escolher um teclado</string>
 
-    <string name="floating_button_warning">Esta função pode ser instável em versões mais recentes do Android (Lollipop e posterior).</string>
-    <string name="floating_button_battery_warning">Se o botão desaparecer, tente alterar o comportamento de otimização da bateria.</string>
+    <string name="floating_button_warning">Esta funcionalidade pode ser instável.</string>
+    <string name="floating_button_battery_warning">Se o botão desaparecer, tente manter este ecrã de definições aberto em segundo plano ou alterar o comportamento de otimização da bateria.</string>
     <string name="floating_button_notification_warning">É necessária uma notificação para que o botão permaneça visível na sua versão do Android (O e posterior), mas esta notificação pode ser ocultada nas definições.</string>
     <string name="floating_button_above_screen">Você deve permitir que o app se sobreponha a outros apps.</string>
 
