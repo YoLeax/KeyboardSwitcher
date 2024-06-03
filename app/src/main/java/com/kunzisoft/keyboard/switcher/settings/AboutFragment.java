@@ -1,5 +1,10 @@
 package com.kunzisoft.keyboard.switcher.settings;
 
+import static com.kunzisoft.keyboard.switcher.utils.Constants.URL_CONTRIBUTION;
+import static com.kunzisoft.keyboard.switcher.utils.Constants.PACKAGE_DONATION;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
@@ -30,21 +35,36 @@ public class AboutFragment extends Fragment {
             String versionString = getString(R.string.about_version) + " " + Constants.getVersion(getContext());
             versionTextView.setText(versionString);
 
-            String htmlContent =
+            String htmlAbout =
                     "<p>" + getString(R.string.html_text_purpose) + "</p>" +
 
                     "<h2>" + getString(R.string.about_title) + "</h2>" +
                     "<p>" + getString(R.string.html_text_free, getString(R.string.app_name)) + "</p>" +
-                    "<p>" + getString(R.string.html_text_contribution) + "</p>" +
+                    "<p>" + getString(R.string.html_text_contribution) + "</p>";
 
+            rootView.findViewById(R.id.contribution_playstore_button).setOnClickListener(view -> {
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + PACKAGE_DONATION)));
+                } catch (android.content.ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + PACKAGE_DONATION)));
+                }
+            });
+
+            rootView.findViewById(R.id.contribution_button).setOnClickListener(view -> {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(URL_CONTRIBUTION)));
+            });
+
+            String htmlContact =
                     "<h2>" + getString(R.string.contact_title) + "</h2>" +
                     "<p>" + getString(R.string.source_code) + " <a href=\"" + Constants.URL_SOURCE_CODE + "\">" + Constants.URL_SOURCE_CODE + "</a></p>" +
-                    "<p>" + getString(R.string.contribution) + " <a href=\"" + Constants.URL_CONTRIBUTION + "\">" + Constants.URL_CONTRIBUTION + "</a></p>" +
                     "<p>" + getString(R.string.powered_by) + " <a href=\"" + Constants.URL_WEB_SITE + "\">" + Constants.ORGANIZATION + "</a></p>";
 
             TextView aboutTextView = rootView.findViewById(R.id.activity_about_content);
             aboutTextView.setMovementMethod(LinkMovementMethod.getInstance());
-            aboutTextView.setText(HtmlCompat.fromHtml(htmlContent, HtmlCompat.FROM_HTML_MODE_LEGACY));
+            aboutTextView.setText(HtmlCompat.fromHtml(htmlAbout, HtmlCompat.FROM_HTML_MODE_LEGACY));
+            TextView contactTextView = rootView.findViewById(R.id.activity_contact_content);
+            contactTextView.setMovementMethod(LinkMovementMethod.getInstance());
+            contactTextView.setText(HtmlCompat.fromHtml(htmlContact, HtmlCompat.FROM_HTML_MODE_LEGACY));
             return rootView;
         }
 

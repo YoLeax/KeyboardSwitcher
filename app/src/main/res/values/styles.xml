@@ -5,6 +5,11 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="materialButtonStyle">@style/Theme.Button</item>
+    </style>
+
+    <style name="Theme.Button" parent="Widget.MaterialComponents.Button">
+
     </style>
 
     <style name="Theme.Transparent" parent="Theme.MaterialComponents.DayNight.Bridge">
