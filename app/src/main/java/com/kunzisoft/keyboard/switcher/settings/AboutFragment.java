@@ -1,7 +1,7 @@
 package com.kunzisoft.keyboard.switcher.settings;
 
-import static com.kunzisoft.keyboard.switcher.utils.Constants.URL_CONTRIBUTION;
 import static com.kunzisoft.keyboard.switcher.utils.Constants.PACKAGE_DONATION;
+import static com.kunzisoft.keyboard.switcher.utils.Constants.URL_CONTRIBUTION;
 
 import android.content.Intent;
 import android.net.Uri;
