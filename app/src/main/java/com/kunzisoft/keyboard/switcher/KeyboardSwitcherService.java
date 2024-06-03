@@ -141,7 +141,6 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
         NotificationManagerCompat.from(this).cancel(NOTIFICATION_ID);
     }
 
-    @SuppressLint("MissingPermission")
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
@@ -162,32 +161,41 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
             else
                 action = addAction(action, NOTIFICATION_STOP);
 
-            if (action.contains(NOTIFICATION_START)
-                    && notificationPrefActive) {
-                if (NotificationManagerCompat.from(this).areNotificationsEnabled()) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        startForeground(NOTIFICATION_ID, notificationBuilder().build());
-                    }
-                    NotificationManagerCompat.from(this)
-                            .notify(NOTIFICATION_ID, notificationBuilder().build());
+            // Start the service as foreground service
+            if (action.contains(FLOATING_BUTTON_START) || action.contains(NOTIFICATION_START)) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    startForeground(NOTIFICATION_ID, notificationBuilder().build());
                 }
             }
 
+            // Manage notification service
+            if (action.contains(NOTIFICATION_START)
+                    && notificationPrefActive) {
+                startNotification();
+            }
             if (action.contains(NOTIFICATION_STOP)) {
                 removeNotification();
             }
 
+            // Manage floating button service
             if (action.contains(FLOATING_BUTTON_START)
                 && floatingButtonPrefActive) {
                 createRemoteView();
             }
-
             if (action.contains(FLOATING_BUTTON_STOP)) {
                 eraseRemoteView();
             }
         }
 
         return super.onStartCommand(intent, flags, startId);
+    }
+
+    @SuppressLint("MissingPermission")
+    private void startNotification() {
+        if (NotificationManagerCompat.from(this).areNotificationsEnabled()) {
+            NotificationManagerCompat.from(this)
+                    .notify(NOTIFICATION_ID, notificationBuilder().build());
+        }
     }
 
     private String addAction(String action, String add) {

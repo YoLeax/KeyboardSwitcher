@@ -142,6 +142,11 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
 
     private void explainNotificationPermission() {
         preferenceNotification.setChecked(false);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startActivity(new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    .putExtra(Settings.EXTRA_APP_PACKAGE, requireContext().getPackageName()));
+        }
         Toast.makeText(
                 requireContext(),
                 R.string.error_notification_permission,
