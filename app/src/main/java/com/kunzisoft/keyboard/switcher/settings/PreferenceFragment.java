@@ -6,7 +6,6 @@ import static com.kunzisoft.keyboard.switcher.KeyboardSwitcherService.NOTIFICATI
 import static com.kunzisoft.keyboard.switcher.KeyboardSwitcherService.NOTIFICATION_STOP;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -40,7 +39,7 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
     private final static int REQUEST_CODE = 6517;
 
     private TwoStatePreference preferenceNotification;
-    private TwoStatePreference preferenceFloatingButton;
+    private TwoStatePreference preferenceOverlay;
 
     ActivityResultLauncher<String> requestNotificationPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
@@ -70,28 +69,26 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
         preferenceNotification = findPreference(getString(R.string.settings_notification_key));
         preferenceNotification.setOnPreferenceClickListener(preference -> {
             if (preferenceNotification.isChecked()) {
-                Activity activity = getActivity();
-                if (activity != null) {
-                    checkNotificationPermission();
-                }
+                preferenceNotification.setChecked(false);
+                startNotificationServiceIfAllowed();
             } else {
-                stopKeyboardSwitcherService();
+                stopNotificationService();
             }
             return false;
         });
 
-        preferenceFloatingButton = findPreference(getString(R.string.settings_floating_button_key));
-        preferenceFloatingButton.setOnPreferenceClickListener(preference -> {
-            if (preferenceFloatingButton.isChecked()) {
-                preferenceFloatingButton.setChecked(false);
+        preferenceOverlay = findPreference(getString(R.string.settings_floating_button_key));
+        preferenceOverlay.setOnPreferenceClickListener(preference -> {
+            if (preferenceOverlay.isChecked()) {
+                preferenceOverlay.setChecked(false);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     WarningFloatingButtonDialog dialogFragment = new WarningFloatingButtonDialog();
                     dialogFragment.show(getParentFragmentManager(), "warning_floating_button_dialog");
                 } else {
-                    startFloatingButtonAndCheckButton();
+                    startOverlayServiceIfAllowed();
                 }
             } else {
-                stopFloatingButtonAndUncheckedButton();
+                stopOverlayService();
             }
             return false;
         });
@@ -100,14 +97,14 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
                 .setOnPreferenceChangeListener((preference, newValue) -> {
                     SwitchPreference switchPreference = (SwitchPreference) preference;
                     switchPreference.setChecked((Boolean) newValue);
-                    restartFloatingButtonAndCheckedButton();
+                    restartOverlayService();
                     return false;
                 });
         findPreference(getString(R.string.settings_floating_size_key))
                 .setOnPreferenceChangeListener((preference, newValue) -> {
                     SeekBarPreference seekBarPreference = (SeekBarPreference) preference;
                     seekBarPreference.setValue((int) newValue);
-                    restartFloatingButtonAndCheckedButton();
+                    restartOverlayService();
                     return false;
                 });
     }
@@ -126,7 +123,7 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
         ) == PackageManager.PERMISSION_GRANTED;
     }
 
-    void checkNotificationPermission() {
+    void startNotificationServiceIfAllowed() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (notificationsPermissionAllowed()) {
                 startNotificationService();
@@ -169,6 +166,12 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
         ).show();
     }
 
+    void stopNotificationService() {
+        stopKeyboardSwitcherService();
+        if (preferenceNotification != null)
+            preferenceNotification.setChecked(false);
+    }
+
     /*
      * ******* *
      * OVERLAY
@@ -183,7 +186,7 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
     /** @noinspection deprecation*/
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void openOverlaySetting() {
-        preferenceFloatingButton.setChecked(false);
+        preferenceOverlay.setChecked(false);
         try {
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                     Uri.parse("package:" + requireActivity().getPackageName()));
@@ -195,12 +198,48 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
     }
 
     private void explainOverlayPermission() {
-        preferenceFloatingButton.setChecked(false);
+        preferenceOverlay.setChecked(false);
         Toast.makeText(
                 requireContext(),
                 R.string.error_overlay_permission,
                 Toast.LENGTH_SHORT
         ).show();
+    }
+
+    private void startOverlayService() {
+        if (preferenceOverlay != null)
+            preferenceOverlay.setChecked(true);
+        if (getActivity() != null) {
+            Intent intent = new Intent(getActivity(), KeyboardSwitcherService.class);
+            intent.setAction(FLOATING_BUTTON_START);
+            getActivity().startService(intent);
+        }
+    }
+
+    void startOverlayServiceIfAllowed() {
+        stopKeyboardSwitcherService();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (overlayPermissionAllowed()) {
+                startOverlayService();
+            } else {
+                openOverlaySetting();
+            }
+        } else {
+            startOverlayService();
+        }
+    }
+
+    void stopOverlayService() {
+        stopKeyboardSwitcherService();
+        if (preferenceOverlay != null)
+            preferenceOverlay.setChecked(false);
+    }
+
+    private void restartOverlayService() {
+        // Restart service
+        if (getActivity() != null)
+            getActivity().stopService(new Intent(getActivity(), KeyboardSwitcherService.class));
+        startOverlayServiceIfAllowed();
     }
 
 	@Override
@@ -212,14 +251,16 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
             if (!notificationsPermissionAllowed()) {
                 if (preferenceNotification != null)
                     preferenceNotification.setChecked(false);
+            } else {
+                startNotificationService();
             }
         }
 
         // To unchecked the preference floating button if not allowed by the system
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 			if (!Settings.canDrawOverlays(getActivity())) {
-				if (preferenceFloatingButton != null)
-					preferenceFloatingButton.setChecked(false);
+				if (preferenceOverlay != null)
+					preferenceOverlay.setChecked(false);
 			}
 		}
 	}
@@ -230,7 +271,7 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
      */
     public void onPositiveButtonClick(@ColorInt int color) {
         super.onPositiveButtonClick(color);
-        restartFloatingButtonAndCheckedButton();
+        restartOverlayService();
     }
 
 
@@ -244,29 +285,19 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 // BUG : https://stackoverflow.com/questions/46173460/why-does-settings-candrawoverlays-method-in-android-8-returns-false-when-use
                 if (Settings.canDrawOverlays(getActivity())) {
-                    startFloatingButtonAndCheckButton();
+                    startOverlayServiceIfAllowed();
                 }
             }
         }
     }
 
-	private void startFloatingButton() {
-        if (preferenceFloatingButton != null)
-            preferenceFloatingButton.setChecked(true);
-        if (getActivity() != null) {
-			Intent intent = new Intent(getActivity(), KeyboardSwitcherService.class);
-			intent.setAction(FLOATING_BUTTON_START);
-			getActivity().startService(intent);
-		}
-	}
-
 	private void stopKeyboardSwitcherService() {
 		if (getActivity() != null) {
 			Intent intent = new Intent(getActivity(), KeyboardSwitcherService.class);
-			if (!preferenceNotification.isChecked() && !preferenceFloatingButton.isChecked()) {
+			if (!preferenceNotification.isChecked() && !preferenceOverlay.isChecked()) {
 				getActivity().stopService(intent);
 			} else {
-                if (!preferenceFloatingButton.isChecked()) {
+                if (!preferenceOverlay.isChecked()) {
                     intent.setAction(FLOATING_BUTTON_STOP);
                     getActivity().startService(intent);
                 }
@@ -277,34 +308,4 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
             }
 		}
 	}
-
-    /*
-    ------ Floating Button Service ------
-    */
-
-    void startFloatingButtonAndCheckButton() {
-		stopKeyboardSwitcherService();
-		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-			if (overlayPermissionAllowed()) {
-				startFloatingButton();
-			} else {
-                openOverlaySetting();
-			}
-		} else {
-			startFloatingButton();
-		}
-    }
-
-    void stopFloatingButtonAndUncheckedButton() {
-    	stopKeyboardSwitcherService();
-        if (preferenceFloatingButton != null)
-            preferenceFloatingButton.setChecked(false);
-    }
-
-    private void restartFloatingButtonAndCheckedButton() {
-        // Restart service
-        if (getActivity() != null)
-            getActivity().stopService(new Intent(getActivity(), KeyboardSwitcherService.class));
-		startFloatingButtonAndCheckButton();
-    }
 }
