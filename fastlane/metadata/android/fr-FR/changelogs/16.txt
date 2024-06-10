@@ -1,3 +1,4 @@
  * Correction du sélecteur sans les paramètres
+ * Correction des états du service
  * Correction du thème
  * Correction de l'état de la tuile

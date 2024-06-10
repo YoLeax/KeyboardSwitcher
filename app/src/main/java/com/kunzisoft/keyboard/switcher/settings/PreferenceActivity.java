@@ -1,6 +1,5 @@
 package com.kunzisoft.keyboard.switcher.settings;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
-import com.kunzisoft.keyboard.switcher.KeyboardSwitcherService;
 import com.kunzisoft.keyboard.switcher.R;
 import com.kunzisoft.keyboard.switcher.dialogs.AppDialog;
 import com.kunzisoft.keyboard.switcher.dialogs.WarningFloatingButtonDialog;
@@ -52,8 +50,6 @@ public class PreferenceActivity extends AppCompatActivity implements WarningFloa
         if (savedInstanceState != null) {
             aboutFragmentActive = savedInstanceState.getBoolean(KEY_ABOUT_ACTIVE, aboutFragmentActive);
         }
-
-        startService(new Intent(this, KeyboardSwitcherService.class));
 
         Fragment fragmentToShow;
         String tagToSave;

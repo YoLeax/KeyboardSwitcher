@@ -14,6 +14,7 @@ import android.os.IBinder;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -40,10 +41,10 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
 
     public static final int NOTIFICATION_ID = 45;
 
-    public static String NOTIFICATION_START = "NOTIFICATION_START";
-    public static String NOTIFICATION_STOP = "NOTIFICATION_STOP";
-    public static String FLOATING_BUTTON_START = "FLOATING_BUTTON_START";
-    public static String FLOATING_BUTTON_STOP = "FLOATING_BUTTON_STOP";
+    private static final String NOTIFICATION_START = "NOTIFICATION_START";
+    private static final String NOTIFICATION_STOP = "NOTIFICATION_STOP";
+    private static final String FLOATING_BUTTON_START = "FLOATING_BUTTON_START";
+    private static final String FLOATING_BUTTON_STOP = "FLOATING_BUTTON_STOP";
 
     private SharedPreferences preferences;
     private static final String POSITION_PORTRAIT = "POSITION_PORTRAIT";
@@ -143,45 +144,36 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         if (intent != null) {
-            boolean notificationPrefActive = preferences.getBoolean(getString(R.string.settings_notification_key), false);
-            boolean floatingButtonPrefActive = preferences.getBoolean(getString(R.string.settings_floating_button_key), false);
-
             String action = intent.getAction();
             if (action == null)
                 action = "";
-
-            if (floatingButtonPrefActive)
-                action = addAction(action, FLOATING_BUTTON_START);
-            else
-                action = addAction(action, FLOATING_BUTTON_STOP);
-            if (notificationPrefActive)
-                action = addAction(action, NOTIFICATION_START);
-            else
-                action = addAction(action, NOTIFICATION_STOP);
-
             // Start the service as foreground service
-            if (action.contains(FLOATING_BUTTON_START) || action.contains(NOTIFICATION_START)) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    startForeground(NOTIFICATION_ID, notificationBuilder().build());
-                }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
+                    (action.contains(FLOATING_BUTTON_START) || action.contains(NOTIFICATION_START))) {
+                startForeground(NOTIFICATION_ID, notificationBuilder().build());
             }
-
-            // Manage notification service
-            if (action.contains(NOTIFICATION_START)
-                    && notificationPrefActive) {
+            // Manage notification and floating service state
+            if (action.contains(NOTIFICATION_START)) {
                 startNotification();
             }
-            if (action.contains(NOTIFICATION_STOP)) {
-                removeNotification();
-            }
-
-            // Manage floating button service
-            if (action.contains(FLOATING_BUTTON_START)
-                && floatingButtonPrefActive) {
+            if (action.contains(FLOATING_BUTTON_START)) {
                 createRemoteView();
+            }
+            if (action.contains(NOTIFICATION_STOP)) {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                    removeNotification();
+                }
             }
             if (action.contains(FLOATING_BUTTON_STOP)) {
                 eraseRemoteView();
+                // Stop the service if all services are stopped
+                if (action.contains(NOTIFICATION_STOP)) {
+                    stopSelf();
+                }
+            }
+            // Stop the service if no action
+            if (action.isEmpty()) {
+                stopSelf();
             }
         }
 
@@ -194,13 +186,6 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
             NotificationManagerCompat.from(this)
                     .notify(NOTIFICATION_ID, notificationBuilder().build());
         }
-    }
-
-    private String addAction(String action, String add) {
-        if(!action.contains(add)) {
-            return action+add;
-        }
-        return action;
     }
 
     private void createRemoteView() {
@@ -432,5 +417,37 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
         }
         removeNotification();
         super.onDestroy();
+    }
+
+    private static String addAction(String action, String add) {
+        if(!action.contains(add)) {
+            return action+add;
+        }
+        return action;
+    }
+
+    public static void startService(Context context) {
+        Intent intent = new Intent(context, KeyboardSwitcherService.class);
+        String action = "";
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        if (preferences.getBoolean(context.getString(R.string.settings_notification_key), false)) {
+            action = addAction(action, NOTIFICATION_START);
+        } else {
+            action = addAction(action, NOTIFICATION_STOP);
+        }
+        if (preferences.getBoolean(context.getString(R.string.settings_floating_button_key), false)
+            && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+                && Settings.canDrawOverlays(context)) {
+            action = addAction(action, FLOATING_BUTTON_START);
+        } else {
+            action = addAction(action, FLOATING_BUTTON_STOP);
+        }
+        intent.setAction(action);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
+                && (action.contains(FLOATING_BUTTON_START) || action.contains(NOTIFICATION_START))) {
+            context.startForegroundService(intent);
+        } else {
+            context.startService(intent);
+        }
     }
 }

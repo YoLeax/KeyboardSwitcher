@@ -1,3 +1,4 @@
  * Fix selector without settings
+ * Fix service states
  * Fix theme
  * Fix tile state
