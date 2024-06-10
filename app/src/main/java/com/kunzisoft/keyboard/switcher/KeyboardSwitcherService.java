@@ -14,7 +14,6 @@ import android.os.IBinder;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.preference.PreferenceManager;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -148,8 +147,7 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
             if (action == null)
                 action = "";
             // Start the service as foreground service
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &&
-                    (action.contains(FLOATING_BUTTON_START) || action.contains(NOTIFICATION_START))) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 startForeground(NOTIFICATION_ID, notificationBuilder().build());
             }
             // Manage notification and floating service state
@@ -435,16 +433,13 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
         } else {
             action = addAction(action, NOTIFICATION_STOP);
         }
-        if (preferences.getBoolean(context.getString(R.string.settings_floating_button_key), false)
-            && Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-                && Settings.canDrawOverlays(context)) {
+        if (preferences.getBoolean(context.getString(R.string.settings_floating_button_key), false)) {
             action = addAction(action, FLOATING_BUTTON_START);
         } else {
             action = addAction(action, FLOATING_BUTTON_STOP);
         }
         intent.setAction(action);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O
-                && (action.contains(FLOATING_BUTTON_START) || action.contains(NOTIFICATION_START))) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             context.startForegroundService(intent);
         } else {
             context.startService(intent);

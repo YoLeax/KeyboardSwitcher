@@ -34,8 +34,8 @@
 
     <string name="floating_button_warning">Cette fonctionnalité peut être instable.</string>
     <string name="floating_button_battery_warning">Si le bouton disparaît, essayez de garder cet écran de réglage ouvert en arrière-plan ou de modifier le comportement d\'optimisation de la batterie.</string>
-    <string name="floating_button_notification_warning">Une notification est indispensable pour que le bouton reste visible dans votre version d\'Android mais cette notification peut-être cachée dans les paramètres.</string>
-    <string name="floating_button_above_screen">Vous devez accepter les autorisations pour autoriser le bouton flottant a être dessiné au dessus des autres applications.</string>
+    <string name="floating_button_notification_warning">Une notification est indispensable pour que le bouton reste visible mais cette notification peut-être cachée dans les paramètres.</string>
+    <string name="floating_button_above_screen">Vous devez accepter les autorisations pour autoriser le bouton flottant à être dessiné au dessus des autres applications.</string>
 
     <string name="settings_floating_button_lock_title">Verouiller la position</string>
 

@@ -64,7 +64,7 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
         preferenceNotification = findPreference(getString(R.string.settings_notification_key));
         preferenceNotification.setOnPreferenceClickListener(preference -> {
             if (preferenceNotification.isChecked()) {
-                preferenceNotification.setChecked(false);
+                checkNotification(false);
                 startNotificationServiceIfAllowed();
             } else {
                 stopNotificationService();
@@ -75,7 +75,7 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
         preferenceOverlay = findPreference(getString(R.string.settings_floating_button_key));
         preferenceOverlay.setOnPreferenceClickListener(preference -> {
             if (preferenceOverlay.isChecked()) {
-                preferenceOverlay.setChecked(false);
+                checkOverlay(false);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     WarningFloatingButtonDialog dialogFragment = new WarningFloatingButtonDialog();
                     dialogFragment.show(getParentFragmentManager(), "warning_floating_button_dialog");
@@ -110,6 +110,12 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
      * ************ *
      */
 
+    private void checkNotification(boolean value) {
+        if (preferenceNotification != null) {
+            preferenceNotification.setChecked(value);
+        }
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     boolean notificationsPermissionAllowed() {
         return ContextCompat.checkSelfPermission(
@@ -138,8 +144,7 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
     }
 
     private void startNotificationService() {
-        if (preferenceNotification != null)
-            preferenceNotification.setChecked(true);
+        checkNotification(true);
         KeyboardSwitcherService.startService(requireActivity());
     }
 
@@ -152,8 +157,7 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
     }
 
     private void explainNotificationPermission() {
-        if (preferenceNotification != null)
-            preferenceNotification.setChecked(false);
+        checkNotification(false);
         Toast.makeText(
                 requireContext(),
                 R.string.error_notification_permission,
@@ -162,8 +166,7 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
     }
 
     void stopNotificationService() {
-        if (preferenceNotification != null)
-            preferenceNotification.setChecked(false);
+        checkNotification(false);
         refreshKeyboardSwitcherService();
     }
 
@@ -172,6 +175,18 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
      * OVERLAY
      * ******* *
      */
+
+    private void checkOverlay(boolean value) {
+        if (preferenceOverlay != null) {
+            preferenceOverlay.setChecked(value);
+        }
+        // Disable the notification because is necessary in Android > O
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if (preferenceNotification != null) {
+                preferenceNotification.setEnabled(!value);
+            }
+        }
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private boolean overlayPermissionAllowed() {
@@ -182,7 +197,7 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void openOverlaySetting() {
         if (preferenceOverlay != null)
-            preferenceOverlay.setChecked(false);
+            checkOverlay(false);
         try {
             Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                     Uri.parse("package:" + requireActivity().getPackageName()));
@@ -194,8 +209,7 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
     }
 
     private void explainOverlayPermission() {
-        if (preferenceOverlay != null)
-            preferenceOverlay.setChecked(false);
+        checkOverlay(false);
         Toast.makeText(
                 requireContext(),
                 R.string.error_overlay_permission,
@@ -204,8 +218,7 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
     }
 
     private void startOverlayService() {
-        if (preferenceOverlay != null)
-            preferenceOverlay.setChecked(true);
+        checkOverlay(true);
         KeyboardSwitcherService.startService(requireActivity());
     }
 
@@ -222,14 +235,16 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
     }
 
     void stopOverlayService() {
-        if (preferenceOverlay != null)
-            preferenceOverlay.setChecked(false);
+        checkOverlay(false);
         refreshKeyboardSwitcherService();
     }
 
 	@Override
 	public void onResume() {
 		super.onResume();
+        // To upgrade states
+        checkNotification(preferenceNotification.isChecked());
+        checkOverlay(preferenceOverlay.isChecked());
         refreshKeyboardSwitcherService();
 	}
 
