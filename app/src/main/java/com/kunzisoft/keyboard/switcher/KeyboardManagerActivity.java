@@ -100,7 +100,7 @@ public class KeyboardManagerActivity extends AppCompatActivity {
         finish();
     }
 
-    private static Intent getIntent(Context context, @Nullable Long delay) {
+    public static Intent getIntent(Context context, @Nullable Long delay) {
         if (context instanceof Activity) {
             ((Activity) context).finish();
         }
@@ -136,6 +136,6 @@ public class KeyboardManagerActivity extends AppCompatActivity {
 
     @SuppressLint("UnsafeIntentLaunch")
     public static void launch(Context context) {
-        context.startActivity(getIntent(context, 600L));
+        context.startActivity(getIntent(context));
     }
 }
