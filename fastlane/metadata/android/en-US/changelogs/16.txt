@@ -1,0 +1,3 @@
+ * Fix selector without settings
+ * Fix theme
+ * Fix tile state

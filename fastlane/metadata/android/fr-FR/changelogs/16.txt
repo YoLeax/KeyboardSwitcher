@@ -1,0 +1,3 @@
+ * Correction du sélecteur sans les paramètres
+ * Correction du thème
+ * Correction de l'état de la tuile
