@@ -2,6 +2,7 @@ package com.kunzisoft.keyboard.switcher;
 
 import android.annotation.SuppressLint;
 import android.os.Build;
+import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 
 import androidx.annotation.RequiresApi;
@@ -10,6 +11,12 @@ import com.kunzisoft.keyboard.switcher.utils.Utilities;
 
 @RequiresApi(api = Build.VERSION_CODES.N)
 public class KeyboardSwitcherQSTileService extends TileService {
+
+    @Override
+    public void onTileAdded() {
+        super.onTileAdded();
+        getQsTile().setState(Tile.STATE_ACTIVE);
+    }
 
     @Override
     @SuppressLint("StartActivityAndCollapseDeprecated")
