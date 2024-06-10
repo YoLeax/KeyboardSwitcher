@@ -1,9 +1,6 @@
 package com.kunzisoft.keyboard.switcher;
 
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
-
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Build;
 import android.service.quicksettings.TileService;
 
@@ -19,11 +16,11 @@ public class KeyboardSwitcherQSTileService extends TileService {
     public void onClick() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                startActivityAndCollapse(Utilities.getPendingIntent(this, 1100L));
+                startActivityAndCollapse(
+                        KeyboardManagerActivity.getPendingIntent(this, 1100L)
+                );
             } else {
-                Intent intent = new Intent(this, KeyboardManagerActivity.class);
-                intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
-                startActivityAndCollapse(intent);
+                startActivityAndCollapse(KeyboardManagerActivity.getIntent(this));
             }
         } else {
             Utilities.chooseAKeyboard(this);

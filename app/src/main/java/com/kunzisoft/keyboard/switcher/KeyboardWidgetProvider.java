@@ -5,8 +5,6 @@ import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.widget.RemoteViews;
 
-import com.kunzisoft.keyboard.switcher.utils.Utilities;
-
 public class KeyboardWidgetProvider extends AppWidgetProvider {
 
     @Override
@@ -17,7 +15,7 @@ public class KeyboardWidgetProvider extends AppWidgetProvider {
 
             remoteViews.setOnClickPendingIntent(
                     R.id.icon_widget_view,
-                    Utilities.getPendingIntent(context)
+                    KeyboardManagerActivity.getPendingIntent(context)
             );
             appWidgetManager.updateAppWidget(widgetId, remoteViews);
         }

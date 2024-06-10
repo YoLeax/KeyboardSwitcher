@@ -2,7 +2,6 @@ package com.kunzisoft.keyboard.switcher.utils;
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
-import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +12,6 @@ import android.view.inputmethod.InputMethodManager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
-import com.kunzisoft.keyboard.switcher.KeyboardManagerActivity;
 import com.kunzisoft.keyboard.switcher.R;
 
 public class Utilities {
@@ -39,20 +37,5 @@ public class Utilities {
                 imeManager.showInputMethodPicker();
             }
         }
-    }
-
-	public static PendingIntent getPendingIntent(Context context) {
-		return getPendingIntent(context, null);
-	}
-
-    public static PendingIntent getPendingIntent(Context context, @Nullable Long delay) {
-        Intent chooserIntent = new Intent(context, KeyboardManagerActivity.class);
-        chooserIntent.setAction(Intent.ACTION_MAIN);
-        chooserIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-        chooserIntent.addFlags(FLAG_ACTIVITY_NEW_TASK);
-        if (delay != null)
-        	chooserIntent.putExtra(KeyboardManagerActivity.DELAY_SHOW_KEY, delay);
-        return PendingIntent.getActivity(
-                context, 0, chooserIntent, PendingIntent.FLAG_IMMUTABLE|PendingIntent.FLAG_UPDATE_CURRENT);
     }
 }
