@@ -26,13 +26,10 @@ public class CreateShortcutActivity extends AppCompatActivity {
         IconCompat shortcutIcon =
                 IconCompat.createWithResource(this, R.drawable.ic_shortcut_24dp);
 
-        Intent intent = new Intent(this, KeyboardManagerActivity.class);
-        intent.setAction(Intent.ACTION_VIEW);
-
         ShortcutInfoCompat shortcutInfo = new ShortcutInfoCompat.Builder(this, SHORTCUT_ID)
                 .setIcon(shortcutIcon)
                 .setShortLabel(shortcutLabel)
-                .setIntent(intent)
+                .setIntent(KeyboardManagerActivity.getIntent(this))
                 .build();
 
         Intent shortcutIntentResult =

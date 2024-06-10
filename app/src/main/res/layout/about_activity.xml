@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,18 +56,20 @@
             android:layout_marginTop="8dp"
             android:textAppearance="@android:style/TextAppearance.Small" />
 
-        <com.google.android.material.button.MaterialButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/contribution_playstore_button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:icon="@drawable/ic_hand_coin_24dp"
+            android:drawableStart="@drawable/ic_hand_coin_24dp"
+            android:drawablePadding="12dp"
             android:text="@string/play_store_donation"/>
 
-        <com.google.android.material.button.MaterialButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/contribution_button"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            app:icon="@drawable/ic_hand_heart_24dp"
+            android:drawableStart="@drawable/ic_hand_heart_24dp"
+            android:drawablePadding="12dp"
             android:text="@string/donation"/>
 
         <TextView

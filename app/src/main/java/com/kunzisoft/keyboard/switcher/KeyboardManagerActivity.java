@@ -1,5 +1,9 @@
 package com.kunzisoft.keyboard.switcher;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -94,5 +98,44 @@ public class KeyboardManagerActivity extends AppCompatActivity {
         super.onBackPressed();
         // Close the back activity
         finish();
+    }
+
+    public static Intent getIntent(Context context, @Nullable Long delay) {
+        if (context instanceof Activity) {
+            ((Activity) context).finish();
+        }
+        Intent intent = new Intent(context, KeyboardManagerActivity.class);
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.addFlags(
+                Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        | Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        | Intent.FLAG_ACTIVITY_NEW_TASK
+        );
+        if (delay != null)
+            intent.putExtra(KeyboardManagerActivity.DELAY_SHOW_KEY, delay);
+        return intent;
+    }
+
+    public static Intent getIntent(Context context) {
+        return getIntent(context, null);
+    }
+
+    public static PendingIntent getPendingIntent(Context context) {
+        return getPendingIntent(context, null);
+    }
+
+    @SuppressLint("UnsafeIntentLaunch")
+    public static PendingIntent getPendingIntent(Context context, @Nullable Long delay) {
+        return PendingIntent.getActivity(
+                context,
+                0,
+                getIntent(context, delay),
+                PendingIntent.FLAG_IMMUTABLE|PendingIntent.FLAG_UPDATE_CURRENT
+        );
+    }
+
+    @SuppressLint("UnsafeIntentLaunch")
+    public static void launch(Context context) {
+        context.startActivity(getIntent(context));
     }
 }
