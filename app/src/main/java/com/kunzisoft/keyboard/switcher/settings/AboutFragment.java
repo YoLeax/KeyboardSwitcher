@@ -29,7 +29,7 @@ public class AboutFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (getContext() != null) {
-            View rootView = inflater.inflate(R.layout.about_activity, container, false);
+            View rootView = inflater.inflate(R.layout.about_fragment, container, false);
 
             TextView versionTextView = rootView.findViewById(R.id.activity_about_version);
             String versionString = getString(R.string.about_version) + " " + Constants.getVersion(getContext());

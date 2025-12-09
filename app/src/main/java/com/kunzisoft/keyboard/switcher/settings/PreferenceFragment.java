@@ -17,7 +17,6 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.preference.SeekBarPreference;
-import androidx.preference.SwitchPreference;
 import androidx.preference.TwoStatePreference;
 
 import com.kunzisoft.androidclearchroma.ChromaPreferenceFragmentCompat;
@@ -90,7 +89,7 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
 
         findPreference(getString(R.string.settings_floating_button_lock_key))
                 .setOnPreferenceChangeListener((preference, newValue) -> {
-                    SwitchPreference switchPreference = (SwitchPreference) preference;
+                    TwoStatePreference switchPreference = (TwoStatePreference) preference;
                     switchPreference.setChecked((Boolean) newValue);
                     startOverlayServiceIfAllowed();
                     return false;

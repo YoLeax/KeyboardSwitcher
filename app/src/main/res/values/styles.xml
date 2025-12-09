@@ -1,13 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.Preference" parent="Theme.MaterialComponents.DayNight.DarkActionBar.Bridge">
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <item name="colorSecondary">@color/colorSecondary</item>
+    <style name="Theme.Preference.Light" parent="Theme.Material3.DynamicColors.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryLight</item>
+        <item name="colorOnPrimary">@color/colorOnPrimaryLight</item>
+        <item name="colorPrimaryContainer">@color/colorPrimaryContainerLight</item>
+        <item name="colorOnPrimaryContainer">@color/colorOnPrimaryContainerLight</item>
+        <item name="colorError">@color/colorError</item>
+        <item name="colorOnError">@color/colorOnError</item>
+        <item name="colorErrorContainer">@color/colorErrorContainer</item>
+        <item name="colorOnErrorContainer">@color/colorOnErrorContainer</item>
+        <item name="colorOnBackground">@color/colorOnBackground</item>
+        <item name="colorSurface">@color/colorSurfaceLight</item>
+        <item name="colorOnSurface">@color/colorOnSurfaceLight</item>
+        <item name="colorSecondary">@color/colorSecondaryLight</item>
+        <item name="colorOnSecondary">@color/colorOnSecondaryLight</item>
+        <item name='android:windowBackground'>@color/colorSurfaceLight</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <!-- Preference -->
+        <item name="preferenceTheme">@style/Style.Preference.v21</item>
+        <item name="preferenceStyle">@style/Style.Preference.Style</item>
+        <item name="dialogPreferenceStyle">@style/Style.Preference.Dialog.Style</item>
+        <item name="preferenceCategoryStyle">@style/Style.Preference.Category.Style</item>
+        <!-- Switch -->
+        <item name="android:switchPreferenceStyle">@style/Style.SwitchPreference</item>
+        <item name="switchPreferenceStyle">@style/Style.SwitchPreference</item>
+        <item name="switchPreferenceCompatStyle">@style/Style.SwitchPreference</item>
+        <!-- Dialog -->
+        <item name="android:alertDialogTheme">@style/Style.Dialog</item>
+        <item name="alertDialogTheme">@style/Style.Dialog</item>
     </style>
 
-    <style name="Theme.Transparent" parent="Theme.MaterialComponents.DayNight.Bridge">
+    <style name="Theme.Preference.Night" parent="Theme.Material3.DynamicColors.Dark.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryNight</item>
+        <item name="colorOnPrimary">@color/colorOnPrimaryNight</item>
+        <item name="colorError">@color/colorError</item>
+        <item name="colorOnError">@color/colorOnError</item>
+        <item name="colorErrorContainer">@color/colorErrorContainer</item>
+        <item name="colorOnErrorContainer">@color/colorOnErrorContainer</item>
+        <item name="colorOnBackground">@color/colorOnBackground</item>
+        <item name="colorSurface">@color/colorSurfaceNight</item>
+        <item name="colorOnSurface">@color/colorOnSurfaceNight</item>
+        <item name="colorSecondary">@color/colorSecondaryNight</item>
+        <item name="colorOnSecondary">@color/colorOnSecondaryNight</item>
+        <item name='android:windowBackground'>@color/colorSurfaceNight</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="Theme.Preference.Toolbar" parent="Theme.Material3.DynamicColors.Dark.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryLight</item>
+        <item name="colorOnPrimary">@color/colorOnPrimaryLight</item>
+        <item name="android:background">@color/colorPrimaryLight</item>
+    </style>
+
+    <style name="Theme.Transparent" parent="Theme.Material3.DynamicColors.DayNight.NoActionBar">
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -15,5 +62,35 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item>
         <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
+    <style name="Style.Preference.v21" parent="@style/PreferenceThemeOverlay.v14.Material">
+        <item name="android:tint">@color/colorPrimaryLight</item>
+    </style>
+    <style name="Style.Preference.Style" parent="@style/Preference.Material">
+        <item name="allowDividerAbove">false</item>
+        <item name="allowDividerBelow">false</item>
+        <item name="iconSpaceReserved">false</item>
+    </style>
+    <style name="Style.Preference.Dialog.Style" parent="@style/Preference.DialogPreference.Material">
+        <item name="allowDividerAbove">false</item>
+        <item name="allowDividerBelow">false</item>
+        <item name="iconSpaceReserved">false</item>
+    </style>
+    <style name="Style.Dialog" parent="ThemeOverlay.Material3.Dialog.Alert">
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="dialogCornerRadius">24dp</item>
+    </style>
+    <style name="Style.Preference.Category.Style" parent="@style/Preference.Category.Material">
+        <item name="android:layout">@layout/style_preference_category_material</item>
+        <item name="allowDividerAbove">false</item>
+        <item name="allowDividerBelow">false</item>
+        <item name="iconSpaceReserved">false</item>
+    </style>
+    <style name="Style.SwitchPreference" parent="@style/Preference.SwitchPreferenceCompat.Material">
+        <item name="widgetLayout">@layout/style_preference_material_switch</item>
+        <item name="allowDividerAbove">false</item>
+        <item name="allowDividerBelow">false</item>
+        <item name="iconSpaceReserved">false</item>
     </style>
 </resources>

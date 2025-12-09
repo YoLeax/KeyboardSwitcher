@@ -10,6 +10,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
@@ -37,6 +38,8 @@ public class PreferenceActivity extends AppCompatActivity implements WarningFloa
         setContentView(R.layout.preference_activity);
 
         testZoneView = findViewById(R.id.test_zone_container);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         // Manage fragment who contains list of preferences
         preferenceFragment = (PreferenceFragment) getSupportFragmentManager().findFragmentByTag(TAG_PREFERENCE_FRAGMENT);

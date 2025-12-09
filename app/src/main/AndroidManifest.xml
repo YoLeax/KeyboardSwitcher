@@ -17,7 +17,7 @@
         <activity
             android:name=".settings.PreferenceActivity"
             android:exported="true"
-            android:theme="@style/Theme.Preference">
+            android:theme="@style/Theme.Preference.Light">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

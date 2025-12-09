@@ -1,7 +1,7 @@
 <resources>
     <string name="app_warning"> Este app torna fácil a troca entre diferentes teclados se seu sistema não tem um meio eficiente de fazê-lo.\n\nNa versão Lollipop e posteriores do Android, um toque longo na barra de espaço pode fazer esta troca. Uma notificação do proprio sistema também permite a troca.\n\nNestes casos o app se torna redundante.</string>
 
-    <string name="hint_text_test">área de teste</string>
+    <string name="hint_text_test">Área de teste</string>
 
     <string name="launching_selection">Iniciar o diálogo de seleção do teclado</string>
 
