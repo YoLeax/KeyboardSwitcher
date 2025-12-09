@@ -17,6 +17,8 @@
         <item name='android:windowBackground'>@color/colorSurfaceLight</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">false</item>
+        <item name="android:toolbarStyle">@style/Theme.Preference.Toolbar</item>
+        <item name="toolbarStyle">@style/Theme.Preference.Toolbar</item>
         <!-- Preference -->
         <item name="preferenceTheme">@style/Style.Preference.v21</item>
         <item name="preferenceStyle">@style/Style.Preference.Style</item>
@@ -51,7 +53,8 @@
     <style name="Theme.Preference.Toolbar" parent="Theme.Material3.DynamicColors.Dark.NoActionBar">
         <item name="colorPrimary">@color/colorPrimaryLight</item>
         <item name="colorOnPrimary">@color/colorOnPrimaryLight</item>
-        <item name="android:background">@color/colorPrimaryLight</item>
+        <item name="colorControlNormal">@color/colorOnPrimaryLight</item>
+        <item name="android:background">?attr/colorPrimary</item>
     </style>
 
     <style name="Theme.Transparent" parent="Theme.Material3.DynamicColors.DayNight.NoActionBar">

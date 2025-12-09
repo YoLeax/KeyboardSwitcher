@@ -2,6 +2,7 @@ package com.kunzisoft.keyboard.switcher.settings;
 
 import android.Manifest;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -13,9 +14,14 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 import androidx.preference.SeekBarPreference;
 import androidx.preference.TwoStatePreference;
 
@@ -241,6 +247,12 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
 	@Override
 	public void onResume() {
 		super.onResume();
+
+        PreferenceActivity activity = ((PreferenceActivity) requireActivity());
+        ActionBar toolbar = activity.getSupportActionBar();
+        if (toolbar != null)
+            toolbar.setTitle(R.string.app_name);
+        activity.showTestZone(true);
         // To upgrade states
         checkNotification(preferenceNotification.isChecked());
         checkOverlay(preferenceOverlay.isChecked());

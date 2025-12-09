@@ -27,7 +27,7 @@
                 android:contentDescription="@string/app_name"
                 android:layout_gravity="top"
                 android:layout_marginEnd="10dp"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@drawable/ic_keyboard_white_32dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
