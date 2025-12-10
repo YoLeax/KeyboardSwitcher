@@ -52,7 +52,7 @@
     <string name="about_version">Version : </string>
     <string name="contact_title">Contact</string>
     <string name="developer">Développeur</string>
-    <string name="html_text_purpose">Cette application est conçue pour &lt;strong&gt;changer facilement de clavier&lt;/strong&gt;.</string>
+    <string name="html_text_purpose">Cette application est conçue pour &lt;strong&gt;changer facilement de clavier virtuel&lt;/strong&gt;.</string>
     <string name="html_text_free">%1$s est &lt;strong&gt;gratuit&lt;/strong&gt;, &lt;strong&gt;libre&lt;/strong&gt; et &lt;strong&gt;sans publicité&lt;/strong&gt;. Il est fourni tel quel, sous licence &lt;strong&gt;GPLv3&lt;/strong&gt;, sans aucune garantie.</string>
     <string name="html_text_contribution">Afin de &lt;strong&gt;garder notre liberté&lt;/strong&gt;, &lt;strong&gt;corriger des bogues&lt;/strong&gt;, &lt;strong&gt;ajouter des fonctonnalités&lt;/strong&gt; et &lt;strong&gt;pour être toujours actif&lt;/strong&gt;, nous comptons sur votre &lt;strong&gt;contribution.&lt;/strong&gt;</string>
 
