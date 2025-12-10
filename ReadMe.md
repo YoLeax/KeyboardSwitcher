@@ -1,12 +1,12 @@
 # Android Keyboard Switcher
 
-<img src="https://gitlab.com/kunzisoft/Android-KeyboardSwitcher/raw/master/art/icon.png"> Keyboard Switcher is a **keyboard selection application**, it allows to switch easily from the current keyboard to another in several ways, thanks to a discreet floating button available on the screen, a shortcut, a tile, or a notification.
+<img alt="Logo" src="https://gitlab.com/kunzisoft/Android-KeyboardSwitcher/raw/master/art/icon.png"> Keyboard Switcher is a **virtual keyboard selection application**, it allows to switch easily from the current keyboard to another in several ways, thanks to a discreet floating button available on the screen, a shortcut, a tile, or a notification.
 
-<img src="https://gitlab.com/kunzisoft/Android-KeyboardSwitcher/raw/master/art/screen.jpg" width="220">
+<img alt="Screenshot" src="https://gitlab.com/kunzisoft/Android-KeyboardSwitcher/raw/master/art/screen.jpg" width="220">
 
 ## Is it really free?
 
-Yes, Keyboard Switcher is under **free license (GPL v3)** and **without advertising**. You can have a look at its full source.
+Yes, Keyboard Switcher is under **free license (GPLv3+)** and **without advertising**. You can have a look at its full source.
 
 ## Contributions
 
@@ -29,7 +29,7 @@ You can contribute in different ways to help me on my work.
 
 ## License
 
- Copyright (c) 2020 Jeremy Jamet / [Kunzisoft](https://www.kunzisoft.com).
+ Copyright (c) 2025 Jeremy Jamet / [Kunzisoft](https://www.kunzisoft.com).
 
  This file is part of Keyboard Switcher.
 
