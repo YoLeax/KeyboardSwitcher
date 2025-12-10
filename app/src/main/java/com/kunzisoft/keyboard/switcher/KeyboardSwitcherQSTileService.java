@@ -21,7 +21,7 @@ public class KeyboardSwitcherQSTileService extends TileService {
     public void onClick() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             startActivityAndCollapse(
-                    KeyboardManagerActivity.getPendingIntent(this, 1100L)
+                    KeyboardManagerActivity.getPendingIntent(this, null, 200L)
             );
         } else {
             startActivityAndCollapse(KeyboardManagerActivity.getIntent(this));

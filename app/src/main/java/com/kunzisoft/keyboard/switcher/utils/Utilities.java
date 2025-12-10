@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.provider.Settings;
+import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.Nullable;
@@ -14,7 +15,35 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.kunzisoft.keyboard.switcher.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Utilities {
+
+    public static String getCurrentDefaultKeyboard(@Nullable Context context) {
+        if (context != null) {
+            return Settings.Secure.getString(
+                    context.getContentResolver(),
+                    Settings.Secure.DEFAULT_INPUT_METHOD
+            );
+        } else
+            return null;
+    }
+
+    public static List<InputMethodInfo> getInstalledKeyboards(@Nullable Context context, Boolean active) {
+        if (context != null && context.getPackageManager()
+                .hasSystemFeature(PackageManager.FEATURE_INPUT_METHODS)
+        ) {
+            InputMethodManager imm = (InputMethodManager)
+                    context.getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (active)
+                return imm.getEnabledInputMethodList();
+            else
+                return imm.getInputMethodList();
+        } else {
+            return new ArrayList<>();
+        }
+    }
 
     public static void openAvailableKeyboards(@Nullable Context context) {
         if (context != null) {
@@ -25,14 +54,20 @@ public class Utilities {
             } catch (ActivityNotFoundException e) {
                 new AlertDialog.Builder(context)
                         .setMessage(R.string.error_unavailable_keyboard_feature)
-                        .setPositiveButton(android.R.string.ok, (dialogInterface, i) -> {}).create().show();
+                        .setPositiveButton(
+                                android.R.string.ok,
+                                (dialogInterface, i) -> {}
+                        ).create().show();
             }
         }
     }
 
     public static void chooseAKeyboard(@Nullable Context context) {
-        if (context != null && context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_INPUT_METHODS)) {
-            InputMethodManager imeManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (context != null && context.getPackageManager()
+                .hasSystemFeature(PackageManager.FEATURE_INPUT_METHODS)
+        ) {
+            InputMethodManager imeManager = (InputMethodManager)
+                    context.getSystemService(Context.INPUT_METHOD_SERVICE);
             if (imeManager != null) {
                 imeManager.showInputMethodPicker();
             }

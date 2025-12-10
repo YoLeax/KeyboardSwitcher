@@ -57,7 +57,7 @@
         <item name="android:background">?attr/colorPrimary</item>
     </style>
 
-    <style name="Theme.Transparent" parent="Theme.Material3.DynamicColors.DayNight.NoActionBar">
+    <style name="Theme.Transparent" parent="Theme.Material3.DynamicColors.Light.NoActionBar">
         <item name="android:windowAnimationStyle">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
