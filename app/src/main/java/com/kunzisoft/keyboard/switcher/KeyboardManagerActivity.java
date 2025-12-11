@@ -18,6 +18,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.kunzisoft.keyboard.switcher.utils.Utilities;
+
 /**
  * Activity to show keyboard manager
  */
@@ -84,16 +86,18 @@ public class KeyboardManagerActivity extends AppCompatActivity {
     private void launchKeyboardAutoSwitch() {
         if (keyboardId != null) {
             try {
-                Settings.Secure.putString(
-                        getContentResolver(),
-                        Settings.Secure.DEFAULT_INPUT_METHOD,
-                        keyboardId
-                );
-                Toast.makeText(
-                        this,
-                        getString(R.string.auto_switch_message, keyboardId),
-                        Toast.LENGTH_LONG
-                ).show();
+                if (!Utilities.getCurrentDefaultKeyboard(this).equals(keyboardId)) {
+                    Settings.Secure.putString(
+                            getContentResolver(),
+                            Settings.Secure.DEFAULT_INPUT_METHOD,
+                            keyboardId
+                    );
+                    Toast.makeText(
+                            this,
+                            getString(R.string.auto_switch_message, keyboardId),
+                            Toast.LENGTH_LONG
+                    ).show();
+                }
                 finish();
             } catch (Exception e) {
                 Log.w(KeyboardManagerActivity.class.getSimpleName(), "Unable to set default keyboard", e);
