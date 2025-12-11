@@ -37,6 +37,8 @@
     <string name="floating_button_notification_warning">Une notification est indispensable pour que le bouton reste visible mais cette notification peut-être cachée dans les paramètres.</string>
     <string name="floating_button_above_screen">Vous devez accepter les autorisations pour autoriser le bouton flottant à être dessiné au dessus des autres applications.</string>
 
+    <string name="auto_switch_message">Clavier changé: %1$s</string>
+
     <string name="settings_floating_button_lock_title">Verouiller la position</string>
 
     <string name="settings_colors_title">Couleur de bouton</string>

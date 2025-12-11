@@ -37,6 +37,8 @@
     <string name="floating_button_notification_warning">É necessária uma notificação para que o botão permaneça visível, mas esta notificação pode ser ocultada nas definições.</string>
     <string name="floating_button_above_screen">Você deve permitir que o app se sobreponha a outros apps.</string>
 
+    <string name="auto_switch_message">Teclado cambiado: %1$s</string>
+
     <string name="settings_floating_button_lock_title">Travar posição</string>
 
     <string name="settings_colors_title">Cor do botão</string>
