@@ -23,10 +23,9 @@ import androidx.appcompat.app.AppCompatActivity;
  */
 public class KeyboardManagerActivity extends AppCompatActivity {
 
-	public static final String DELAY_SHOW_KEY = "DELAY_SHOW_KEY";
-	public static final String SPECIFIC_KEYBOARD_ID = "SPECIFIC_KEYBOARD_ID";
+	public static final String KEYBOARD_ID = "KEYBOARD_ID";
 
-	private long delay = 200L;
+	private static final long DELAY = 200L;
 
     private int tryCounter = 5;
 	private String keyboardId = null;
@@ -73,10 +72,8 @@ public class KeyboardManagerActivity extends AppCompatActivity {
 
     private void retrieveIntentExtra(Intent intent) {
         if (intent != null) {
-            if (intent.hasExtra(DELAY_SHOW_KEY))
-                delay = intent.getLongExtra(DELAY_SHOW_KEY, delay);
-            if (intent.hasExtra(SPECIFIC_KEYBOARD_ID))
-                keyboardId = intent.getStringExtra(SPECIFIC_KEYBOARD_ID);
+            if (intent.hasExtra(KEYBOARD_ID))
+                keyboardId = intent.getStringExtra(KEYBOARD_ID);
         }
     }
 
@@ -124,8 +121,8 @@ public class KeyboardManagerActivity extends AppCompatActivity {
             tryCounter--;
             launchKeyboardPicker();
             mState = DialogState.PICKING;
-            // Retry after 200 milliseconds
-            rootView.postDelayed(openPickerRunnable, 200);
+            // Retry after the delay
+            rootView.postDelayed(openPickerRunnable, DELAY);
         }
     }
 
@@ -142,7 +139,7 @@ public class KeyboardManagerActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        rootView.postDelayed(openPickerRunnable, delay);
+        rootView.postDelayed(openPickerRunnable, DELAY);
     }
 
     @Override
@@ -159,13 +156,12 @@ public class KeyboardManagerActivity extends AppCompatActivity {
     }
 
     public static Intent getIntent(Context context) {
-        return getIntent(context, null, null);
+        return getIntent(context, null);
     }
 
     public static Intent getIntent(
             Context context,
-            @Nullable String keyboardId,
-            @Nullable Long delay
+            @Nullable String keyboardId
     ) {
         if (context instanceof Activity) {
             ((Activity) context).finish();
@@ -178,26 +174,23 @@ public class KeyboardManagerActivity extends AppCompatActivity {
                         | Intent.FLAG_ACTIVITY_NEW_TASK
         );
         if (keyboardId != null)
-            intent.putExtra(KeyboardManagerActivity.SPECIFIC_KEYBOARD_ID, keyboardId);
-        if (delay != null)
-            intent.putExtra(KeyboardManagerActivity.DELAY_SHOW_KEY, delay);
+            intent.putExtra(KeyboardManagerActivity.KEYBOARD_ID, keyboardId);
         return intent;
     }
 
     public static PendingIntent getPendingIntent(Context context) {
-        return getPendingIntent(context, null, null);
+        return getPendingIntent(context, null);
     }
 
     @SuppressLint("UnsafeIntentLaunch")
     public static PendingIntent getPendingIntent(
             Context context,
-            @Nullable String keyboardId,
-            @Nullable Long delay
+            @Nullable String keyboardId
     ) {
         return PendingIntent.getActivity(
                 context,
                 0,
-                getIntent(context, keyboardId, delay),
+                getIntent(context, keyboardId),
                 PendingIntent.FLAG_IMMUTABLE
                         | PendingIntent.FLAG_UPDATE_CURRENT
         );
