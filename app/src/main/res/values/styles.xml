@@ -15,10 +15,6 @@
         <item name="colorSecondary">@color/colorSecondaryLight</item>
         <item name="colorOnSecondary">@color/colorOnSecondaryLight</item>
         <item name='android:windowBackground'>@color/colorSurfaceLight</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:toolbarStyle">@style/Theme.Preference.Toolbar</item>
-        <item name="toolbarStyle">@style/Theme.Preference.Toolbar</item>
         <!-- Preference -->
         <item name="preferenceTheme">@style/Style.Preference.v21</item>
         <item name="preferenceStyle">@style/Style.Preference.Style</item>
@@ -46,8 +42,6 @@
         <item name="colorSecondary">@color/colorSecondaryNight</item>
         <item name="colorOnSecondary">@color/colorOnSecondaryNight</item>
         <item name='android:windowBackground'>@color/colorSurfaceNight</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <style name="Theme.Preference.Toolbar" parent="Theme.Material3.DynamicColors.Dark.NoActionBar">
