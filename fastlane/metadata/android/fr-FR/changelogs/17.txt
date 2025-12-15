@@ -1,0 +1,4 @@
+ * Ajout de l'intention "com.android.keyboard.SWITCH_KEYBOARD" qui peut être ouverte à partir d'une autre application
+ * Changement automatique avec paramètre de sécurité adb
+ * Correction de la vitesse d'ouverture de la boîte de dialogue
+ * Correction du thème
