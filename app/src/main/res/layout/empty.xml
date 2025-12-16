@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:visibility="gone"
     app:cardCornerRadius="24dp">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="vertical"
@@ -58,7 +59,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:indeterminate="true"
-            app:indicatorColor="@color/colorSecondary"
+            app:indicatorColor="?attr/colorOnSecondary"
             app:layout_constraintTop_toBottomOf="@+id/content_container"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

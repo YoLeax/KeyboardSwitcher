@@ -1,7 +1,7 @@
 <resources>
     <string name="app_warning"> Este app torna fácil a troca entre diferentes teclados se seu sistema não tem um meio eficiente de fazê-lo.\n\nNa versão Lollipop e posteriores do Android, um toque longo na barra de espaço pode fazer esta troca. Uma notificação do proprio sistema também permite a troca.\n\nNestes casos o app se torna redundante.</string>
 
-    <string name="hint_text_test">área de teste</string>
+    <string name="hint_text_test">Área de teste</string>
 
     <string name="launching_selection">Iniciar o diálogo de seleção do teclado</string>
 
@@ -37,6 +37,8 @@
     <string name="floating_button_notification_warning">É necessária uma notificação para que o botão permaneça visível, mas esta notificação pode ser ocultada nas definições.</string>
     <string name="floating_button_above_screen">Você deve permitir que o app se sobreponha a outros apps.</string>
 
+    <string name="auto_switch_message">Teclado cambiado: %1$s</string>
+
     <string name="settings_floating_button_lock_title">Travar posição</string>
 
     <string name="settings_colors_title">Cor do botão</string>
@@ -52,7 +54,7 @@
     <string name="about_version">Version:</string>
     <string name="contact_title">Contact</string>
     <string name="developer">Developer</string>
-    <string name="html_text_purpose">This app is designed to &lt;strong&gt;easily change keyboard&lt;/strong&gt;.</string>
+    <string name="html_text_purpose">This app is designed to &lt;strong&gt;easily change virtual keyboard&lt;/strong&gt;.</string>
     <string name="html_text_free">%1$s is &lt;strong&gt;free&lt;/strong&gt;, &lt;strong&gt;libre&lt;/strong&gt; and &lt;strong&gt;without advertising&lt;/strong&gt;. It is provided as is, under &lt;strong&gt;GPLv3&lt;/strong&gt; license, without any warranty.</string>
     <string name="html_text_contribution">In order to &lt;strong&gt;keep our freedom&lt;/strong&gt;, &lt;strong&gt;fix bugs&lt;/strong&gt;, &lt;strong&gt;add features&lt;/strong&gt; and &lt;strong&gt;to be always active&lt;/strong&gt;, we count on your &lt;strong&gt;contribution.&lt;/strong&gt;</string>
 

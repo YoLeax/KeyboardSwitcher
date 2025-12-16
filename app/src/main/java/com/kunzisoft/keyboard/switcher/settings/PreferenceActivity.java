@@ -7,9 +7,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
@@ -20,14 +20,8 @@ import com.kunzisoft.keyboard.switcher.dialogs.WarningFloatingButtonDialog;
 public class PreferenceActivity extends AppCompatActivity implements WarningFloatingButtonDialog.OnFloatingButtonListener{
 
     private static final String TAG_PREFERENCE_FRAGMENT = "TAG_PREFERENCE_FRAGMENT";
-    private static final String TAG_ABOUT_FRAGMENT = "TAG_ABOUT_FRAGMENT";
-
-    private static final String KEY_ABOUT_ACTIVE = "KEY_ABOUT_ACTIVE";
-
     private View testZoneView;
-    private PreferenceFragment preferenceFragment;
-    private Fragment aboutFragment;
-    private boolean aboutFragmentActive = false;
+    private Fragment currentFragment;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -37,33 +31,21 @@ public class PreferenceActivity extends AppCompatActivity implements WarningFloa
         setContentView(R.layout.preference_activity);
 
         testZoneView = findViewById(R.id.test_zone_container);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            getSupportActionBar().setDisplayShowHomeEnabled(false);
+        }
 
         // Manage fragment who contains list of preferences
-        preferenceFragment = (PreferenceFragment) getSupportFragmentManager().findFragmentByTag(TAG_PREFERENCE_FRAGMENT);
-        if (preferenceFragment == null)
-            preferenceFragment = new PreferenceFragment();
-
-        aboutFragment = getSupportFragmentManager().findFragmentByTag(TAG_ABOUT_FRAGMENT);
-        if (aboutFragment == null)
-            aboutFragment =  new AboutFragment();
-
-        if (savedInstanceState != null) {
-            aboutFragmentActive = savedInstanceState.getBoolean(KEY_ABOUT_ACTIVE, aboutFragmentActive);
-        }
-
-        Fragment fragmentToShow;
-        String tagToSave;
-        if (aboutFragmentActive) {
-            fragmentToShow = aboutFragment;
-            tagToSave = TAG_ABOUT_FRAGMENT;
-        } else {
-            fragmentToShow = preferenceFragment;
-            tagToSave = TAG_PREFERENCE_FRAGMENT;
-        }
+        currentFragment = getSupportFragmentManager().findFragmentByTag(TAG_PREFERENCE_FRAGMENT);
+        if (currentFragment == null)
+            currentFragment = new PreferenceFragment();
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container, fragmentToShow, tagToSave)
+                .replace(R.id.fragment_container, currentFragment, TAG_PREFERENCE_FRAGMENT)
                 .commit();
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -73,81 +55,64 @@ public class PreferenceActivity extends AppCompatActivity implements WarningFloa
         }
     }
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-
-        outState.putBoolean(KEY_ABOUT_ACTIVE, aboutFragmentActive);
+    public void showTestZone(boolean value) {
+        if (value) {
+            testZoneView.setVisibility(View.VISIBLE);
+        } else {
+            testZoneView.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.contribution, menu);
-
         return true;
     }
 
     private void switchToPreferenceScreen() {
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-            getSupportActionBar().setDisplayShowHomeEnabled(false);
-            getSupportActionBar().setTitle(R.string.app_name);
-        }
         getSupportFragmentManager().popBackStack();
-        aboutFragmentActive = false;
-        testZoneView.setVisibility(View.VISIBLE);
     }
 
     private void switchToAboutScreen() {
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setTitle(R.string.about_title);
-        }
         getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left,
                         R.anim.slide_in_left, R.anim.slide_out_right)
-                .replace(R.id.fragment_container, aboutFragment, TAG_ABOUT_FRAGMENT)
+                .replace(R.id.fragment_container, new AboutFragment(), TAG_PREFERENCE_FRAGMENT)
                 .addToBackStack(null)
                 .commit();
-        aboutFragmentActive = true;
-        testZoneView.setVisibility(View.GONE);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_contribute:
-                if (aboutFragmentActive) {
-                    switchToPreferenceScreen();
-                } else {
-                    switchToAboutScreen();
-                }
-                return true;
-            case android.R.id.home:
+        if (item.getItemId() == R.id.menu_contribute) {
+            Fragment fragment = getSupportFragmentManager().findFragmentByTag(TAG_PREFERENCE_FRAGMENT);
+            if (fragment instanceof PreferenceFragment) {
+                switchToAboutScreen();
+            } else {
                 switchToPreferenceScreen();
-                return true;
+            }
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onFloatingButtonDialogPositiveButtonClick() {
-        if (preferenceFragment != null)
-        	preferenceFragment.startOverlayServiceIfAllowed();
+        if (currentFragment != null && currentFragment instanceof PreferenceFragment)
+            ((PreferenceFragment) currentFragment).startOverlayServiceIfAllowed();
     }
 
     @Override
     public void onFloatingButtonDialogNegativeButtonClick() {
-		if (preferenceFragment != null)
-        	preferenceFragment.stopOverlayService();
+        if (currentFragment != null && currentFragment instanceof PreferenceFragment)
+            ((PreferenceFragment) currentFragment).stopOverlayService();
     }
 
     @Override
     public void onBackPressed() {
-        if (aboutFragmentActive) {
+        if (currentFragment instanceof AboutFragment) {
             switchToPreferenceScreen();
         } else {
             super.onBackPressed();

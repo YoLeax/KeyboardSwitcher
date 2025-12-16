@@ -125,14 +125,15 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
         }
         return new NotificationCompat.Builder(this, CHANNEL_ID_KEYBOARD)
                 .setSmallIcon(R.drawable.ic_notification_white_24dp)
-                .setColor(ContextCompat.getColor(this, R.color.colorPrimary))
+                .setColor(ContextCompat.getColor(this, R.color.colorPrimaryLight))
                 .setContentTitle(this.getString(R.string.notification_keyboard_title))
                 .setAutoCancel(false)
                 .setOngoing(true)
                 .setPriority(NotificationCompat.PRIORITY_LOW)
                 .setVisibility(NotificationCompat.VISIBILITY_SECRET)
                 .setContentText(this.getString(R.string.notification_keyboard_content_text))
-                .setContentIntent(KeyboardManagerActivity.getPendingIntent(this, 800L)); // Trick 500ms delay to show the dialog
+                .setContentIntent(KeyboardManagerActivity.getPendingIntent(this)
+                );
     }
 
     private void removeNotification() {
@@ -199,7 +200,7 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
 
             overlayedButton = new ImageView(this);
             @ColorRes int color = preferences.getInt(getString(R.string.settings_colors_key),
-                    ContextCompat.getColor(this, R.color.colorPrimary));
+                    ContextCompat.getColor(this, R.color.colorPrimaryLight));
             overlayedButton.setImageResource(R.drawable.ic_keyboard_white_32dp);
             overlayedButton.setColorFilter(color);
             overlayedButton.setAlpha((color >> 24) & 0xff);

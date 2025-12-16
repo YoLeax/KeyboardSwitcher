@@ -1,5 +1,7 @@
 package com.kunzisoft.keyboard.switcher;
 
+import static android.view.View.VISIBLE;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
@@ -7,6 +9,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -14,14 +18,19 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.kunzisoft.keyboard.switcher.utils.Utilities;
+
 /**
  * Activity to show keyboard manager
  */
 public class KeyboardManagerActivity extends AppCompatActivity {
 
-	public static final String DELAY_SHOW_KEY = "DELAY_SHOW_KEY";
+	public static final String KEYBOARD_ID = "KEYBOARD_ID";
 
-	private long delay = 400L;
+	private static final long DELAY = 200L;
+
+    private int tryCounter = 5;
+	private String keyboardId = null;
 
 	private InputMethodManager imeManager;
     private Runnable openPickerRunnable;
@@ -41,42 +50,92 @@ public class KeyboardManagerActivity extends AppCompatActivity {
         rootView = findViewById(R.id.root_view);
 
         findViewById(R.id.cancel_button).setOnClickListener(view -> finish());
-        findViewById(R.id.relaunch_button).setOnClickListener(view -> launchKeyboard());
+        findViewById(R.id.relaunch_button).setOnClickListener(view -> launchKeyboardPicker());
 
         if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_INPUT_METHODS)) {
-            imeManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            imeManager = (InputMethodManager) getApplication().getSystemService(INPUT_METHOD_SERVICE);
         }
 
-        openPickerRunnable = this::launchKeyboard;
-
-        if (getIntent() != null) {
-			delay = getIntent().getLongExtra(DELAY_SHOW_KEY, delay);
-		}
+        initLauncher();
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        delay = intent.getLongExtra(DELAY_SHOW_KEY, delay);
+        initLauncher();
     }
 
-    private void launchKeyboard() {
+    private void initLauncher() {
+        rootView.removeCallbacks(openPickerRunnable);
+        retrieveIntentExtra(getIntent());
+        launchKeyboardAutoSwitch();
+        openPickerRunnable = this::tryLaunchKeyboardPicker;
+    }
+
+    private void retrieveIntentExtra(Intent intent) {
+        if (intent != null) {
+            if (intent.hasExtra(KEYBOARD_ID))
+                keyboardId = intent.getStringExtra(KEYBOARD_ID);
+        }
+    }
+
+    private void showDialog() {
+        rootView.setVisibility(VISIBLE);
+    }
+
+    private void launchKeyboardAutoSwitch() {
+        if (keyboardId != null) {
+            try {
+                if (!Utilities.getCurrentDefaultKeyboard(this).equals(keyboardId)) {
+                    Settings.Secure.putString(
+                            getContentResolver(),
+                            Settings.Secure.DEFAULT_INPUT_METHOD,
+                            keyboardId
+                    );
+                    Toast.makeText(
+                            this,
+                            getString(R.string.auto_switch_message, keyboardId),
+                            Toast.LENGTH_LONG
+                    ).show();
+                }
+                finish();
+            } catch (Exception e) {
+                Log.w(KeyboardManagerActivity.class.getSimpleName(), "Unable to set default keyboard", e);
+            }
+        }
+    }
+
+    private void launchKeyboardPicker() {
         if (imeManager != null) {
             imeManager.showInputMethodPicker();
-            mState = DialogState.PICKING;
         } else {
-            Toast.makeText(this, getString(R.string.error_unavailable_keyboard_feature), Toast.LENGTH_SHORT).show();
+            Toast.makeText(
+                    this,
+                    getString(R.string.error_unavailable_keyboard_feature),
+                    Toast.LENGTH_SHORT
+            ).show();
             finish();
+        }
+    }
+
+    private void tryLaunchKeyboardPicker() {
+        if (tryCounter <= 0) {
+            showDialog();
+        } else if (mState != DialogState.CHOSEN) {
+            tryCounter--;
+            launchKeyboardPicker();
+            mState = DialogState.PICKING;
+            // Retry after the delay
+            rootView.postDelayed(openPickerRunnable, DELAY);
         }
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if(mState == DialogState.PICKING) {
+        if(!hasFocus && mState == DialogState.PICKING) {
             mState = DialogState.CHOSEN;
-        }
-        else if(mState == DialogState.CHOSEN) {
+        } else if(hasFocus && mState == DialogState.CHOSEN) {
             finish();
         }
     }
@@ -84,7 +143,7 @@ public class KeyboardManagerActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        rootView.postDelayed(openPickerRunnable, delay);
+        rootView.postDelayed(openPickerRunnable, DELAY);
     }
 
     @Override
@@ -100,7 +159,14 @@ public class KeyboardManagerActivity extends AppCompatActivity {
         finish();
     }
 
-    public static Intent getIntent(Context context, @Nullable Long delay) {
+    public static Intent getIntent(Context context) {
+        return getIntent(context, null);
+    }
+
+    public static Intent getIntent(
+            Context context,
+            @Nullable String keyboardId
+    ) {
         if (context instanceof Activity) {
             ((Activity) context).finish();
         }
@@ -111,13 +177,9 @@ public class KeyboardManagerActivity extends AppCompatActivity {
                         | Intent.FLAG_ACTIVITY_CLEAR_TASK
                         | Intent.FLAG_ACTIVITY_NEW_TASK
         );
-        if (delay != null)
-            intent.putExtra(KeyboardManagerActivity.DELAY_SHOW_KEY, delay);
+        if (keyboardId != null)
+            intent.putExtra(KeyboardManagerActivity.KEYBOARD_ID, keyboardId);
         return intent;
-    }
-
-    public static Intent getIntent(Context context) {
-        return getIntent(context, null);
     }
 
     public static PendingIntent getPendingIntent(Context context) {
@@ -125,12 +187,16 @@ public class KeyboardManagerActivity extends AppCompatActivity {
     }
 
     @SuppressLint("UnsafeIntentLaunch")
-    public static PendingIntent getPendingIntent(Context context, @Nullable Long delay) {
+    public static PendingIntent getPendingIntent(
+            Context context,
+            @Nullable String keyboardId
+    ) {
         return PendingIntent.getActivity(
                 context,
                 0,
-                getIntent(context, delay),
-                PendingIntent.FLAG_IMMUTABLE|PendingIntent.FLAG_UPDATE_CURRENT
+                getIntent(context, keyboardId),
+                PendingIntent.FLAG_IMMUTABLE
+                        | PendingIntent.FLAG_UPDATE_CURRENT
         );
     }
 

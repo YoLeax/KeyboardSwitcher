@@ -1,0 +1,4 @@
+ * Add intent "com.android.keyboard.SWITCH_KEYBOARD" which can be opened from another app
+ * Auto switch with adb security setting
+ * Fix dialog opening speed
+ * Fix theme

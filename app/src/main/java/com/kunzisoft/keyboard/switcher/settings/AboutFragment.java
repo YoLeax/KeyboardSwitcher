@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
 
@@ -29,7 +30,7 @@ public class AboutFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (getContext() != null) {
-            View rootView = inflater.inflate(R.layout.about_activity, container, false);
+            View rootView = inflater.inflate(R.layout.about_fragment, container, false);
 
             TextView versionTextView = rootView.findViewById(R.id.activity_about_version);
             String versionString = getString(R.string.about_version) + " " + Constants.getVersion(getContext());
@@ -69,5 +70,16 @@ public class AboutFragment extends Fragment {
         }
 
         return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        PreferenceActivity activity = ((PreferenceActivity) requireActivity());
+        ActionBar toolbar = activity.getSupportActionBar();
+        if (toolbar != null)
+            toolbar.setTitle(R.string.about_title);
+        activity.showTestZone(false);
     }
 }
