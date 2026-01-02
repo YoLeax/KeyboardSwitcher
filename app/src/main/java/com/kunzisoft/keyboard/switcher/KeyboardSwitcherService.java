@@ -440,6 +440,8 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
             action = addAction(action, FLOATING_BUTTON_STOP);
         }
         intent.setAction(action);
+        // Restart the service
+        context.stopService(intent);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             context.startForegroundService(intent);
         } else {
