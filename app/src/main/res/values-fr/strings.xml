@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Claviers</string>
+    <string name="keyboards">Claviers</string>
     <string name="shortcut_name">Clavier</string>
 
     <string name="app_warning"> Cette application facilite le changement de clavier si vous n’avez pas de moyen efficace intégré au système d\’exploitation et au clavier de votre appareil. \n\nAvec Lollipop et versions ultérieures d\’Android, vous pouvez appuyer longuement sur la barre d\’espace de votre clavier afin de le changer facilement. Les notifications gérées par le système permettent également ce changement. \n\nDans ces cas, l\'application peut être superflue.</string>

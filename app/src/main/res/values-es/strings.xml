@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Teclados</string>
+    <string name="keyboards">Teclados</string>
     <string name="shortcut_name">Teclado</string>
 
     <string name="app_warning">Esta aplicación facilita el cambio de teclado si no tienes una forma efectiva integrada en el sistema operativo y el teclado de tu dispositivo.\n\nEn Lollipop y versiones posteriores de Android, una pulsación larga en la barra espaciadora de tu teclado puede facilitar el cambio. Las notificaciones gestionadas por el sistema también permiten este cambio.\n\nEn estos casos, la aplicación puede ser superflua.</string>

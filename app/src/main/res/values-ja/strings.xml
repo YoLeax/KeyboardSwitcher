@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">キーボード</string>
+    <string name="keyboards">キーボード</string>
     <string name="shortcut_name">キーボード</string>
 
     <string name="app_warning">お使いのオペレーティングシステムとデバイスのキーボードに効果的な方法が統合されていない場合、このアプリケーションを使用するとキーボードを簡単に切り替えることができます。\n\nLollipop以降のバージョンのAndroidでは、キーボードのスペースバーを長押しすると簡単に変更できます。システム管理の通知でもこの変更が可能です。\n\nこれらの場合、アプリケーションは不要になる可能性があります。</string>

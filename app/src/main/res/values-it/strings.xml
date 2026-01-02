@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Tastiere</string>
+    <string name="keyboards">Tastiere</string>
     <string name="shortcut_name">Tastiera</string>
 
     <string name="app_warning">Questa applicazione facilita il cambio della tastiera se non si dispone di un modo efficace integrato nel sistema operativo e nella tastiera del dispositivo.\n\nIn Lollipop e versioni successive di Android, una pressione prolungata sulla barra spaziatrice della tastiera può facilitare il cambio. Anche le notifiche gestite dal sistema consentono questo cambio.\n\nIn questi casi, l\'applicazione potrebbe essere superflua.</string>

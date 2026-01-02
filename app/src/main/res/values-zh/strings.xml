@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">键盘</string>
+    <string name="keyboards">键盘</string>
     <string name="shortcut_name">键盘</string>
 
     <string name="app_warning">如果您的操作系统和设备的键盘中没有集成有效的方式，此应用程序可以轻松切换键盘。\n\n在Lollipop及更高版本的Android中，长按键盘的空格键可以轻松进行更改。系统管理的通知也允许进行此更改。\n\n在这些情况下，该应用程序可能是多余的。</string>

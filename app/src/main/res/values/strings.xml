@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">Keyboards</string>
+    <string name="app_name" translatable="false">Keyboard Switcher</string>
+    <string name="app_name_short" translatable="false">KeyboardS</string>
+
+    <string name="keyboards">Keyboards</string>
     <string name="shortcut_name">Keyboard</string>
 
     <string name="explanation_service_special_use" translatable="false">Permanent service that displays notification of keyboard changes.</string>
