@@ -135,7 +135,7 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
                 .setOngoing(true)
                 .setVisibility(NotificationCompat.VISIBILITY_SECRET)
                 .setContentText(this.getString(R.string.notification_keyboard_content_text))
-                .setContentIntent(KeyboardManagerActivity.getPendingIntent(this)
+                .setContentIntent(KeyboardManagerActivity.getPendingIntent(this, null, 600L)
                 );
     }
 
