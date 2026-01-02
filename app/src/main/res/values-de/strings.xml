@@ -1,4 +1,7 @@
 <resources>
+    <string name="app_name">Tastaturen</string>
+    <string name="shortcut_name">Tastatur</string>
+
     <string name="app_warning">Diese Anwendung erleichtert den Wechsel der Tastatur, wenn Sie keine effektive Möglichkeit in das Betriebssystem und die Tastatur Ihres Geräts integriert haben.\n\nIn Lollipop und späteren Versionen von Android können Sie durch langes Drücken der Leertaste Ihrer Tastatur einfach wechseln. Systemverwaltete Benachrichtigungen ermöglichen diesen Wechsel ebenfalls.\n\nIn diesen Fällen kann die Anwendung überflüssig sein.</string>
 
     <string name="hint_text_test">Testbereich</string>
@@ -57,8 +60,6 @@
     <string name="html_text_purpose">Diese App wurde entwickelt, um &lt;strong&gt;die virtuelle Tastatur einfach zu wechseln&lt;/strong&gt;.</string>
     <string name="html_text_free">%1$s ist &lt;strong&gt;kostenlos&lt;/strong&gt;, &lt;strong&gt;frei&lt;/strong&gt; und &lt;strong&gt;ohne Werbung&lt;/strong&gt;. Es wird so wie es ist unter der &lt;strong&gt;GPLv3&lt;/strong&gt;-Lizenz ohne jegliche Gewährleistung bereitgestellt.</string>
     <string name="html_text_contribution">Um &lt;strong&gt;unsere Freiheit zu bewahren&lt;/strong&gt;, &lt;strong&gt;Fehler zu beheben&lt;/strong&gt;, &lt;strong&gt;Funktionen hinzuzufügen&lt;/strong&gt; und &lt;strong&gt;immer aktiv zu sein&lt;/strong&gt;, zählen wir auf Ihren &lt;strong&gt;Beitrag.&lt;/strong&gt;</string>
-
-    <string name="shortcut_short_label_show_keyboard_switcher">Tastatur wechseln</string>
 
     <string name="open">Öffnen</string>
     <string name="cancel">Abbrechen</string>

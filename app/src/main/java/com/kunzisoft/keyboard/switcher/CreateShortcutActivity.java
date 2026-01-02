@@ -25,7 +25,7 @@ public class CreateShortcutActivity extends AppCompatActivity {
 
         DynamicColors.applyToActivityIfAvailable(this);
 
-        String shortcutLabel = getString(R.string.shortcut_short_label_show_keyboard_switcher);
+        String shortcutLabel = getString(R.string.shortcut_name);
 
         IconCompat shortcutIcon =
                 IconCompat.createWithResource(this, R.drawable.ic_shortcut_24dp);

@@ -1,4 +1,7 @@
 <resources>
+    <string name="app_name">Claviers</string>
+    <string name="shortcut_name">Clavier</string>
+
     <string name="app_warning"> Cette application facilite le changement de clavier si vous n’avez pas de moyen efficace intégré au système d\’exploitation et au clavier de votre appareil. \n\nAvec Lollipop et versions ultérieures d\’Android, vous pouvez appuyer longuement sur la barre d\’espace de votre clavier afin de le changer facilement. Les notifications gérées par le système permettent également ce changement. \n\nDans ces cas, l\'application peut être superflue.</string>
 
     <string name="hint_text_test">Zone de test</string>
@@ -57,9 +60,7 @@
     <string name="html_text_purpose">Cette application est conçue pour &lt;strong&gt;changer facilement de clavier virtuel&lt;/strong&gt;.</string>
     <string name="html_text_free">%1$s est &lt;strong&gt;gratuit&lt;/strong&gt;, &lt;strong&gt;libre&lt;/strong&gt; et &lt;strong&gt;sans publicité&lt;/strong&gt;. Il est fourni tel quel, sous licence &lt;strong&gt;GPLv3&lt;/strong&gt;, sans aucune garantie.</string>
     <string name="html_text_contribution">Afin de &lt;strong&gt;garder notre liberté&lt;/strong&gt;, &lt;strong&gt;corriger des bogues&lt;/strong&gt;, &lt;strong&gt;ajouter des fonctonnalités&lt;/strong&gt; et &lt;strong&gt;pour être toujours actif&lt;/strong&gt;, nous comptons sur votre &lt;strong&gt;contribution.&lt;/strong&gt;</string>
-
-    <string name="shortcut_short_label_show_keyboard_switcher">Changer le clavier</string>
-
+    
     <string name="open">Ouvrir</string>
     <string name="cancel">Annuler</string>
 

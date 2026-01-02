@@ -1,4 +1,7 @@
 <resources>
+    <string name="app_name">キーボード</string>
+    <string name="shortcut_name">キーボード</string>
+
     <string name="app_warning">お使いのオペレーティングシステムとデバイスのキーボードに効果的な方法が統合されていない場合、このアプリケーションを使用するとキーボードを簡単に切り替えることができます。\n\nLollipop以降のバージョンのAndroidでは、キーボードのスペースバーを長押しすると簡単に変更できます。システム管理の通知でもこの変更が可能です。\n\nこれらの場合、アプリケーションは不要になる可能性があります。</string>
 
     <string name="hint_text_test">テストエリア</string>
@@ -57,8 +60,6 @@
     <string name="html_text_purpose">このアプリは、&lt;strong&gt;仮想キーボードを簡単に変更&lt;/strong&gt;できるように設計されています。</string>
     <string name="html_text_free">%1$sは&lt;strong&gt;無料&lt;/strong&gt;、&lt;strong&gt;自由&lt;/strong&gt;、&lt;strong&gt;広告なし&lt;/strong&gt;です。現状のまま、&lt;strong&gt;GPLv3&lt;/strong&gt;ライセンスの下で、いかなる保証もなしに提供されます。</string>
     <string name="html_text_contribution">私たちの&lt;strong&gt;自由を維持し&lt;/strong&gt;、&lt;strong&gt;バグを修正し&lt;/strong&gt;、&lt;strong&gt;機能を追加し&lt;/strong&gt;、&lt;strong&gt;常にアクティブである&lt;/strong&gt;ために、皆様の&lt;strong&gt;ご貢献&lt;/strong&gt;をお待ちしております。</string>
-
-    <string name="shortcut_short_label_show_keyboard_switcher">キーボードを切り替える</string>
 
     <string name="open">開く</string>
     <string name="cancel">キャンセル</string>

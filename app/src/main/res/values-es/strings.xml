@@ -1,4 +1,7 @@
 <resources>
+    <string name="app_name">Teclados</string>
+    <string name="shortcut_name">Teclado</string>
+
     <string name="app_warning">Esta aplicación facilita el cambio de teclado si no tienes una forma efectiva integrada en el sistema operativo y el teclado de tu dispositivo.\n\nEn Lollipop y versiones posteriores de Android, una pulsación larga en la barra espaciadora de tu teclado puede facilitar el cambio. Las notificaciones gestionadas por el sistema también permiten este cambio.\n\nEn estos casos, la aplicación puede ser superflua.</string>
 
     <string name="hint_text_test">Área de prueba</string>
@@ -57,8 +60,6 @@
     <string name="html_text_purpose">Esta aplicación está diseñada para &lt;strong&gt;cambiar fácilmente el teclado virtual&lt;/strong&gt;.</string>
     <string name="html_text_free">%1$s es &lt;strong&gt;gratuito&lt;/strong&gt;, &lt;strong&gt;libre&lt;/strong&gt; y &lt;strong&gt;sin publicidad&lt;/strong&gt;. Se proporciona tal cual, bajo la licencia &lt;strong&gt;GPLv3&lt;/strong&gt;, sin ninguna garantía.</string>
     <string name="html_text_contribution">Para &lt;strong&gt;mantener nuestra libertad&lt;/strong&gt;, &lt;strong&gt;corregir errores&lt;/strong&gt;, &lt;strong&gt;agregar funciones&lt;/strong&gt; y &lt;strong&gt;estar siempre activos&lt;/strong&gt;, contamos con tu &lt;strong&gt;contribución.&lt;/strong&gt;</string>
-
-    <string name="shortcut_short_label_show_keyboard_switcher">Cambiar teclado</string>
 
     <string name="open">Abrir</string>
     <string name="cancel">Cancelar</string>

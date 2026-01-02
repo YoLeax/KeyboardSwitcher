@@ -1,4 +1,7 @@
 <resources>
+    <string name="app_name">Клавиатуры</string>
+    <string name="shortcut_name">Клавиатура</string>
+
     <string name="app_warning">Это приложение позволяет легко переключать клавиатуру, если у вас нет эффективного способа, встроенного в операционную систему и клавиатуру вашего устройства.\n\nВ Lollipop и более поздних версиях Android долгое нажатие на пробел на клавиатуре позволяет легко изменить ее. Уведомления, управляемые системой, также позволяют это изменение.\n\nВ этих случаях приложение может быть лишним.</string>
 
     <string name="hint_text_test">Тестовая область</string>
@@ -50,15 +53,13 @@
     <string name="powered_by">На базе</string>
     <string name="source_code">Исходный код:</string>
     <string name="donation">Пожертвование</string>
-    <string name="play_store_donation">Пожертвование в PlayStore</string>
+    <string name="play_store_donation">Пожертвоanie в PlayStore</string>
     <string name="about_version">Версия:</string>
     <string name="contact_title">Контакт</string>
     <string name="developer">Разработчик</string>
     <string name="html_text_purpose">Это приложение предназначено для &lt;strong&gt;легкого переключения виртуальной клавиатуры&lt;/strong&gt;.</string>
     <string name="html_text_free">%1$s &lt;strong&gt;бесплатное&lt;/strong&gt;, &lt;strong&gt;свободное&lt;/strong&gt; и &lt;strong&gt;без рекламы&lt;/strong&gt;. Оно предоставляется как есть, под лицензией &lt;strong&gt;GPLv3&lt;/strong&gt;, без каких-либо гарантий.</string>
     <string name="html_text_contribution">Чтобы &lt;strong&gt;сохранить нашу свободу&lt;/strong&gt;, &lt;strong&gt;исправлять ошибки&lt;/strong&gt;, &lt;strong&gt;добавлять функции&lt;/strong&gt; и &lt;strong&gt;быть всегда активными&lt;/strong&gt;, мы рассчитываем на ваш &lt;strong&gt;вклад.&lt;/strong&gt;</string>
-
-    <string name="shortcut_short_label_show_keyboard_switcher">Переключить клавиатуру</string>
 
     <string name="open">Открыть</string>
     <string name="cancel">Отмена</string>

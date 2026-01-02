@@ -1,4 +1,7 @@
 <resources>
+    <string name="app_name">Teclados</string>
+    <string name="shortcut_name">Teclado</string>
+
     <string name="app_warning"> Este app torna fácil a troca entre diferentes teclados se seu sistema não tem um meio eficiente de fazê-lo.\n\nNa versão Lollipop e posteriores do Android, um toque longo na barra de espaço pode fazer esta troca. Uma notificação do proprio sistema também permite a troca.\n\nNestes casos o app se torna redundante.</string>
 
     <string name="hint_text_test">Área de teste</string>
@@ -57,8 +60,6 @@
     <string name="html_text_purpose">This app is designed to &lt;strong&gt;easily change virtual keyboard&lt;/strong&gt;.</string>
     <string name="html_text_free">%1$s is &lt;strong&gt;free&lt;/strong&gt;, &lt;strong&gt;libre&lt;/strong&gt; and &lt;strong&gt;without advertising&lt;/strong&gt;. It is provided as is, under &lt;strong&gt;GPLv3&lt;/strong&gt; license, without any warranty.</string>
     <string name="html_text_contribution">In order to &lt;strong&gt;keep our freedom&lt;/strong&gt;, &lt;strong&gt;fix bugs&lt;/strong&gt;, &lt;strong&gt;add features&lt;/strong&gt; and &lt;strong&gt;to be always active&lt;/strong&gt;, we count on your &lt;strong&gt;contribution.&lt;/strong&gt;</string>
-
-    <string name="shortcut_short_label_show_keyboard_switcher">Mudar el teclado</string>
 
     <string name="open">Aberto</string>
     <string name="cancel">Cancelar</string>

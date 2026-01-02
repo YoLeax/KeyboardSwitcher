@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_warning">Questa applicazione facilita il cambio della tastiera se non si dispone di un modo efficace integrato nel sistema operativo e nella tastiera del dispositivo.\n\nIn Lollipop e versioni successive di Android, una pressione prolungata sulla barra spaziatrice della tastiera può facilitare il cambio. Anche le notifiche gestite dal sistema consentono questo cambio.\n\nIn questi casi, l'applicazione potrebbe essere superflua.</string>
+    <string name="app_name">Tastiere</string>
+    <string name="shortcut_name">Tastiera</string>
+
+    <string name="app_warning">Questa applicazione facilita il cambio della tastiera se non si dispone di un modo efficace integrato nel sistema operativo e nella tastiera del dispositivo.\n\nIn Lollipop e versioni successive di Android, una pressione prolungata sulla barra spaziatrice della tastiera può facilitare il cambio. Anche le notifiche gestite dal sistema consentono questo cambio.\n\nIn questi casi, l\'applicazione potrebbe essere superflua.</string>
 
     <string name="hint_text_test">Area di prova</string>
 
@@ -15,12 +18,12 @@
     <string name="settings_ime_change_title">Cambia la tastiera predefinita</string>
 
     <string name="error_unavailable_keyboard_feature">Il tuo sistema non è in grado di aprire la finestra di dialogo per la selezione della tastiera.</string>
-    <string name="error_notification_permission">L'app non ha l'autorizzazione per visualizzare la notifica.</string>
-    <string name="error_overlay_permission">L'app non ha l'autorizzazione per visualizzare una sovrapposizione.</string>
+    <string name="error_notification_permission">L\'app non ha l\'autorizzazione per visualizzare la notifica.</string>
+    <string name="error_overlay_permission">L\'app non ha l\'autorizzazione per visualizzare una sovrapposizione.</string>
 
     <string name="startup">Avvio</string>
 
-    <string name="settings_launch_startup_title">Avvia all'avvio</string>
+    <string name="settings_launch_startup_title">Avvia all\'avvio</string>
 
     <string name="notification">Notifica</string>
 
@@ -55,10 +58,8 @@
     <string name="contact_title">Contatto</string>
     <string name="developer">Sviluppatore</string>
     <string name="html_text_purpose">Questa app è progettata per &lt;strong&gt;cambiare facilmente la tastiera virtuale&lt;/strong&gt;.</string>
-    <string name="html_text_free">%1$s è &lt;strong&gt;gratuita&lt;/strong&gt;, &lt;strong&gt;libera&lt;/strong&gt; e &lt;strong&gt;senza pubblicità&lt;/strong&gt;. Viene fornita così com'è, sotto licenza &lt;strong&gt;GPLv3&lt;/strong&gt;, senza alcuna garanzia.</string>
+    <string name="html_text_free">%1$s è &lt;strong&gt;gratuita&lt;/strong&gt;, &lt;strong&gt;libera&lt;/strong&gt; e &lt;strong&gt;senza pubblicità&lt;/strong&gt;. Viene fornita così com\'è, sotto licenza &lt;strong&gt;GPLv3&lt;/strong&gt;, senza alcuna garanzia.</string>
     <string name="html_text_contribution">Per &lt;strong&gt;mantenere la nostra libertà&lt;/strong&gt;, &lt;strong&gt;correggere i bug&lt;/strong&gt;, &lt;strong&gt;aggiungere funzionalità&lt;/strong&gt; e &lt;strong&gt;essere sempre attivi&lt;/strong&gt;, contiamo sul tuo &lt;strong&gt;contributo.&lt;/strong&gt;</string>
-
-    <string name="shortcut_short_label_show_keyboard_switcher">Cambia tastiera</string>
 
     <string name="open">Apri</string>
     <string name="cancel">Annulla</string>
