@@ -1,7 +1,7 @@
-<b>Keyboard Switcher est une application de sélection de clavier</b>, elle permet de <b>switcher facilement</b> du clavier courant à un autre de plusieurs façons, grâce à un bouton flottant discret disponible sur l'écran, un raccourci , une tuile ou une notification.
+<b>Keyboard Switcher est une application de sélection de clavier</b>, elle permet de <b>passer facilement</b> d'un clavier actuel à un autre de plusieurs manières, grâce à un bouton flottant discret disponible sur l'écran, un raccourci, une tuile ou une notification.
 
-<i>Cette application facilite le changement de clavier si vous ne disposez pas d'un moyen efficace intégré dans le système d'exploitation et le clavier de votre appareil.
-Notez que dans Lollipop et les versions ultérieures d'Android, un appui long sur la barre d'espace de votre clavier peut le rendre facile à modifier. Les notifications gérées par le système autorisent également ce changement.
+<i>Cette application facilite le changement de clavier virtuel si vous ne disposez pas de moyen efficace intégré dans le système d'exploitation et le clavier de votre appareil.
+Notez que dans Lollipop et les versions ultérieures d'Android, un appui long sur la barre d'espace de votre clavier peut faciliter le changement. Les notifications gérées par le système permettent également ce changement.
 Dans ces cas, l'application peut être superflue.</i>
 
 Keyboard Switcher est <b>opensource</b> et <b>sans publicité</b>, elle survit grâce à vos contributions et à vos dons.

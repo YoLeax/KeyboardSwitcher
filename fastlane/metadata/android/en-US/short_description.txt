@@ -1,1 +1,1 @@
-Keyboard Switcher, several ways to easily change the keyboard
+Easily switch between virtual keyboards.

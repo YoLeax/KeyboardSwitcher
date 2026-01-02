@@ -1,0 +1,9 @@
+<b>键盘切换器是一个键盘选择应用程序</b>，它允许通过屏幕上可用的离散浮动按钮、快捷方式、图块或通知，以多种方式从当前键盘<b>轻松切换</b>到另一个键盘。
+
+<i>如果您的设备操作系统和键盘中没有集成有效的方法，此应用程序可以轻松切换虚拟键盘。
+请注意，在Lollipop及更高版本的Android中，长按键盘的空格键可以轻松进行更改。系统管理的通知也允许此更改。
+在这些情况下，该应用程序可能是多余的。</i>
+
+键盘切换器是<b>开源</b>和<b>无广告</b>的，它依靠您的贡献和捐赠生存。
+
+任何问题：<a href="https://gitlab.com/kunzisoft/Android-KeyboardSwitcher/issues">https://gitlab.com/kunzisoft/Android-KeyboardSwitcher/issues</a>

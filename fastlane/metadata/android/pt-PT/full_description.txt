@@ -1,0 +1,9 @@
+<b>O Keyboard Switcher é uma aplicação de seleção de teclado</b>, que permite <b>alternar facilmente</b> do teclado atual para outro de várias maneiras, graças a um botão flutuante discreto disponível no ecrã, um atalho, um mosaico ou uma notificação.
+
+<i>Esta aplicação facilita a troca de teclado virtual se não tiver uma forma eficaz integrada no sistema operativo e no teclado do seu dispositivo.
+Note que no Lollipop e em versões posteriores do Android, um toque longo na barra de espaços do teclado pode facilitar a alteração. As notificações geridas pelo sistema também permitem esta alteração.
+Nestes casos, a aplicação pode ser supérflua.</i>
+
+O Keyboard Switcher é de <b>código aberto</b> e <b>sem anúncios</b>, sobrevive graças às suas contribuições e doações.
+
+Qualquer problema: <a href="https://gitlab.com/kunzisoft/Android-KeyboardSwitcher/issues">https://gitlab.com/kunzisoft/Android-KeyboardSwitcher/issues</a>
