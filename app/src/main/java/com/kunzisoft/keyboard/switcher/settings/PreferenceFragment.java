@@ -1,7 +1,9 @@
 package com.kunzisoft.keyboard.switcher.settings;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -145,7 +147,17 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
 
     private void startNotificationService() {
         checkNotification(true);
-        KeyboardSwitcherService.startService(requireActivity());
+        startService();
+    }
+
+    private void startService() {
+        Activity activity = getActivity();
+        if (activity != null) {
+            Context context = activity.getApplicationContext();
+            if (context != null) {
+                KeyboardSwitcherService.startService(context);
+            }
+        }
     }
 
     private void showNotificationSettings() {
@@ -219,7 +231,7 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
 
     private void startOverlayService() {
         checkOverlay(true);
-        KeyboardSwitcherService.startService(requireActivity());
+        startService();
     }
 
     void startOverlayServiceIfAllowed() {
@@ -281,6 +293,6 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
     }
 
 	private void refreshKeyboardSwitcherService() {
-        KeyboardSwitcherService.startService(requireActivity());
+        startService();
 	}
 }

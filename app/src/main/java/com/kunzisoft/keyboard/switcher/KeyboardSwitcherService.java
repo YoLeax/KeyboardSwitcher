@@ -7,6 +7,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ServiceInfo;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
 import android.os.Build;
@@ -28,6 +29,7 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.app.ServiceCompat;
 import androidx.core.content.ContextCompat;
 
 import com.google.gson.Gson;
@@ -113,23 +115,24 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
-    }
 
-    private NotificationCompat.Builder notificationBuilder() {
         // To keep the notification active
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID_KEYBOARD,
                     CHANNEL_NAME_KEYBOARD,
                     NotificationManager.IMPORTANCE_LOW);
+            channel.setImportance(NotificationManagerCompat.IMPORTANCE_LOW);
             NotificationManagerCompat.from(this).createNotificationChannel(channel);
         }
+    }
+
+    private NotificationCompat.Builder notificationBuilder() {
         return new NotificationCompat.Builder(this, CHANNEL_ID_KEYBOARD)
                 .setSmallIcon(R.drawable.ic_notification_white_24dp)
                 .setColor(ContextCompat.getColor(this, R.color.colorPrimaryLight))
                 .setContentTitle(this.getString(R.string.notification_keyboard_title))
                 .setAutoCancel(false)
                 .setOngoing(true)
-                .setPriority(NotificationCompat.PRIORITY_LOW)
                 .setVisibility(NotificationCompat.VISIBILITY_SECRET)
                 .setContentText(this.getString(R.string.notification_keyboard_content_text))
                 .setContentIntent(KeyboardManagerActivity.getPendingIntent(this)
@@ -143,14 +146,22 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
+        int serviceType = 0;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            serviceType = ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE;
+        }
+        // Start the service as foreground service
+        ServiceCompat.startForeground(
+                this,
+                NOTIFICATION_ID,
+                notificationBuilder().build(),
+                serviceType
+        );
+
         if (intent != null) {
             String action = intent.getAction();
             if (action == null)
                 action = "";
-            // Start the service as foreground service
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                startForeground(NOTIFICATION_ID, notificationBuilder().build());
-            }
             // Manage notification and floating service state
             if (action.contains(NOTIFICATION_START)) {
                 startNotification();
@@ -174,6 +185,8 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
             if (action.isEmpty()) {
                 stopSelf();
             }
+        } else {
+            stopSelf();
         }
 
         return super.onStartCommand(intent, flags, startId);
@@ -440,12 +453,6 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
             action = addAction(action, FLOATING_BUTTON_STOP);
         }
         intent.setAction(action);
-        // Restart the service
-        context.stopService(intent);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            context.startForegroundService(intent);
-        } else {
-            context.startService(intent);
-        }
+        ContextCompat.startForegroundService(context, intent);
     }
 }
