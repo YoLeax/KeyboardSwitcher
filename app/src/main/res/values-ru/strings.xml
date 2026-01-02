@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_warning">Это приложение позволяет легко переключать клавиатуру, если у вас нет эффективного способа, встроенного в операционную систему и клавиатуру вашего устройства.\n\nВ Lollipop и более поздних версиях Android долгое нажатие на пробел на клавиатуре позволяет легко изменить ее. Уведомления, управляемые системой, также позволяют это изменение.\n\nВ этих случаях приложение может быть лишним.</string>
+
+    <string name="hint_text_test">Тестовая область</string>
+
+    <string name="launching_selection">Диалоговое окно выбора клавиатуры не может быть открыто автоматически</string>
+
+    <string name="notification_keyboard_title">Переключить клавиатуру</string>
+    <string name="notification_keyboard_content_text">Нажмите, чтобы выбрать клавиатуру по умолчанию.</string>
+
+    <string name="general">Общие</string>
+
+    <string name="settings_ime_available_title">Доступные клавиатуры</string>
+
+    <string name="settings_ime_change_title">Изменить клавиатуру по умолчанию</string>
+
+    <string name="error_unavailable_keyboard_feature">Ваша система не может открыть диалоговое окно выбора клавиатуры.</string>
+    <string name="error_notification_permission">У приложения нет разрешения на отображение уведомления.</string>
+    <string name="error_overlay_permission">У приложения нет разрешения на отображение наложения.</string>
+
+    <string name="startup">Запуск</string>
+
+    <string name="settings_launch_startup_title">Запускать при запуске</string>
+
+    <string name="notification">Уведомление</string>
+
+    <string name="settings_notification_title">Включить уведомление</string>
+    <string name="settings_notification_description">Включить уведомление для выбора клавиатуры</string>
+
+    <string name="floating_button">Плавающая кнопка клавиатуры</string>
+
+    <string name="settings_floating_button_title">Включить плавающую кнопку</string>
+    <string name="settings_floating_button_description">Включить плавающую кнопку для выбора клавиатуры</string>
+
+    <string name="floating_button_warning">Эта функция может быть нестабильной.</string>
+    <string name="floating_button_battery_warning">Если кнопка исчезает, попробуйте оставить этот экран настроек открытым в фоновом режиме или изменить поведение оптимизации батареи.</string>
+    <string name="floating_button_notification_warning">Уведомление необходимо для того, чтобы кнопка оставалась видимой, но это уведомление можно скрыть в настройках.</string>
+    <string name="floating_button_above_screen">Вы должны принять разрешения, чтобы разрешить плавающей кнопке рисоваться поверх других приложений.</string>
+
+    <string name="auto_switch_message">Клавиатура переключена: %1$s</string>
+
+    <string name="settings_floating_button_lock_title">Заблокировать положение</string>
+
+    <string name="settings_colors_title">Цвет кнопки</string>
+
+    <string name="settings_floating_size_title">Размер кнопки</string>
+
+    <string name="about_title">О программе</string>
+    <string name="information">Информация</string>
+    <string name="powered_by">На базе</string>
+    <string name="source_code">Исходный код:</string>
+    <string name="donation">Пожертвование</string>
+    <string name="play_store_donation">Пожертвование в PlayStore</string>
+    <string name="about_version">Версия:</string>
+    <string name="contact_title">Контакт</string>
+    <string name="developer">Разработчик</string>
+    <string name="html_text_purpose">Это приложение предназначено для &lt;strong&gt;легкого переключения виртуальной клавиатуры&lt;/strong&gt;.</string>
+    <string name="html_text_free">%1$s &lt;strong&gt;бесплатное&lt;/strong&gt;, &lt;strong&gt;свободное&lt;/strong&gt; и &lt;strong&gt;без рекламы&lt;/strong&gt;. Оно предоставляется как есть, под лицензией &lt;strong&gt;GPLv3&lt;/strong&gt;, без каких-либо гарантий.</string>
+    <string name="html_text_contribution">Чтобы &lt;strong&gt;сохранить нашу свободу&lt;/strong&gt;, &lt;strong&gt;исправлять ошибки&lt;/strong&gt;, &lt;strong&gt;добавлять функции&lt;/strong&gt; и &lt;strong&gt;быть всегда активными&lt;/strong&gt;, мы рассчитываем на ваш &lt;strong&gt;вклад.&lt;/strong&gt;</string>
+
+    <string name="shortcut_short_label_show_keyboard_switcher">Переключить клавиатуру</string>
+
+    <string name="open">Открыть</string>
+    <string name="cancel">Отмена</string>
+
+</resources>

@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_warning">Diese Anwendung erleichtert den Wechsel der Tastatur, wenn Sie keine effektive Möglichkeit in das Betriebssystem und die Tastatur Ihres Geräts integriert haben.\n\nIn Lollipop und späteren Versionen von Android können Sie durch langes Drücken der Leertaste Ihrer Tastatur einfach wechseln. Systemverwaltete Benachrichtigungen ermöglichen diesen Wechsel ebenfalls.\n\nIn diesen Fällen kann die Anwendung überflüssig sein.</string>
+
+    <string name="hint_text_test">Testbereich</string>
+
+    <string name="launching_selection">Der Tastaturauswahldialog kann nicht automatisch geöffnet werden</string>
+
+    <string name="notification_keyboard_title">Tastatur wechseln</string>
+    <string name="notification_keyboard_content_text">Tippen Sie hier, um die Standardtastatur auszuwählen.</string>
+
+    <string name="general">Allgemein</string>
+
+    <string name="settings_ime_available_title">Verfügbare Tastaturen</string>
+
+    <string name="settings_ime_change_title">Standardtastatur ändern</string>
+
+    <string name="error_unavailable_keyboard_feature">Ihr System kann den Tastaturauswahldialog nicht öffnen.</string>
+    <string name="error_notification_permission">Die App hat keine Berechtigung, die Benachrichtigung anzuzeigen.</string>
+    <string name="error_overlay_permission">Die App hat keine Berechtigung, eine Überlagerung anzuzeigen.</string>
+
+    <string name="startup">Start</string>
+
+    <string name="settings_launch_startup_title">Beim Start starten</string>
+
+    <string name="notification">Benachrichtigung</string>
+
+    <string name="settings_notification_title">Benachrichtigung aktivieren</string>
+    <string name="settings_notification_description">Aktivieren Sie eine Benachrichtigung, um eine Tastatur auszuwählen</string>
+
+    <string name="floating_button">Schwebende Tastaturtaste</string>
+
+    <string name="settings_floating_button_title">Schwebende Schaltfläche aktivieren</string>
+    <string name="settings_floating_button_description">Aktivieren Sie eine schwebende Schaltfläche, um eine Tastatur auszuwählen</string>
+
+    <string name="floating_button_warning">Diese Funktion ist möglicherweise instabil.</string>
+    <string name="floating_button_battery_warning">Wenn die Schaltfläche verschwindet, versuchen Sie, diesen Einstellungsbildschirm im Hintergrund geöffnet zu lassen oder das Verhalten der Akkuoptimierung zu ändern.</string>
+    <string name="floating_button_notification_warning">Eine Benachrichtigung ist unerlässlich, damit die Schaltfläche sichtbar bleibt, aber diese Benachrichtigung kann in den Einstellungen ausgeblendet werden.</string>
+    <string name="floating_button_above_screen">Sie müssen die Berechtigungen akzeptieren, damit die schwebende Schaltfläche über anderen Apps gezeichnet werden kann.</string>
+
+    <string name="auto_switch_message">Tastatur gewechselt: %1$s</string>
+
+    <string name="settings_floating_button_lock_title">Position sperren</string>
+
+    <string name="settings_colors_title">Schaltflächenfarbe</string>
+
+    <string name="settings_floating_size_title">Schaltflächengröße</string>
+
+    <string name="about_title">Über</string>
+    <string name="information">Information</string>
+    <string name="powered_by">Unterstützt von</string>
+    <string name="source_code">Quellcode:</string>
+    <string name="donation">Spende</string>
+    <string name="play_store_donation">PlayStore-Spende</string>
+    <string name="about_version">Version:</string>
+    <string name="contact_title">Kontakt</string>
+    <string name="developer">Entwickler</string>
+    <string name="html_text_purpose">Diese App wurde entwickelt, um &lt;strong&gt;die virtuelle Tastatur einfach zu wechseln&lt;/strong&gt;.</string>
+    <string name="html_text_free">%1$s ist &lt;strong&gt;kostenlos&lt;/strong&gt;, &lt;strong&gt;frei&lt;/strong&gt; und &lt;strong&gt;ohne Werbung&lt;/strong&gt;. Es wird so wie es ist unter der &lt;strong&gt;GPLv3&lt;/strong&gt;-Lizenz ohne jegliche Gewährleistung bereitgestellt.</string>
+    <string name="html_text_contribution">Um &lt;strong&gt;unsere Freiheit zu bewahren&lt;/strong&gt;, &lt;strong&gt;Fehler zu beheben&lt;/strong&gt;, &lt;strong&gt;Funktionen hinzuzufügen&lt;/strong&gt; und &lt;strong&gt;immer aktiv zu sein&lt;/strong&gt;, zählen wir auf Ihren &lt;strong&gt;Beitrag.&lt;/strong&gt;</string>
+
+    <string name="shortcut_short_label_show_keyboard_switcher">Tastatur wechseln</string>
+
+    <string name="open">Öffnen</string>
+    <string name="cancel">Abbrechen</string>
+
+</resources>

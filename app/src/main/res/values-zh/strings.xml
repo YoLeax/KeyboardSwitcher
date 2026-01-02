@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_warning">如果您的操作系统和设备的键盘中没有集成有效的方式，此应用程序可以轻松切换键盘。\n\n在Lollipop及更高版本的Android中，长按键盘的空格键可以轻松进行更改。系统管理的通知也允许进行此更改。\n\n在这些情况下，该应用程序可能是多余的。</string>
+
+    <string name="hint_text_test">测试区</string>
+
+    <string name="launching_selection">无法自动打开键盘选择对话框</string>
+
+    <string name="notification_keyboard_title">切换键盘</string>
+    <string name="notification_keyboard_content_text">点击以选择默认键盘。</string>
+
+    <string name="general">常规</string>
+
+    <string name="settings_ime_available_title">可用键盘</string>
+
+    <string name="settings_ime_change_title">更改默认键盘</string>
+
+    <string name="error_unavailable_keyboard_feature">您的系统无法打开键盘选择对话框。</string>
+    <string name="error_notification_permission">该应用没有显示通知的权限。</string>
+    <string name="error_overlay_permission">该应用没有显示覆盖层的权限。</string>
+
+    <string name="startup">启动</string>
+
+    <string name="settings_launch_startup_title">启动时启动</string>
+
+    <string name="notification">通知</string>
+
+    <string name="settings_notification_title">启用通知</string>
+    <string name="settings_notification_description">启用通知以选择键盘</string>
+
+    <string name="floating_button">浮动键盘按钮</string>
+
+    <string name="settings_floating_button_title">启用浮动按钮</string>
+    <string name="settings_floating_button_description">启用浮动按钮以选择键盘</string>
+
+    <string name="floating_button_warning">此功能可能不稳定。</string>
+    <string name="floating_button_battery_warning">如果按钮消失，请尝试将此设置屏幕保持在后台打开或修改电池优化行为。</string>
+    <string name="floating_button_notification_warning">通知对于按钮保持可见至关重要，但可以在设置中隐藏此通知。</string>
+    <string name="floating_button_above_screen">您必须接受权限才能允许浮动按钮在其他应用程序上绘制。</string>
+
+    <string name="auto_switch_message">键盘已切换：%1$s</string>
+
+    <string name="settings_floating_button_lock_title">锁定位置</string>
+
+    <string name="settings_colors_title">按钮颜色</string>
+
+    <string name="settings_floating_size_title">按钮大小</string>
+
+    <string name="about_title">关于</string>
+    <string name="information">信息</string>
+    <string name="powered_by">技术支持</string>
+    <string name="source_code">源代码：</string>
+    <string name="donation">捐赠</string>
+    <string name="play_store_donation">PlayStore捐赠</string>
+    <string name="about_version">版本：</string>
+    <string name="contact_title">联系方式</string>
+    <string name="developer">开发者</string>
+    <string name="html_text_purpose">此应用程序旨在&lt;strong&gt;轻松更改虚拟键盘&lt;/strong&gt;。</string>
+    <string name="html_text_free">%1$s是&lt;strong&gt;免费&lt;/strong&gt;、&lt;strong&gt;自由&lt;/strong&gt;和&lt;strong&gt;无广告&lt;/strong&gt;的。它按原样提供，采用&lt;strong&gt;GPLv3&lt;/strong&gt;许可证，不提供任何保证。</string>
+    <string name="html_text_contribution">为了&lt;strong&gt;保持我们的自由&lt;/strong&gt;、&lt;strong&gt;修复错误&lt;/strong&gt;、&lt;strong&gt;添加功能&lt;/strong&gt;和&lt;strong&gt;始终保持活跃&lt;/strong&gt;，我们指望您的&lt;strong&gt;贡献。&lt;/strong&gt;</string>
+
+    <string name="shortcut_short_label_show_keyboard_switcher">切换键盘</string>
+
+    <string name="open">打开</string>
+    <string name="cancel">取消</string>
+
+</resources>

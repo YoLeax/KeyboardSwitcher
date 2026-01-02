@@ -3,3 +3,4 @@
  * Correction du raccourci
  * Correction du délai d'ouverture
  * Correction de la boite de dialogue manuelle
+ * Ajout de nombreuses langues

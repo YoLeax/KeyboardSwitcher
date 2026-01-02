@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_warning">Esta aplicación facilita el cambio de teclado si no tienes una forma efectiva integrada en el sistema operativo y el teclado de tu dispositivo.\n\nEn Lollipop y versiones posteriores de Android, una pulsación larga en la barra espaciadora de tu teclado puede facilitar el cambio. Las notificaciones gestionadas por el sistema también permiten este cambio.\n\nEn estos casos, la aplicación puede ser superflua.</string>
+
+    <string name="hint_text_test">Área de prueba</string>
+
+    <string name="launching_selection">El diálogo de selección de teclado no se puede abrir automáticamente</string>
+
+    <string name="notification_keyboard_title">Cambiar el teclado</string>
+    <string name="notification_keyboard_content_text">Toca para seleccionar el teclado predeterminado.</string>
+
+    <string name="general">General</string>
+
+    <string name="settings_ime_available_title">Teclados disponibles</string>
+
+    <string name="settings_ime_change_title">Cambiar el teclado predeterminado</string>
+
+    <string name="error_unavailable_keyboard_feature">Tu sistema no puede abrir el diálogo de selección de teclado.</string>
+    <string name="error_notification_permission">La aplicación no tiene permiso para mostrar la notificación.</string>
+    <string name="error_overlay_permission">La aplicación no tiene permiso para mostrar una superposición.</string>
+
+    <string name="startup">Inicio</string>
+
+    <string name="settings_launch_startup_title">Iniciar al arrancar</string>
+
+    <string name="notification">Notificación</string>
+
+    <string name="settings_notification_title">Activar notificación</string>
+    <string name="settings_notification_description">Activar una notificación para elegir un teclado</string>
+
+    <string name="floating_button">Botón de teclado flotante</string>
+
+    <string name="settings_floating_button_title">Activar botón flotante</string>
+    <string name="settings_floating_button_description">Activar un botón flotante para elegir un teclado</string>
+
+    <string name="floating_button_warning">Esta función puede ser inestable.</string>
+    <string name="floating_button_battery_warning">Si el botón desaparece, intenta mantener esta pantalla de configuración abierta en segundo plano o modificar el comportamiento de optimización de la batería.</string>
+    <string name="floating_button_notification_warning">Una notificación es esencial para que el botón permanezca visible, pero esta notificación se puede ocultar en la configuración.</string>
+    <string name="floating_button_above_screen">Debes aceptar los permisos para permitir que el botón flotante se dibuje sobre otras aplicaciones.</string>
+
+    <string name="auto_switch_message">Teclado cambiado: %1$s</string>
+
+    <string name="settings_floating_button_lock_title">Bloquear posición</string>
+
+    <string name="settings_colors_title">Color del botón</string>
+
+    <string name="settings_floating_size_title">Tamaño del botón</string>
+
+    <string name="about_title">Acerca de</string>
+    <string name="information">Información</string>
+    <string name="powered_by">Desarrollado por</string>
+    <string name="source_code">Código fuente:</string>
+    <string name="donation">Donación</string>
+    <string name="play_store_donation">Donación en PlayStore</string>
+    <string name="about_version">Versión:</string>
+    <string name="contact_title">Contacto</string>
+    <string name="developer">Desarrollador</string>
+    <string name="html_text_purpose">Esta aplicación está diseñada para &lt;strong&gt;cambiar fácilmente el teclado virtual&lt;/strong&gt;.</string>
+    <string name="html_text_free">%1$s es &lt;strong&gt;gratuito&lt;/strong&gt;, &lt;strong&gt;libre&lt;/strong&gt; y &lt;strong&gt;sin publicidad&lt;/strong&gt;. Se proporciona tal cual, bajo la licencia &lt;strong&gt;GPLv3&lt;/strong&gt;, sin ninguna garantía.</string>
+    <string name="html_text_contribution">Para &lt;strong&gt;mantener nuestra libertad&lt;/strong&gt;, &lt;strong&gt;corregir errores&lt;/strong&gt;, &lt;strong&gt;agregar funciones&lt;/strong&gt; y &lt;strong&gt;estar siempre activos&lt;/strong&gt;, contamos con tu &lt;strong&gt;contribución.&lt;/strong&gt;</string>
+
+    <string name="shortcut_short_label_show_keyboard_switcher">Cambiar teclado</string>
+
+    <string name="open">Abrir</string>
+    <string name="cancel">Cancelar</string>
+
+</resources>

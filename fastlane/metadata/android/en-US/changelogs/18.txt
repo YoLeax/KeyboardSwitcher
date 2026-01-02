@@ -3,3 +3,4 @@
  * Fix shortcut
  * Fix opening delay
  * Fix auto dialog box
+ * Addition of numerous languages

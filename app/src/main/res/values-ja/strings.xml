@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_warning">お使いのオペレーティングシステムとデバイスのキーボードに効果的な方法が統合されていない場合、このアプリケーションを使用するとキーボードを簡単に切り替えることができます。\n\nLollipop以降のバージョンのAndroidでは、キーボードのスペースバーを長押しすると簡単に変更できます。システム管理の通知でもこの変更が可能です。\n\nこれらの場合、アプリケーションは不要になる可能性があります。</string>
+
+    <string name="hint_text_test">テストエリア</string>
+
+    <string name="launching_selection">キーボード選択ダイアログを自動的に開くことはできません</string>
+
+    <string name="notification_keyboard_title">キーボードを切り替える</string>
+    <string name="notification_keyboard_content_text">タップしてデフォルトのキーボードを選択します。</string>
+
+    <string name="general">一般</string>
+
+    <string name="settings_ime_available_title">利用可能なキーボード</string>
+
+    <string name="settings_ime_change_title">デフォルトのキーボードを変更する</string>
+
+    <string name="error_unavailable_keyboard_feature">お使いのシステムではキーボード選択ダイアログを開くことができません。</string>
+    <string name="error_notification_permission">アプリに通知を表示する権限がありません。</string>
+    <string name="error_overlay_permission">アプリにオーバーレイを表示する権限がありません。</string>
+
+    <string name="startup">起動</string>
+
+    <string name="settings_launch_startup_title">起動時に起動</string>
+
+    <string name="notification">通知</string>
+
+    <string name="settings_notification_title">通知を有効にする</string>
+    <string name="settings_notification_description">キーボードを選択するための通知を有効にする</string>
+
+    <string name="floating_button">フローティングキーボードボタン</string>
+
+    <string name="settings_floating_button_title">フローティングボタンを有効にする</string>
+    <string name="settings_floating_button_description">キーボードを選択するためのフローティングボタンを有効にする</string>
+
+    <string name="floating_button_warning">この機能は不安定な場合があります。</string>
+    <string name="floating_button_battery_warning">ボタンが消えた場合は、この設定画面をバックグラウンドで開いたままにするか、バッテリー最適化の動作を変更してみてください。</string>
+    <string name="floating_button_notification_warning">ボタンを表示したままにするには通知が不可欠ですが、この通知は設定で非表示にできます。</string>
+    <string name="floating_button_above_screen">他のアプリの上にフローティングボタンを描画できるようにするには、権限を承認する必要があります。</string>
+
+    <string name="auto_switch_message">キーボードが切り替わりました：%1$s</string>
+
+    <string name="settings_floating_button_lock_title">位置をロック</string>
+
+    <string name="settings_colors_title">ボタンの色</string>
+
+    <string name="settings_floating_size_title">ボタンのサイズ</string>
+
+    <string name="about_title">概要</string>
+    <string name="information">情報</string>
+    <string name="powered_by">搭載</string>
+    <string name="source_code">ソースコード：</string>
+    <string name="donation">寄付</string>
+    <string name="play_store_donation">Playストアでの寄付</string>
+    <string name="about_version">バージョン：</string>
+    <string name="contact_title">連絡先</string>
+    <string name="developer">開発者</string>
+    <string name="html_text_purpose">このアプリは、&lt;strong&gt;仮想キーボードを簡単に変更&lt;/strong&gt;できるように設計されています。</string>
+    <string name="html_text_free">%1$sは&lt;strong&gt;無料&lt;/strong&gt;、&lt;strong&gt;自由&lt;/strong&gt;、&lt;strong&gt;広告なし&lt;/strong&gt;です。現状のまま、&lt;strong&gt;GPLv3&lt;/strong&gt;ライセンスの下で、いかなる保証もなしに提供されます。</string>
+    <string name="html_text_contribution">私たちの&lt;strong&gt;自由を維持し&lt;/strong&gt;、&lt;strong&gt;バグを修正し&lt;/strong&gt;、&lt;strong&gt;機能を追加し&lt;/strong&gt;、&lt;strong&gt;常にアクティブである&lt;/strong&gt;ために、皆様の&lt;strong&gt;ご貢献&lt;/strong&gt;をお待ちしております。</string>
+
+    <string name="shortcut_short_label_show_keyboard_switcher">キーボードを切り替える</string>
+
+    <string name="open">開く</string>
+    <string name="cancel">キャンセル</string>
+
+</resources>
