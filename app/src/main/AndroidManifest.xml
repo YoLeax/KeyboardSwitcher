@@ -26,6 +26,7 @@
         <activity
             android:name=".settings.PreferenceActivity"
             android:exported="true"
+            android:excludeFromRecents="true"
             android:theme="@style/Theme.Preference">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,6 +37,7 @@
         <activity
             android:name=".KeyboardManagerActivity"
             android:exported="true"
+            android:excludeFromRecents="true"
             android:label="">
             <intent-filter>
                 <action android:name="com.android.keyboard.SWITCH_KEYBOARD" />

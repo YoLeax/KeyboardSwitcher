@@ -1,1 +1,2 @@
  * Thème dynamique
+ * Correction de l'exclusion des récents

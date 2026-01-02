@@ -1,1 +1,2 @@
  * Dynamic theme
+ * Fix exclude from recent
