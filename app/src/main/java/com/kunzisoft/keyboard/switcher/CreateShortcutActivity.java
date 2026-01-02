@@ -10,6 +10,8 @@ import androidx.core.content.pm.ShortcutInfoCompat;
 import androidx.core.content.pm.ShortcutManagerCompat;
 import androidx.core.graphics.drawable.IconCompat;
 
+import com.google.android.material.color.DynamicColors;
+
 /**
  * Activity to create a shortcut to show the Keyboard Switcher.
  */
@@ -20,6 +22,8 @@ public class CreateShortcutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        DynamicColors.applyToActivityIfAvailable(this);
 
         String shortcutLabel = getString(R.string.shortcut_short_label_show_keyboard_switcher);
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Preference.Light" parent="Theme.Material3.DynamicColors.Light.NoActionBar">
+        <!-- Preference -->
+        <item name="preferenceTheme">@style/Style.Preference.v21</item>
+        <item name="preferenceStyle">@style/Style.Preference.Style</item>
+        <item name="dialogPreferenceStyle">@style/Style.Preference.Dialog.Style</item>
+        <item name="preferenceCategoryStyle">@style/Style.Preference.Category.Style</item>
+        <!-- Switch -->
+        <item name="android:switchPreferenceStyle">@style/Style.SwitchPreference</item>
+        <item name="switchPreferenceStyle">@style/Style.SwitchPreference</item>
+        <item name="switchPreferenceCompatStyle">@style/Style.SwitchPreference</item>
+        <!-- Dialog -->
+        <item name="android:alertDialogTheme">@style/Style.Dialog</item>
+        <item name="alertDialogTheme">@style/Style.Dialog</item>
+        <!-- Status bar -->
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="Theme.Preference.Night" parent="Theme.Material3.DynamicColors.Dark.NoActionBar">
+        <!-- Preference -->
+        <item name="preferenceTheme">@style/Style.Preference.v21</item>
+        <item name="preferenceStyle">@style/Style.Preference.Style</item>
+        <item name="dialogPreferenceStyle">@style/Style.Preference.Dialog.Style</item>
+        <item name="preferenceCategoryStyle">@style/Style.Preference.Category.Style</item>
+        <!-- Switch -->
+        <item name="android:switchPreferenceStyle">@style/Style.SwitchPreference</item>
+        <item name="switchPreferenceStyle">@style/Style.SwitchPreference</item>
+        <item name="switchPreferenceCompatStyle">@style/Style.SwitchPreference</item>
+        <!-- Dialog -->
+        <item name="android:alertDialogTheme">@style/Style.Dialog</item>
+        <item name="alertDialogTheme">@style/Style.Dialog</item>
+        <!-- Status bar -->
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="Style.Preference.v21" parent="@style/PreferenceThemeOverlay.v14.Material">
+        <item name="android:tint">?attr/colorPrimary</item>
+    </style>
+</resources>

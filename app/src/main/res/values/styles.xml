@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="Theme.Preference" parent="Theme.Preference.Light" />
+
     <style name="Theme.Preference.Light" parent="Theme.Material3.DynamicColors.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimaryLight</item>
         <item name="colorOnPrimary">@color/colorOnPrimaryLight</item>
@@ -12,6 +14,7 @@
         <item name="colorOnBackground">@color/colorOnBackground</item>
         <item name="colorSurface">@color/colorSurfaceLight</item>
         <item name="colorOnSurface">@color/colorOnSurfaceLight</item>
+        <item name="colorSurfaceContainer">@color/colorSurfaceContainerLight</item>
         <item name="colorSecondary">@color/colorSecondaryLight</item>
         <item name="colorOnSecondary">@color/colorOnSecondaryLight</item>
         <item name='android:windowBackground'>@color/colorSurfaceLight</item>
@@ -27,6 +30,9 @@
         <!-- Dialog -->
         <item name="android:alertDialogTheme">@style/Style.Dialog</item>
         <item name="alertDialogTheme">@style/Style.Dialog</item>
+        <!-- Status bar -->
+        <item name="android:statusBarColor">?attr/colorSurfaceContainer</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.Preference.Night" parent="Theme.Material3.DynamicColors.Dark.NoActionBar">
@@ -39,16 +45,25 @@
         <item name="colorOnBackground">@color/colorOnBackground</item>
         <item name="colorSurface">@color/colorSurfaceNight</item>
         <item name="colorOnSurface">@color/colorOnSurfaceNight</item>
+        <item name="colorSurfaceContainer">@color/colorSurfaceContainerNight</item>
         <item name="colorSecondary">@color/colorSecondaryNight</item>
         <item name="colorOnSecondary">@color/colorOnSecondaryNight</item>
         <item name='android:windowBackground'>@color/colorSurfaceNight</item>
-    </style>
-
-    <style name="Theme.Preference.Toolbar" parent="Theme.Material3.DynamicColors.Dark.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimaryLight</item>
-        <item name="colorOnPrimary">@color/colorOnPrimaryLight</item>
-        <item name="colorControlNormal">@color/colorOnPrimaryLight</item>
-        <item name="android:background">?attr/colorPrimary</item>
+        <!-- Preference -->
+        <item name="preferenceTheme">@style/Style.Preference.v21</item>
+        <item name="preferenceStyle">@style/Style.Preference.Style</item>
+        <item name="dialogPreferenceStyle">@style/Style.Preference.Dialog.Style</item>
+        <item name="preferenceCategoryStyle">@style/Style.Preference.Category.Style</item>
+        <!-- Switch -->
+        <item name="android:switchPreferenceStyle">@style/Style.SwitchPreference</item>
+        <item name="switchPreferenceStyle">@style/Style.SwitchPreference</item>
+        <item name="switchPreferenceCompatStyle">@style/Style.SwitchPreference</item>
+        <!-- Dialog -->
+        <item name="android:alertDialogTheme">@style/Style.Dialog</item>
+        <item name="alertDialogTheme">@style/Style.Dialog</item>
+        <!-- Status bar -->
+        <item name="android:statusBarColor">?attr/colorSurfaceContainer</item>
+        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <style name="Theme.Transparent" parent="Theme.Material3.DynamicColors.Light.NoActionBar">
@@ -77,6 +92,7 @@
     <style name="Style.Dialog" parent="ThemeOverlay.Material3.Dialog.Alert">
         <item name="android:windowSoftInputMode">adjustResize</item>
         <item name="dialogCornerRadius">24dp</item>
+        <item name="android:background">?attr/colorSurface</item>
     </style>
     <style name="Style.Preference.Category.Style" parent="@style/Preference.Category.Material">
         <item name="android:layout">@layout/style_preference_category_material</item>

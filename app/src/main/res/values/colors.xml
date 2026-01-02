@@ -6,6 +6,7 @@
     <color name="colorOnPrimaryContainerLight">#004d63</color>
     <color name="colorSurfaceLight">#f6fafd</color>
     <color name="colorOnSurfaceLight">#171c1f</color>
+    <color name="colorSurfaceContainerLight">#D2DBE0</color>
     <color name="colorSecondaryLight">#006a60</color>
     <color name="colorOnSecondaryLight">#ffffff</color>
 
@@ -15,6 +16,7 @@
     <color name="colorOnPrimaryContainerNight">#bce9ff</color>
     <color name="colorSurfaceNight">#0f1417</color>
     <color name="colorOnSurfaceNight">#dfe3e6</color>
+    <color name="colorSurfaceContainerNight">#040506</color>
     <color name="colorSecondaryNight">#82d5c8</color>
     <color name="colorOnSecondaryNight">#003731</color>
 

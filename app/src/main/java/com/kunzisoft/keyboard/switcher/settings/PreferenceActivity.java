@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
+import com.google.android.material.color.DynamicColors;
 import com.kunzisoft.keyboard.switcher.R;
 import com.kunzisoft.keyboard.switcher.dialogs.AppDialog;
 import com.kunzisoft.keyboard.switcher.dialogs.WarningFloatingButtonDialog;
@@ -27,6 +28,8 @@ public class PreferenceActivity extends AppCompatActivity implements WarningFloa
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        DynamicColors.applyToActivityIfAvailable(this);
 
         setContentView(R.layout.preference_activity);
 

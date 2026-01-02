@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.color.DynamicColors;
 import com.kunzisoft.keyboard.switcher.utils.Utilities;
 
 /**
@@ -45,6 +46,8 @@ public class KeyboardManagerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        DynamicColors.applyToActivityIfAvailable(this);
 
         setContentView(R.layout.empty);
         rootView = findViewById(R.id.root_view);
