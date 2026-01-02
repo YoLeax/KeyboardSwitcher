@@ -8,7 +8,7 @@
 
     <string name="hint_text_test">Test area</string>
 
-    <string name="launching_selection">Launching keyboard selection dialog</string>
+    <string name="launching_selection">The keyboard selection dialog cannot be opened automatically</string>
 
     <string name="notification_keyboard_title">Switch the keyboard</string>
     <string name="notification_keyboard_content_text">Tap to select the default keyboard.</string>

@@ -3,7 +3,7 @@
 
     <string name="hint_text_test">Área de teste</string>
 
-    <string name="launching_selection">Iniciar o diálogo de seleção do teclado</string>
+    <string name="launching_selection">A caixa de diálogo de seleção do teclado não pode ser aberta automaticamente</string>
 
     <string name="notification_keyboard_title">Selecionar teclado</string>
     <string name="notification_keyboard_content_text">Toque para selecionar o teclado.</string>
@@ -37,7 +37,7 @@
     <string name="floating_button_notification_warning">É necessária uma notificação para que o botão permaneça visível, mas esta notificação pode ser ocultada nas definições.</string>
     <string name="floating_button_above_screen">Você deve permitir que o app se sobreponha a outros apps.</string>
 
-    <string name="auto_switch_message">Teclado cambiado: %1$s</string>
+    <string name="auto_switch_message">Teclado alterado: %1$s</string>
 
     <string name="settings_floating_button_lock_title">Travar posição</string>
 
@@ -58,7 +58,7 @@
     <string name="html_text_free">%1$s is &lt;strong&gt;free&lt;/strong&gt;, &lt;strong&gt;libre&lt;/strong&gt; and &lt;strong&gt;without advertising&lt;/strong&gt;. It is provided as is, under &lt;strong&gt;GPLv3&lt;/strong&gt; license, without any warranty.</string>
     <string name="html_text_contribution">In order to &lt;strong&gt;keep our freedom&lt;/strong&gt;, &lt;strong&gt;fix bugs&lt;/strong&gt;, &lt;strong&gt;add features&lt;/strong&gt; and &lt;strong&gt;to be always active&lt;/strong&gt;, we count on your &lt;strong&gt;contribution.&lt;/strong&gt;</string>
 
-    <string name="shortcut_short_label_show_keyboard_switcher">Cambiar el teclado</string>
+    <string name="shortcut_short_label_show_keyboard_switcher">Mudar el teclado</string>
 
     <string name="open">Aberto</string>
     <string name="cancel">Cancelar</string>

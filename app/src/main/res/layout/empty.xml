@@ -6,9 +6,11 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:visibility="gone"
+    android:layout_margin="24dp"
     app:cardCornerRadius="24dp">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="vertical"
+        android:layout_marginHorizontal="24dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -35,7 +37,7 @@
                 android:layout_marginTop="12dp"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/relaunch_button"
+                    android:id="@+id/open_button"
                     style="@style/ThemeOverlay.Material3.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

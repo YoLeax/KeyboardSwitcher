@@ -1,5 +1,6 @@
 package com.kunzisoft.keyboard.switcher;
 
+import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
 import android.annotation.SuppressLint;
@@ -54,7 +55,11 @@ public class KeyboardManagerActivity extends AppCompatActivity {
         rootView = findViewById(R.id.root_view);
 
         findViewById(R.id.cancel_button).setOnClickListener(view -> finish());
-        findViewById(R.id.relaunch_button).setOnClickListener(view -> launchKeyboardPicker());
+        findViewById(R.id.open_button).setOnClickListener(view -> {
+            launchKeyboardPicker();
+            hideDialog();
+            mState = DialogState.PICKING;
+        });
 
         if (getPackageManager().hasSystemFeature(PackageManager.FEATURE_INPUT_METHODS)) {
             imeManager = (InputMethodManager) getApplication().getSystemService(INPUT_METHOD_SERVICE);
@@ -87,6 +92,10 @@ public class KeyboardManagerActivity extends AppCompatActivity {
 
     private void showDialog() {
         rootView.setVisibility(VISIBLE);
+    }
+
+    private void hideDialog() {
+        rootView.setVisibility(INVISIBLE);
     }
 
     private void launchKeyboardAutoSwitch() {

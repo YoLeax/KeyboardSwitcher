@@ -2,3 +2,4 @@
  * Correction de l'exclusion des récents
  * Correction du raccourci
  * Correction du délai d'ouverture
+ * Correction de la boite de dialogue manuelle

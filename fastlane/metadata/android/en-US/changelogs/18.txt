@@ -2,3 +2,4 @@
  * Fix exclude from recent
  * Fix shortcut
  * Fix opening delay
+ * Fix auto dialog box

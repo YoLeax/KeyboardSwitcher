@@ -3,7 +3,7 @@
 
     <string name="hint_text_test">Zone de test</string>
 
-    <string name="launching_selection">Lancement de la boîte de dialogue de sélection de clavier</string>
+    <string name="launching_selection">La boite de dialog de sélection de clavier ne peut pas être ouverte automatiquement</string>
 
     <string name="notification_keyboard_title">Changer le clavier</string>
     <string name="notification_keyboard_content_text">Appuyer pour sélectionner le clavier par défaut.</string>
