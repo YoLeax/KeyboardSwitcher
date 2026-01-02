@@ -1,3 +1,4 @@
  * Thème dynamique
  * Correction de l'exclusion des récents
- * Fix shortcut
+ * Correction du raccourci
+ * Correction du délai d'ouverture

@@ -1,3 +1,4 @@
  * Dynamic theme
  * Fix exclude from recent
  * Fix shortcut
+ * Fix opening delay

@@ -24,7 +24,7 @@ public class KeyboardSwitcherQSTileService extends TileService {
                     KeyboardManagerActivity.getPendingIntent(this)
             );
         } else {
-            startActivityAndCollapse(KeyboardManagerActivity.getIntent(this, null,  600L));
+            startActivityAndCollapse(KeyboardManagerActivity.getIntent(this, null,  800L));
         }
     }
 }
