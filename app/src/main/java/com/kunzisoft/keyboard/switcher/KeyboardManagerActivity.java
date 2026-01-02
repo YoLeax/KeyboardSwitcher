@@ -170,9 +170,6 @@ public class KeyboardManagerActivity extends AppCompatActivity {
             Context context,
             @Nullable String keyboardId
     ) {
-        if (context instanceof Activity) {
-            ((Activity) context).finish();
-        }
         Intent intent = new Intent(context, KeyboardManagerActivity.class);
         intent.setAction(Intent.ACTION_VIEW);
         intent.addFlags(

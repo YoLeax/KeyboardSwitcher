@@ -1,2 +1,3 @@
  * Dynamic theme
  * Fix exclude from recent
+ * Fix shortcut
