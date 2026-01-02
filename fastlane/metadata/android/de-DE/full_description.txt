@@ -1,9 +1,9 @@
-<b>Keyboard Switcher ist eine Anwendung zur Tastaturauswahl</b>, mit der Sie auf verschiedene Weise <b>einfach</b> von der aktuellen Tastatur zu einer anderen wechseln können, dank einer dezenten schwebenden Schaltfläche auf dem Bildschirm, einer Verknüpfung, einer Kachel oder einer Benachrichtigung.
+<b>Tastatur-Umschalter ist eine Anwendung zur Tastaturauswahl</b>, mit der Sie auf verschiedene Weise <b>einfach</b> von der aktuellen Tastatur zu einer anderen wechseln können, dank einer dezenten schwebenden Schaltfläche auf dem Bildschirm, einer Verknüpfung, einer Kachel oder einer Benachrichtigung.
 
 <i>Diese Anwendung erleichtert den Wechsel der virtuellen Tastatur, wenn Sie keine effektive Möglichkeit in das Betriebssystem und die Tastatur Ihres Geräts integriert haben.
 Beachten Sie, dass bei Lollipop und neueren Android-Versionen ein langes Drücken auf die Leertaste Ihrer Tastatur einen einfachen Wechsel ermöglicht. Systemverwaltete Benachrichtigungen ermöglichen diesen Wechsel ebenfalls.
 In diesen Fällen kann die Anwendung überflüssig sein.</i>
 
-Keyboard Switcher ist <b>Open Source</b> und <b>werbefrei</b>, es überlebt dank Ihrer Beiträge und Spenden.
+Tastatur-Umschalter ist <b>Open Source</b> und <b>werbefrei</b>, es überlebt dank Ihrer Beiträge und Spenden.
 
 Bei Problemen: <a href="https://gitlab.com/kunzisoft/Android-KeyboardSwitcher/issues">https://gitlab.com/kunzisoft/Android-KeyboardSwitcher/issues</a>

@@ -1,9 +1,9 @@
-<b>Keyboard Switcher è un'applicazione per la selezione della tastiera</b>, che consente di <b>passare facilmente</b> dalla tastiera corrente a un'altra in diversi modi, grazie a un discreto pulsante mobile disponibile sullo schermo, una scorciatoia, un riquadro o una notifica.
+<b>Commutatore Tastiera è un'applicazione per la selezione della tastiera</b>, che consente di <b>passare facilmente</b> dalla tastiera corrente a un'altra in diversi modi, grazie a un discreto pulsante mobile disponibile sullo schermo, una scorciatoia, un riquadro o una notifica.
 
 <i>Questa applicazione facilita il cambio della tastiera virtuale se non si dispone di un modo efficace integrato nel sistema operativo e nella tastiera del dispositivo.
 Si noti che in Lollipop e versioni successive di Android, una pressione prolungata sulla barra spaziatrice della tastiera può facilitare il cambio. Anche le notifiche gestite dal sistema consentono questo cambio.
 In questi casi, l'applicazione potrebbe essere superflua.</i>
 
-Keyboard Switcher è <b>open source</b> e <b>senza pubblicità</b>, sopravvive grazie ai tuoi contributi e donazioni.
+Commutatore Tastiera è <b>open source</b> e <b>senza pubblicità</b>, sopravvive grazie ai tuoi contributi e donazioni.
 
 Qualsiasi problema: <a href="https://gitlab.com/kunzisoft/Android-KeyboardSwitcher/issues">https://gitlab.com/kunzisoft/Android-KeyboardSwitcher/issues</a>
