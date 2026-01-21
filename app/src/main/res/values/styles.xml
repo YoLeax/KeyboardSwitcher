@@ -2,7 +2,10 @@
 <resources>
     <style name="Theme.Preference" parent="Theme.Preference.Light" />
 
-    <style name="Theme.Preference.Light" parent="Theme.Material3.DynamicColors.Light.NoActionBar">
+    <style name="Theme.Preference.Light.Base" parent="Theme.Material3.DynamicColors.Light.NoActionBar"/>
+    <style name="Theme.Preference.Light.v23" parent="Theme.Preference.Light.Base"/>
+    <style name="Theme.Preference.Light.v21" parent="Theme.Preference.Light.v23"/>
+    <style name="Theme.Preference.Light" parent="Theme.Preference.Light.v21">
         <item name="colorPrimary">@color/colorPrimaryLight</item>
         <item name="colorOnPrimary">@color/colorOnPrimaryLight</item>
         <item name="colorPrimaryContainer">@color/colorPrimaryContainerLight</item>
@@ -30,12 +33,12 @@
         <!-- Dialog -->
         <item name="android:alertDialogTheme">@style/Style.Dialog</item>
         <item name="alertDialogTheme">@style/Style.Dialog</item>
-        <!-- Status bar -->
-        <item name="android:statusBarColor">?attr/colorSurfaceContainer</item>
-        <item name="android:windowLightStatusBar">true</item>
     </style>
 
-    <style name="Theme.Preference.Night" parent="Theme.Material3.DynamicColors.Dark.NoActionBar">
+    <style name="Theme.Preference.Night.Base" parent="Theme.Material3.DynamicColors.Dark.NoActionBar"/>
+    <style name="Theme.Preference.Night.v23" parent="Theme.Preference.Night.Base"/>
+    <style name="Theme.Preference.Night.v21" parent="Theme.Preference.Night.v23"/>
+    <style name="Theme.Preference.Night" parent="Theme.Preference.Night.v21">
         <item name="colorPrimary">@color/colorPrimaryNight</item>
         <item name="colorOnPrimary">@color/colorOnPrimaryNight</item>
         <item name="colorError">@color/colorError</item>
@@ -61,9 +64,6 @@
         <!-- Dialog -->
         <item name="android:alertDialogTheme">@style/Style.Dialog</item>
         <item name="alertDialogTheme">@style/Style.Dialog</item>
-        <!-- Status bar -->
-        <item name="android:statusBarColor">?attr/colorSurfaceContainer</item>
-        <item name="android:windowLightStatusBar">false</item>
     </style>
 
     <style name="Theme.Transparent" parent="Theme.Material3.DynamicColors.Light.NoActionBar">

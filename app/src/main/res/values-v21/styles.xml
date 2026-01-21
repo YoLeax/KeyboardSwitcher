@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Preference.Light.v21" parent="Theme.Preference.Light.v23">
+        <item name="android:statusBarColor">?attr/colorSurfaceContainer</item>
+    </style>
+    <style name="Theme.Preference.Night.v21" parent="Theme.Preference.Night.v23">
+        <item name="android:statusBarColor">?attr/colorSurfaceContainer</item>
+    </style>
+</resources>

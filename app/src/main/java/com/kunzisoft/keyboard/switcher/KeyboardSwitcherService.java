@@ -121,7 +121,7 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID_KEYBOARD,
                     CHANNEL_NAME_KEYBOARD,
                     NotificationManager.IMPORTANCE_LOW);
-            channel.setImportance(NotificationManagerCompat.IMPORTANCE_LOW);
+            channel.setImportance(NotificationManager.IMPORTANCE_LOW);
             NotificationManagerCompat.from(this).createNotificationChannel(channel);
         }
     }
@@ -147,7 +147,7 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         int serviceType = 0;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             serviceType = ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE;
         }
         // Start the service as foreground service
@@ -200,6 +200,7 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void createRemoteView() {
         eraseRemoteView();
         try {
@@ -265,18 +266,22 @@ public class KeyboardSwitcherService extends Service implements OnTouchListener,
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT
                 && preferences.contains(POSITION_PORTRAIT)) {
                 PositionOrientation positionPortrait = (new Gson()).fromJson(preferences.getString(POSITION_PORTRAIT, null), PositionOrientation.class);
-                overlayedButtonParams.x = positionPortrait.positionToSave[0];
-                overlayedButtonParams.y = positionPortrait.positionToSave[1];
-                overlayedButton.setImageResource(positionPortrait.overlayedButtonResourceId);
-                currentPosition = positionPortrait;
+                if (positionPortrait != null) {
+                    overlayedButtonParams.x = positionPortrait.positionToSave[0];
+                    overlayedButtonParams.y = positionPortrait.positionToSave[1];
+                    overlayedButton.setImageResource(positionPortrait.overlayedButtonResourceId);
+                    currentPosition = positionPortrait;
+                }
             }
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE
                 && preferences.contains(POSITION_LANDSCAPE)) {
                 PositionOrientation positionLandscape = (new Gson()).fromJson(preferences.getString(POSITION_LANDSCAPE, null), PositionOrientation.class);
-                overlayedButtonParams.x = positionLandscape.positionToSave[0];
-                overlayedButtonParams.y = positionLandscape.positionToSave[1];
-                overlayedButton.setImageResource(positionLandscape.overlayedButtonResourceId);
-                currentPosition = positionLandscape;
+                if (positionLandscape != null) {
+                    overlayedButtonParams.x = positionLandscape.positionToSave[0];
+                    overlayedButtonParams.y = positionLandscape.positionToSave[1];
+                    overlayedButton.setImageResource(positionLandscape.overlayedButtonResourceId);
+                    currentPosition = positionLandscape;
+                }
             }
             int defaultSize = (int) (32 * getResources().getDisplayMetrics().density);
             int sizeMultiplier = preferences.getInt(getString(R.string.settings_floating_size_key), 50);

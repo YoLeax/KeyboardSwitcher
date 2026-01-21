@@ -29,7 +29,7 @@ public class KeyboardManagerActivity extends AppCompatActivity {
 	public static final String KEYBOARD_ID = "KEYBOARD_ID";
 	public static final String FIRST_DELAY = "FIRST_DELAY";
 
-	private static final long DELAY = 200L;
+	private static final long DELAY = 400L;
 
     private int tryCounter = 5;
 	private String keyboardId = null;
@@ -167,6 +167,7 @@ public class KeyboardManagerActivity extends AppCompatActivity {
         super.onPause();
     }
 
+    @SuppressLint("GestureBackNavigation")
     @Override
     public void onBackPressed() {
         super.onBackPressed();
