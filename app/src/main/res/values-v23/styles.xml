@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Preference.Light.v23" parent="Theme.Preference.Light.Base">
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+    <style name="Theme.Preference.Night.v23" parent="Theme.Preference.Night.Base">
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>
