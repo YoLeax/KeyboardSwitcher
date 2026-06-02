@@ -44,7 +44,8 @@
 
     <string name="settings_floating_button_lock_title">Bloquear posición</string>
 
-    <string name="settings_colors_title">Color del botón</string>
+    <string name="settings_colors_title">Color del icono</string>
+    <string name="settings_floating_background_color_title">Color de fondo</string>
 
     <string name="settings_floating_size_title">Tamaño del botón</string>
 

@@ -20,6 +20,24 @@
     <string name="error_unavailable_keyboard_feature">您的系统无法打开键盘选择对话框。</string>
     <string name="error_notification_permission">该应用没有显示通知的权限。</string>
     <string name="error_overlay_permission">该应用没有显示覆盖层的权限。</string>
+    <string name="error_accessibility_permission">请在无障碍设置中启用 KeyboardS，以便浮动按钮显示在键盘上方。</string>
+
+    <string name="direct_keyboard_switch">双输入法直切</string>
+    <string name="settings_direct_keyboard_switch_title">在两个键盘之间直接切换</string>
+    <string name="settings_direct_keyboard_switch_description">需要通过 ADB 或 Shizuku 授予安全设置权限。</string>
+    <string name="settings_direct_keyboard_first_title">第一个键盘</string>
+    <string name="settings_direct_keyboard_second_title">第二个键盘</string>
+    <string name="settings_direct_keyboard_permission_title">安全设置权限</string>
+    <string name="settings_direct_keyboard_not_selected">未选择</string>
+    <string name="settings_direct_keyboard_unavailable">不可用：%1$s</string>
+    <string name="settings_direct_keyboard_no_enabled_keyboards">未找到已启用键盘</string>
+    <string name="settings_direct_keyboard_permission_granted">已授权</string>
+    <string name="settings_direct_keyboard_permission_adb">执行：%1$s</string>
+    <string name="settings_direct_keyboard_permission_shizuku">点击使用 Shizuku 授权，或执行：%1$s</string>
+    <string name="settings_direct_keyboard_permission_shizuku_ready">点击通过 Shizuku 授权。</string>
+    <string name="settings_direct_keyboard_permission_granted_toast">安全设置权限已授予。</string>
+    <string name="settings_direct_keyboard_permission_required_toast">直切需要安全设置权限。</string>
+    <string name="settings_direct_keyboard_permission_failed_toast">无法授予安全设置权限。</string>
 
     <string name="startup">启动</string>
 
@@ -34,6 +52,10 @@
 
     <string name="settings_floating_button_title">启用浮动按钮</string>
     <string name="settings_floating_button_description">启用浮动按钮以选择键盘</string>
+    <string name="settings_floating_button_keyboard_visibility_title">仅在键盘打开时显示</string>
+    <string name="settings_floating_button_keyboard_visibility_description">键盘关闭时隐藏浮动按钮</string>
+    <string name="accessibility_service_label">KeyboardS 浮动按钮</string>
+    <string name="accessibility_service_description">启用对应选项后，在屏幕键盘上方显示浮动键盘切换按钮。</string>
 
     <string name="floating_button_warning">此功能可能不稳定。</string>
     <string name="floating_button_battery_warning">如果按钮消失，请尝试将此设置屏幕保持在后台打开或修改电池优化行为。</string>
@@ -44,7 +66,8 @@
 
     <string name="settings_floating_button_lock_title">锁定位置</string>
 
-    <string name="settings_colors_title">按钮颜色</string>
+    <string name="settings_colors_title">图标颜色</string>
+    <string name="settings_floating_background_color_title">背景颜色</string>
 
     <string name="settings_floating_size_title">按钮大小</string>
 

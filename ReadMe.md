@@ -13,6 +13,8 @@ Keyboard Switcher allows you to open the system dialog box to change the virtual
 - A **notification** accessible in the notification list
 - From **another app** using the specific intent
 
+When secure settings permission is granted, Keyboard Switcher can also switch directly between two configured enabled keyboards. The permission can be granted with ADB or, on supported devices, through Shizuku from the app settings. In this direct switch mode, the floating button keeps separate positions for the two configured keyboards and for portrait/landscape orientation.
+
 ### From a third party app
 
 #### Keyboard switch dialog

@@ -44,7 +44,8 @@
 
     <string name="settings_floating_button_lock_title">Travar posição</string>
 
-    <string name="settings_colors_title">Cor do botão</string>
+    <string name="settings_colors_title">Cor do ícone</string>
+    <string name="settings_floating_background_color_title">Cor de fundo</string>
 
     <string name="settings_floating_size_title">Tamanho do botão</string>
 

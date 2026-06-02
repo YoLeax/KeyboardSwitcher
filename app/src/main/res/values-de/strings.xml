@@ -44,7 +44,8 @@
 
     <string name="settings_floating_button_lock_title">Position sperren</string>
 
-    <string name="settings_colors_title">Schaltflächenfarbe</string>
+    <string name="settings_colors_title">Symbolfarbe</string>
+    <string name="settings_floating_background_color_title">Hintergrundfarbe</string>
 
     <string name="settings_floating_size_title">Schaltflächengröße</string>
 

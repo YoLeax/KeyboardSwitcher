@@ -44,7 +44,8 @@
 
     <string name="settings_floating_button_lock_title">位置をロック</string>
 
-    <string name="settings_colors_title">ボタンの色</string>
+    <string name="settings_colors_title">アイコンの色</string>
+    <string name="settings_floating_background_color_title">背景色</string>
 
     <string name="settings_floating_size_title">ボタンのサイズ</string>
 

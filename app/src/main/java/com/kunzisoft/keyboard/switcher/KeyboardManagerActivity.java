@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
@@ -75,9 +76,36 @@ public class KeyboardManagerActivity extends AppCompatActivity {
     }
 
     private void initLauncher() {
-        rootView.removeCallbacks(openPickerRunnable);
+        if (openPickerRunnable != null) {
+            rootView.removeCallbacks(openPickerRunnable);
+        }
         retrieveIntentExtra(getIntent());
-        launchKeyboardAutoSwitch();
+        if (keyboardId != null) {
+            launchKeyboardAutoSwitch();
+            openPickerRunnable = this::tryLaunchKeyboardPicker;
+            return;
+        }
+
+        KeyboardSwitchController.Result result = KeyboardSwitchController.perform(
+                this,
+                PreferenceManager.getDefaultSharedPreferences(this),
+                KeyboardSwitchController.Trigger.ACTIVITY
+        );
+        if (result.isSwitched()) {
+            Toast.makeText(
+                    this,
+                    getString(
+                            R.string.auto_switch_message,
+                            result.getTargetKeyboardLabel() != null
+                                    ? result.getTargetKeyboardLabel()
+                                    : result.getTargetKeyboardId()
+                    ),
+                    Toast.LENGTH_SHORT
+            ).show();
+            finish();
+            return;
+        }
+        explainDirectSwitchFallback(result);
         openPickerRunnable = this::tryLaunchKeyboardPicker;
     }
 
@@ -133,6 +161,16 @@ public class KeyboardManagerActivity extends AppCompatActivity {
         }
     }
 
+    private void explainDirectSwitchFallback(KeyboardSwitchController.Result result) {
+        if (result.getReason() == KeyboardSwitchController.Reason.WRITE_SECURE_SETTINGS_MISSING) {
+            Toast.makeText(
+                    this,
+                    R.string.settings_direct_keyboard_permission_required_toast,
+                    Toast.LENGTH_SHORT
+            ).show();
+        }
+    }
+
     private void tryLaunchKeyboardPicker() {
         if (tryCounter <= 0) {
             showDialog();
@@ -158,7 +196,9 @@ public class KeyboardManagerActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        rootView.postDelayed(openPickerRunnable, firstDelay);
+        if (openPickerRunnable != null) {
+            rootView.postDelayed(openPickerRunnable, firstDelay);
+        }
     }
 
     @Override

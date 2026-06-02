@@ -40,6 +40,13 @@
 			android:title="@string/settings_floating_button_title"
 			android:defaultValue="false"/>
 		<SwitchPreferenceCompat
+			android:key="@string/settings_floating_button_keyboard_visibility_key"
+            android:icon="@drawable/ic_keyboard_24dp"
+			android:title="@string/settings_floating_button_keyboard_visibility_title"
+			android:summary="@string/settings_floating_button_keyboard_visibility_description"
+			android:dependency="@string/settings_floating_button_key"
+			android:defaultValue="false"/>
+		<SwitchPreferenceCompat
 			android:key="@string/settings_floating_button_lock_key"
             android:icon="@drawable/ic_lock_24dp"
 			android:title="@string/settings_floating_button_lock_title"
@@ -56,6 +63,17 @@
             chroma:chromaColorMode="ARGB"
             chroma:chromaIndicatorMode="HEX"
             chroma:chromaInitialColor="@color/colorPrimaryLight"/>
+        <com.kunzisoft.androidclearchroma.ChromaPreferenceCompat
+            xmlns:chroma="http://schemas.android.com/apk/res-auto"
+            android:key="@string/settings_floating_background_color_key"
+            android:icon="@drawable/ic_colors_24dp"
+            android:title="@string/settings_floating_background_color_title"
+            android:summary="@string/settings_colors_description"
+            android:dependency="@string/settings_floating_button_key"
+            chroma:chromaShapePreview="CIRCLE"
+            chroma:chromaColorMode="ARGB"
+            chroma:chromaIndicatorMode="HEX"
+            chroma:chromaInitialColor="@color/colorFloatingButtonBackgroundDefault"/>
 		<SeekBarPreference
 			android:key="@string/settings_floating_size_key"
             android:icon="@drawable/ic_arrows_output_24dp"
@@ -66,5 +84,29 @@
 			android:max="220"
 			android:dependency="@string/settings_floating_button_key"/>
 	</PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/direct_keyboard_switch">
+        <SwitchPreferenceCompat
+            android:key="@string/settings_direct_keyboard_switch_key"
+            android:icon="@drawable/ic_keyboard_switch_24dp"
+            android:title="@string/settings_direct_keyboard_switch_title"
+            android:summary="@string/settings_direct_keyboard_switch_description"
+            android:defaultValue="false" />
+        <ListPreference
+            android:key="@string/settings_direct_keyboard_first_key"
+            android:icon="@drawable/ic_keyboard_24dp"
+            android:title="@string/settings_direct_keyboard_first_title"
+            android:dependency="@string/settings_direct_keyboard_switch_key" />
+        <ListPreference
+            android:key="@string/settings_direct_keyboard_second_key"
+            android:icon="@drawable/ic_keyboard_24dp"
+            android:title="@string/settings_direct_keyboard_second_title"
+            android:dependency="@string/settings_direct_keyboard_switch_key" />
+        <Preference
+            android:key="@string/settings_direct_keyboard_permission_key"
+            android:icon="@drawable/ic_lock_24dp"
+            android:title="@string/settings_direct_keyboard_permission_title"
+            android:persistent="false" />
+    </PreferenceCategory>
 
 </PreferenceScreen>

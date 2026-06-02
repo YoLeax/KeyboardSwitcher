@@ -44,7 +44,8 @@
 
     <string name="settings_floating_button_lock_title">Заблокировать положение</string>
 
-    <string name="settings_colors_title">Цвет кнопки</string>
+    <string name="settings_colors_title">Цвет значка</string>
+    <string name="settings_floating_background_color_title">Цвет фона</string>
 
     <string name="settings_floating_size_title">Размер кнопки</string>
 

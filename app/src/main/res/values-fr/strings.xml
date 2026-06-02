@@ -44,7 +44,8 @@
 
     <string name="settings_floating_button_lock_title">Verouiller la position</string>
 
-    <string name="settings_colors_title">Couleur de bouton</string>
+    <string name="settings_colors_title">Couleur de l\'icône</string>
+    <string name="settings_floating_background_color_title">Couleur d\'arrière-plan</string>
 
     <string name="settings_floating_size_title">Taille de bouton</string>
 
