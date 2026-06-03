@@ -130,11 +130,14 @@ public class KeyboardSwitchController {
         }
 
         try {
-            Settings.Secure.putString(
+            boolean switched = Settings.Secure.putString(
                     context.getContentResolver(),
                     Settings.Secure.DEFAULT_INPUT_METHOD,
                     targetKeyboardInfo.getId()
             );
+            if (!switched) {
+                return failed(Reason.SECURE_SETTING_WRITE_FAILED);
+            }
             CharSequence label = targetKeyboardInfo.loadLabel(context.getPackageManager());
             return new Result(
                     Status.SWITCHED,

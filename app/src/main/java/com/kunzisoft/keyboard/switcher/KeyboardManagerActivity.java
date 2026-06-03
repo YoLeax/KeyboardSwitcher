@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -129,12 +130,15 @@ public class KeyboardManagerActivity extends AppCompatActivity {
     private void launchKeyboardAutoSwitch() {
         if (keyboardId != null) {
             try {
-                if (!Utilities.getCurrentDefaultKeyboard(this).equals(keyboardId)) {
-                    Settings.Secure.putString(
+                if (!TextUtils.equals(Utilities.getCurrentDefaultKeyboard(this), keyboardId)) {
+                    boolean switched = Settings.Secure.putString(
                             getContentResolver(),
                             Settings.Secure.DEFAULT_INPUT_METHOD,
                             keyboardId
                     );
+                    if (!switched) {
+                        throw new IllegalStateException("Unable to update default input method");
+                    }
                     Toast.makeText(
                             this,
                             getString(R.string.auto_switch_message, keyboardId),

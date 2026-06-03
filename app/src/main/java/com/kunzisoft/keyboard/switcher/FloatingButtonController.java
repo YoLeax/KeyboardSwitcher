@@ -397,6 +397,10 @@ class FloatingButtonController implements View.OnTouchListener, View.OnClickList
     @Override
     public void onClick(final View view) {
         savePreferencePosition(context.getResources().getConfiguration().orientation);
+        if (context instanceof KeyboardVisibilityAccessibilityService) {
+            ((KeyboardVisibilityAccessibilityService) context)
+                    .prepareKeyboardRequestAfterDirectSwitch();
+        }
         KeyboardSwitchController.Result result = KeyboardSwitchController.perform(
                 context,
                 preferences,
@@ -404,6 +408,10 @@ class FloatingButtonController implements View.OnTouchListener, View.OnClickList
         );
         if (result.isSwitched()) {
             applyPositionForKeyboard(result.getTargetKeyboardId());
+            if (context instanceof KeyboardVisibilityAccessibilityService) {
+                ((KeyboardVisibilityAccessibilityService) context)
+                        .requestKeyboardAfterDirectSwitch();
+            }
             return;
         }
 
