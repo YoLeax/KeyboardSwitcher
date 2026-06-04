@@ -94,15 +94,7 @@ Intent("com.android.keyboard.SWITCH_KEYBOARD").apply {
 
 ## 下载
 
-推荐从 [F-Droid](https://f-droid.org/) 安装。F-Droid 会验证库和应用代码均为开源。
-
-[<img src="https://f-droid.org/badge/get-it-on.png"
-      alt="Get it on F-Droid"
-      height="80">](https://f-droid.org/en/packages/com.kunzisoft.keyboard.switcher/)
-
-[<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
-      alt="Get it on Google Play"
-      height="80">](https://play.google.com/store/apps/details?id=com.kunzisoft.keyboard.switcher)
+请仅从自动化构建的 [GitHub](https://github.com/Sight-wcg/KeyboardSwitcher/releases/latest) 地址下载安装。
 
 ## 许可证
 
