@@ -258,8 +258,17 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
     }
 
     private void requestSecureSettingsPermissionIfPossible() {
-        SecureSettingsPermissionHelper.GrantResult result =
-                SecureSettingsPermissionHelper.grantWriteSecureSettingsWithShizuku(requireContext());
+        SecureSettingsPermissionHelper.grantWriteSecureSettingsWithShizuku(
+                requireContext(),
+                this::onSecureSettingsGrantResult
+        );
+    }
+
+    private void onSecureSettingsGrantResult(SecureSettingsPermissionHelper.GrantResult result) {
+        if (!isAdded()) {
+            return;
+        }
+
         if (result == SecureSettingsPermissionHelper.GrantResult.ALREADY_GRANTED
                 || result == SecureSettingsPermissionHelper.GrantResult.GRANTED) {
             Toast.makeText(

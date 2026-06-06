@@ -1,19 +1,22 @@
 package com.kunzisoft.keyboard.switcher;
 
 import android.Manifest;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.UserHandle;
 
 import androidx.core.content.ContextCompat;
 
 import java.lang.reflect.Method;
+import java.util.concurrent.atomic.AtomicBoolean;
 
-import rikka.shizuku.ShizukuBinderWrapper;
 import rikka.shizuku.Shizuku;
-import rikka.shizuku.SystemServiceHelper;
 
 public class SecureSettingsPermissionHelper {
 
@@ -21,6 +24,10 @@ public class SecureSettingsPermissionHelper {
 
     public interface PermissionResultCallback {
         void onRequestPermissionResult(int requestCode, int grantResult);
+    }
+
+    public interface GrantCallback {
+        void onGrantResult(GrantResult result);
     }
 
     public enum GrantResult {
@@ -103,44 +110,66 @@ public class SecureSettingsPermissionHelper {
         } catch (Throwable ignored) {}
     }
 
-    public static GrantResult grantWriteSecureSettingsWithShizuku(Context context) {
-        if (hasWriteSecureSettings(context)) {
-            return GrantResult.ALREADY_GRANTED;
+    public static void grantWriteSecureSettingsWithShizuku(Context context, GrantCallback callback) {
+        Context appContext = context != null ? context.getApplicationContext() : null;
+        if (hasWriteSecureSettings(appContext)) {
+            dispatchGrantResult(callback, GrantResult.ALREADY_GRANTED);
+            return;
         }
         if (!isShizukuAvailable()) {
-            return GrantResult.SHIZUKU_UNAVAILABLE;
+            dispatchGrantResult(callback, GrantResult.SHIZUKU_UNAVAILABLE);
+            return;
         }
         if (!hasShizukuPermission()) {
-            return GrantResult.SHIZUKU_PERMISSION_REQUIRED;
+            dispatchGrantResult(callback, GrantResult.SHIZUKU_PERMISSION_REQUIRED);
+            return;
         }
 
-        try {
-            IBinder binder = SystemServiceHelper.getSystemService("package");
-            Object packageManager = Class
-                    .forName("android.content.pm.IPackageManager$Stub")
-                    .getMethod("asInterface", IBinder.class)
-                    .invoke(null, new ShizukuBinderWrapper(binder));
-            packageManager
-                    .getClass()
-                    .getMethod(
-                            "grantRuntimePermission",
-                            String.class,
-                            String.class,
-                            int.class
-                    )
-                    .invoke(
-                            packageManager,
-                            context.getPackageName(),
-                            Manifest.permission.WRITE_SECURE_SETTINGS,
-                            getUserId()
-                    );
-            if (hasWriteSecureSettings(context)) {
-                return GrantResult.GRANTED;
+        Shizuku.UserServiceArgs args = new Shizuku.UserServiceArgs(
+                new ComponentName(BuildConfig.APPLICATION_ID, SecureSettingsGrantService.class.getName())
+        ).daemon(false)
+                .processNameSuffix("secure_settings")
+                .debuggable(BuildConfig.DEBUG)
+                .version(BuildConfig.VERSION_CODE)
+                .tag("secure_settings_grant");
+        AtomicBoolean completed = new AtomicBoolean(false);
+
+        ServiceConnection connection = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+                GrantResult result = GrantResult.FAILED;
+                try {
+                    ISecureSettingsGrantService grantService =
+                            ISecureSettingsGrantService.Stub.asInterface(service);
+                    if (grantService.grantWriteSecureSettings(appContext.getPackageName(), getUserId())
+                            && hasWriteSecureSettings(appContext)) {
+                        result = GrantResult.GRANTED;
+                    }
+                } catch (Throwable ignored) {
+                    result = GrantResult.FAILED;
+                } finally {
+                    unbindUserService(args, this);
+                    if (completed.compareAndSet(false, true)) {
+                        dispatchGrantResult(callback, result);
+                    }
+                }
             }
+
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+                if (completed.compareAndSet(false, true)) {
+                    dispatchGrantResult(callback, GrantResult.FAILED);
+                }
+            }
+        };
+
+        try {
+            Shizuku.bindUserService(args, connection);
         } catch (Throwable ignored) {
-            return GrantResult.FAILED;
+            if (completed.compareAndSet(false, true)) {
+                dispatchGrantResult(callback, GrantResult.FAILED);
+            }
         }
-        return GrantResult.FAILED;
     }
 
     public static String getAdbGrantCommand(Context context) {
@@ -156,5 +185,19 @@ public class SecureSettingsPermissionHelper {
         } catch (Throwable ignored) {
             return 0;
         }
+    }
+
+    private static void dispatchGrantResult(GrantCallback callback, GrantResult result) {
+        if (callback == null) {
+            return;
+        }
+
+        new Handler(Looper.getMainLooper()).post(() -> callback.onGrantResult(result));
+    }
+
+    private static void unbindUserService(Shizuku.UserServiceArgs args, ServiceConnection connection) {
+        try {
+            Shizuku.unbindUserService(args, connection, true);
+        } catch (Throwable ignored) {}
     }
 }

@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## v4.3.0
 
 Based on commits `25682a8 feat(keyboard): add direct switching and floating button controls`
 and `d2ec043 fix(keyboard): stabilize direct input method switching`.
@@ -29,3 +29,9 @@ and `d2ec043 fix(keyboard): stabilize direct input method switching`.
 - Stabilized direct input method switching by handling secure settings write failures.
 - Improved current input method detection on newer Android versions.
 - Restored focused editor selection after direct switches when possible to reduce cursor jumps.
+
+## v4.3.1
+
+### Fixed
+
+- Switched Shizuku secure settings grants to a UserService shell command path for Android 14 compatibility.
