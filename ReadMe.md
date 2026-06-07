@@ -96,7 +96,7 @@ Intent("com.android.keyboard.SWITCH_KEYBOARD").apply {
 
 请仅从自动化构建的 [GitHub](https://github.com/Sight-wcg/KeyboardSwitcher/releases/latest) 地址下载安装。
 
-社区交流
+## 社区交流
 
 - [LinuxDo](https://linux.do/) —— 有问题、有想法，或者就是想来聊聊？
 
