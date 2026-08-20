@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <queries>
+        <package android:name="com.tencent.qqpinyin" />
         <intent>
             <action android:name="android.view.InputMethod" />
         </intent>

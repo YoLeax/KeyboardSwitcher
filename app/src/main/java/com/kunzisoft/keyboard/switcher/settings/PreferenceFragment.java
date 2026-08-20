@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.view.inputmethod.InputMethodInfo;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -183,12 +182,13 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
             return;
         }
 
-        List<InputMethodInfo> enabledKeyboards = Utilities.getInstalledKeyboards(requireContext(), true);
+        List<Utilities.KeyboardInfo> enabledKeyboards =
+                Utilities.getEnabledKeyboardChoices(requireContext());
         CharSequence[] entries = new CharSequence[enabledKeyboards.size()];
         CharSequence[] entryValues = new CharSequence[enabledKeyboards.size()];
         for (int index = 0; index < enabledKeyboards.size(); index++) {
-            InputMethodInfo keyboard = enabledKeyboards.get(index);
-            entries[index] = keyboard.loadLabel(requireContext().getPackageManager());
+            Utilities.KeyboardInfo keyboard = enabledKeyboards.get(index);
+            entries[index] = keyboard.getLabel();
             entryValues[index] = keyboard.getId();
         }
 
@@ -210,7 +210,7 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
     }
 
     private CharSequence keyboardSummary(
-            List<InputMethodInfo> enabledKeyboards,
+            List<Utilities.KeyboardInfo> enabledKeyboards,
             String keyboardId
     ) {
         if (enabledKeyboards.isEmpty()) {
@@ -220,11 +220,11 @@ public class PreferenceFragment extends ChromaPreferenceFragmentCompat {
             return getString(R.string.settings_direct_keyboard_not_selected);
         }
 
-        InputMethodInfo keyboard = KeyboardSwitchController.findKeyboard(enabledKeyboards, keyboardId);
+        Utilities.KeyboardInfo keyboard = Utilities.findKeyboard(enabledKeyboards, keyboardId);
         if (keyboard == null) {
             return getString(R.string.settings_direct_keyboard_unavailable, keyboardId);
         }
-        return keyboard.loadLabel(requireContext().getPackageManager());
+        return keyboard.getLabel();
     }
 
     private void refreshDirectKeyboardPermissionPreference() {

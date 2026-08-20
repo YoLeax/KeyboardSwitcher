@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.provider.Settings;
 import android.text.TextUtils;
-import android.view.inputmethod.InputMethodInfo;
 
 import androidx.annotation.Nullable;
 
@@ -112,20 +111,27 @@ public class KeyboardSwitchController {
             return fallback(Reason.WRITE_SECURE_SETTINGS_MISSING);
         }
 
-        List<InputMethodInfo> enabledKeyboards = Utilities.getInstalledKeyboards(context, true);
+        List<Utilities.KeyboardInfo> enabledKeyboards =
+                Utilities.getEnabledKeyboardChoices(context);
         if (enabledKeyboards.isEmpty()) {
             return fallback(Reason.INPUT_METHODS_UNAVAILABLE);
         }
 
-        InputMethodInfo firstKeyboardInfo = findKeyboard(enabledKeyboards, firstKeyboard);
-        InputMethodInfo secondKeyboardInfo = findKeyboard(enabledKeyboards, secondKeyboard);
+        Utilities.KeyboardInfo firstKeyboardInfo = Utilities.findKeyboard(
+                enabledKeyboards,
+                firstKeyboard
+        );
+        Utilities.KeyboardInfo secondKeyboardInfo = Utilities.findKeyboard(
+                enabledKeyboards,
+                secondKeyboard
+        );
         if (firstKeyboardInfo == null || secondKeyboardInfo == null) {
             return fallback(Reason.KEYBOARD_UNAVAILABLE);
         }
 
         String currentKeyboard = Utilities.getCurrentDefaultKeyboard(context);
-        InputMethodInfo targetKeyboardInfo = firstKeyboardInfo;
-        if (firstKeyboard.equals(currentKeyboard)) {
+        Utilities.KeyboardInfo targetKeyboardInfo = firstKeyboardInfo;
+        if (Utilities.sameInputMethod(firstKeyboard, currentKeyboard)) {
             targetKeyboardInfo = secondKeyboardInfo;
         }
 
@@ -138,12 +144,11 @@ public class KeyboardSwitchController {
             if (!switched) {
                 return failed(Reason.SECURE_SETTING_WRITE_FAILED);
             }
-            CharSequence label = targetKeyboardInfo.loadLabel(context.getPackageManager());
             return new Result(
                     Status.SWITCHED,
                     null,
                     targetKeyboardInfo.getId(),
-                    label
+                    targetKeyboardInfo.getLabel()
             );
         } catch (Exception ignored) {
             return failed(Reason.SECURE_SETTING_WRITE_FAILED);
@@ -207,19 +212,6 @@ public class KeyboardSwitchController {
                 context.getString(R.string.settings_direct_keyboard_second_key),
                 ""
         );
-    }
-
-    @Nullable
-    public static InputMethodInfo findKeyboard(
-            List<InputMethodInfo> keyboards,
-            String keyboardId
-    ) {
-        for (InputMethodInfo keyboard : keyboards) {
-            if (keyboard.getId().equals(keyboardId)) {
-                return keyboard;
-            }
-        }
-        return null;
     }
 
     private static Result fallback(Reason reason) {

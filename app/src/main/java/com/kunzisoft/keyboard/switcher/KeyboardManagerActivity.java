@@ -11,7 +11,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -130,18 +129,28 @@ public class KeyboardManagerActivity extends AppCompatActivity {
     private void launchKeyboardAutoSwitch() {
         if (keyboardId != null) {
             try {
-                if (!TextUtils.equals(Utilities.getCurrentDefaultKeyboard(this), keyboardId)) {
+                Utilities.KeyboardInfo targetKeyboard = Utilities.findKeyboard(
+                        Utilities.getEnabledKeyboardChoices(this),
+                        keyboardId
+                );
+                if (targetKeyboard == null) {
+                    throw new IllegalArgumentException("Keyboard is not enabled: " + keyboardId);
+                }
+                if (!Utilities.sameInputMethod(
+                        Utilities.getCurrentDefaultKeyboard(this),
+                        targetKeyboard.getId()
+                )) {
                     boolean switched = Settings.Secure.putString(
                             getContentResolver(),
                             Settings.Secure.DEFAULT_INPUT_METHOD,
-                            keyboardId
+                            targetKeyboard.getId()
                     );
                     if (!switched) {
                         throw new IllegalStateException("Unable to update default input method");
                     }
                     Toast.makeText(
                             this,
-                            getString(R.string.auto_switch_message, keyboardId),
+                            getString(R.string.auto_switch_message, targetKeyboard.getLabel()),
                             Toast.LENGTH_LONG
                     ).show();
                 }
@@ -232,7 +241,6 @@ public class KeyboardManagerActivity extends AppCompatActivity {
         intent.setAction(Intent.ACTION_VIEW);
         intent.addFlags(
                 Intent.FLAG_ACTIVITY_CLEAR_TOP
-                        | Intent.FLAG_ACTIVITY_CLEAR_TASK
                         | Intent.FLAG_ACTIVITY_NEW_TASK
         );
         if (keyboardId != null)

@@ -1,5 +1,23 @@
 # Changelog
 
+## v4.3.3-qqfix
+
+### Fixed
+
+- Added an Android 16 / MagicOS 10 compatibility fallback for QQ Input Method
+  (`com.tencent.qqpinyin/.QQPYInputMethodService`) when the system API hides its
+  non-exported input method service from third-party apps.
+- Normalized input method component IDs before comparing configured and current keyboards.
+- Kept the foreground app in place by removing `FLAG_ACTIVITY_CLEAR_TASK` from switch launches.
+- Validated explicit `KEYBOARD_ID` requests against the available keyboard choices.
+- Avoided reading the restricted `Settings.Secure.ENABLED_INPUT_METHODS` key on target SDK 36.
+
+### Verified
+
+- Tested two consecutive switches on Android 16 / MagicOS 10:
+  Sogou Input Method -> Doubao Input Method -> QQ Input Method.
+- Confirmed the foreground app remained visible during both switches.
+
 ## v4.3.0
 
 Based on commits `25682a8 feat(keyboard): add direct switching and floating button controls`
